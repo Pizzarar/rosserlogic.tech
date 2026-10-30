@@ -10,25 +10,31 @@ extra:
 <div class="tag-row">
 <span class="tag">Kotlin</span>
 <span class="tag">Jetpack Compose</span>
-<span class="tag">Material3</span>
 <span class="tag">Java 11</span>
-<span class="tag">RuneLite Plugin API</span>
-<span class="tag">LAN UDP</span>
+<span class="tag">RuneLite API</span>
+<span class="tag">LAN HTTP POST</span>
 <span class="tag">WorkManager</span>
 <span class="tag">Room</span>
 </div>
 
 <p><strong>Android repo:</strong> <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--Android" target="_blank" rel="noopener noreferrer">Pssst — OSRS Companion App (Android)</a> &middot; <strong>RuneLite plugin repo:</strong> <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--RL" target="_blank" rel="noopener noreferrer">Pssst — OSRS Companion App (RuneLite)</a></p>
 
-<p><strong>Release:</strong> signed <code>v1.0.0</code> Android APK (3,219,453 bytes, published 2026-10-20) — <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--Android/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">download on GitHub Releases</a>. Both repositories carry a BSD-2-Clause license.</p>
+<p><strong>Release:</strong> signed <code>v1.0.0</code> Android APK — <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--Android/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">download on GitHub Releases</a>. Both repositories carry a BSD-2-Clause license.</p>
 
-## Overview &amp; Architecture
+## Overview
 
-Pssst is a two-part system: a RuneLite plugin that runs inside the Old School RuneScape desktop client, and a native Android app that receives its output over the LAN.
+When I step away from my desk in Old School RuneScape, I still want to know the moment a farming patch finishes, a birdhouse is ready to check, or a Grand Exchange offer fills. I don't want to leave a port open on my PC for that, and I don't want my account state routed through someone else's server. So I built Pssst.
 
-**RuneLite plugin (Java 11).** The companion repo's entry point is `CompanionPlugin.java`, registered via `runelite-plugin.properties` (`displayName=Pssst Companion`, `author=Aub`, `plugins=com.pssst.runelite.CompanionPlugin`) and configured by `CompanionConfig.java`. Its build targets Java 11 (`release = 11`) with RuneLite `client:+`, Lombok, and JUnit 4. The core package includes `NetworkDispatcher.java` (an outbound-only LAN snapshot sender that never opens a listening port), plus snapshot/observation stores, pairing, delivery policy, item/price/icon bookkeeping, and bank/quest state tracking. Domain trackers live in `farming/FarmingTracker.java`, `birdhouse/BirdhouseTracker.java`, and `slayer/SlayerReader.java`.
+It's a two-part companion. A RuneLite plugin runs inside the desktop client and pushes snapshots of my account **one-way over my home LAN** to a Kotlin app on my phone. The desktop plugin only ever sends — it never listens, never opens a port, and never touches the cloud. The phone app does the receiving and turns those snapshots into a dashboard of live timers, bank and inventory, Grand Exchange offers, and progression.
 
-**Android app (Kotlin + Jetpack Compose).** `app/build.gradle.kts` uses `jvmToolchain(17)`, Jetpack Compose (Material3 + Compose BOM), Navigation 3, WorkManager, Room, DataStore Preferences, and Gson; `namespace = "com.pssst"`, `minSdk = 24` (Android 7.0), `targetSdk = 36`, `compileSdk = 36`, `versionCode = 1`, `versionName = "1.0"`, with R8 minification enabled in release. The LAN receiver and ingest path is `receiver/PhoneReceiver.kt`, `receiver/ReceiverHost.kt`, `receiver/ReceiverPrefs.kt`, `data/SnapshotIngest.kt`, `data/StateDto.kt`, and Room persistence in `data/local/`. The UI is `ui/MainActivity.kt` plus ten screens under `ui/main/` (Overview, Storage, Inventory, Bank, Grand Exchange, Potion Storage, Progression, Timers, Dashboard, and Setup), themed by custom OSRS pixel-art components. Background work runs through WorkManager sync and reminder workers, with gameplay math in `util/`.
+The desktop plugin runs as a **developer / sideload build** — it is functional, but it is **not** listed on the official RuneLite Plugin Hub.
+
+## Under the Hood
+
+- **Desktop (Java 11, RuneLite API):** `CompanionPlugin` as the entry point, with domain trackers for farming, birdhouses, and slayer, plus snapshot and observation stores feeding an outbound-only sender.
+- **Outbound-only transport:** `NetworkDispatcher` POSTs to a configured phone address with exponential backoff and opens **zero** listening ports.
+- **Android (Kotlin + Jetpack Compose):** the receiver host hands snapshots to a Room SQLite database and preferences repository, with WorkManager handling sync and reminders behind a 10-screen Compose UI.
+- **Details live in code:** `CompanionPlugin`, `NetworkDispatcher`, `PhoneAddress`, `SnapshotStore`, `ObservationStore`, `PayloadFilter`, `FarmingTracker`, `BirdhouseTracker`, `SlayerReader` (plugin) · `PhoneReceiver`, `ReceiverHost`, `SnapshotIngest`, `StateDto`, `AppDatabase`, `UserPreferencesRepository`, `SyncWorker`, `ReminderWorker`, `ReminderPlanner`, `MainActivity` (app).
 
 ## Plugin Hub Status
 
@@ -66,6 +72,6 @@ The desktop plugin is functional via a **developer/sideload build** and is **not
 </div>
 
 <figure>
-  <img src="https://placehold.co/1200x750/1e1c40/ff6fa5?text=proj-pssst-architecture" data-asset="proj-pssst-architecture" data-final="assets/img/proj-pssst-architecture.webp" width="1200" height="750" alt="Pssst architecture diagram — RuneLite plugin to Android companion data flow">
+  <img src="/static/previews/pssst/architecture.svg" data-asset="proj-pssst-architecture" width="1200" height="640" alt="Pssst architecture diagram — RuneLite plugin to Android companion data flow">
   <figcaption>RuneLite plugin → LAN → Android app data flow</figcaption>
 </figure>

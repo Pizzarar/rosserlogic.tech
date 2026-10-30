@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Pssst architecture: RuneLite plugin to LAN to Android app">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#45D6CF"/>
+    </marker>
+    <marker id="arrowPink" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 5 L0 10 z" fill="#FF6FA5"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1200" height="640" fill="#141229"/>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" font-family="'DotGothic16', 'Courier New', monospace" font-size="19" letter-spacing="2" fill="#F3ECDF">PSSST — ONE-WAY DATA FLOW OVER THE HOME LAN</text>
+  <line x1="150" y1="50" x2="1050" y2="50" stroke="#2B2862" stroke-width="2"/>
+
+  <!-- ============ BOX 1: RuneLite plugin ============ -->
+  <rect x="24" y="72" width="352" height="520" rx="6" fill="#1E1C40" stroke="#2B2862" stroke-width="2"/>
+  <rect x="24" y="72" width="352" height="46" rx="6" fill="#141229" stroke="#45D6CF" stroke-width="2"/>
+  <text x="40" y="94" font-family="'DotGothic16', 'Courier New', monospace" font-size="15" fill="#45D6CF">RUNELITE DESKTOP PLUGIN</text>
+  <text x="40" y="111" font-family="'DotGothic16', 'Courier New', monospace" font-size="12" fill="#B8B2D6">JAVA 11 · OUTBOUND-ONLY</text>
+
+  <!-- CompanionPlugin + trackers -->
+  <rect x="40" y="132" width="320" height="118" rx="4" fill="#141229" stroke="#2B2862"/>
+  <text x="52" y="154" font-family="'DotGothic16', 'Courier New', monospace" font-size="14" fill="#F3ECDF">CompanionPlugin</text>
+  <text x="52" y="176" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">domain trackers:</text>
+  <text x="52" y="194" font-family="'DotGothic16', 'Courier New', monospace" font-size="12" fill="#45D6CF">FarmingTracker</text>
+  <text x="52" y="212" font-family="'DotGothic16', 'Courier New', monospace" font-size="12" fill="#45D6CF">BirdhouseTracker</text>
+  <text x="52" y="230" font-family="'DotGothic16', 'Courier New', monospace" font-size="12" fill="#45D6CF">SlayerReader</text>
+
+  <!-- stores + filter -->
+  <rect x="40" y="262" width="320" height="86" rx="4" fill="#141229" stroke="#2B2862"/>
+  <text x="52" y="284" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#F3ECDF">SnapshotStore</text>
+  <text x="52" y="304" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#F3ECDF">ObservationStore</text>
+  <text x="52" y="324" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#F3ECDF">PayloadFilter</text>
+
+  <!-- down arrow -->
+  <line x1="200" y1="348" x2="200" y2="366" stroke="#B8B2D6" stroke-width="2"/>
+  <polygon points="196,366 204,366 200,374" fill="#B8B2D6"/>
+
+  <!-- NetworkDispatcher -->
+  <rect x="40" y="374" width="320" height="200" rx="4" fill="#141229" stroke="#FF6FA5" stroke-width="2"/>
+  <text x="52" y="396" font-family="'DotGothic16', 'Courier New', monospace" font-size="14" fill="#FFA552">NetworkDispatcher</text>
+  <text x="52" y="418" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">outbound-only LAN HTTP POST</text>
+  <text x="52" y="438" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">→ configured PhoneAddress</text>
+  <text x="52" y="458" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">→ exponential backoff</text>
+  <text x="52" y="478" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#7CFF9B">0 listening ports opened</text>
+  <rect x="52" y="494" width="296" height="2" fill="#2B2862"/>
+  <text x="52" y="520" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">pushes snapshots one-way</text>
+  <text x="52" y="540" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">no inbound connection opened</text>
+  <text x="52" y="560" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">relies on the Android receiver</text>
+
+  <!-- ============ CONDUIT: LAN ============ -->
+  <rect x="400" y="72" width="400" height="520" rx="6" fill="#1E1C40" stroke="#2B2862" stroke-width="2"/>
+  <rect x="400" y="72" width="400" height="46" rx="6" fill="#141229" stroke="#7CFF9B" stroke-width="2"/>
+  <text x="600" y="100" text-anchor="middle" font-family="'DotGothic16', 'Courier New', monospace" font-size="15" fill="#7CFF9B">LOCAL NETWORK (LAN)</text>
+
+  <text x="420" y="142" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#7CFF9B">SENT</text>
+  <text x="430" y="162" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• skills / XP</text>
+  <text x="430" y="182" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• inventory, bank, GE, potion storage</text>
+  <text x="430" y="202" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• farming, birdhouse, slayer timers</text>
+  <text x="430" y="222" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• quest &amp; diary state</text>
+
+  <line x1="420" y1="240" x2="780" y2="240" stroke="#2B2862" stroke-width="2"/>
+
+  <text x="420" y="268" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#FF6FA5">NEVER SENT</text>
+  <text x="430" y="290" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• account credentials</text>
+  <text x="430" y="310" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• session tokens</text>
+  <text x="430" y="330" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• chat logs</text>
+  <text x="430" y="350" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">• external cloud traffic</text>
+
+  <rect x="420" y="372" width="360" height="60" rx="4" fill="#141229" stroke="#2B2862"/>
+  <text x="432" y="396" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">Direct LAN HTTP POST only —</text>
+  <text x="432" y="416" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">no cloud relay in between</text>
+
+  <rect x="420" y="448" width="360" height="126" rx="4" fill="#141229" stroke="#45D6CF" stroke-width="1.5"/>
+  <text x="432" y="472" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#45D6CF">your home network only</text>
+  <text x="432" y="494" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">desktop → phone, no third-party</text>
+  <text x="432" y="516" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">server in the middle, no open</text>
+  <text x="432" y="538" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">port on the PC</text>
+
+  <!-- ============ BOX 2: Android app ============ -->
+  <rect x="824" y="72" width="352" height="520" rx="6" fill="#1E1C40" stroke="#2B2862" stroke-width="2"/>
+  <rect x="824" y="72" width="352" height="46" rx="6" fill="#141229" stroke="#FF6FA5" stroke-width="2"/>
+  <text x="840" y="94" font-family="'DotGothic16', 'Courier New', monospace" font-size="15" fill="#FF6FA5">ANDROID COMPANION APP</text>
+  <text x="840" y="111" font-family="'DotGothic16', 'Courier New', monospace" font-size="12" fill="#B8B2D6">KOTLIN · JETPACK COMPOSE</text>
+
+  <rect x="840" y="132" width="320" height="92" rx="4" fill="#141229" stroke="#2B2862"/>
+  <text x="852" y="154" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#F3ECDF">PhoneReceiver / ReceiverHost</text>
+  <polygon points="856,164 862,164 859,170" fill="#B8B2D6"/>
+  <text x="852" y="182" font-family="'DotGothic16', 'Courier New', monospace" font-size="12" fill="#45D6CF">SnapshotIngest (StateDto)</text>
+  <text x="852" y="204" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">validates inbound snapshots</text>
+
+  <rect x="840" y="236" width="320" height="80" rx="4" fill="#141229" stroke="#2B2862"/>
+  <text x="852" y="258" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#F3ECDF">AppDatabase (Room SQLite)</text>
+  <text x="852" y="280" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#F3ECDF">UserPreferencesRepository</text>
+  <text x="852" y="302" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#B8B2D6">local persistence + prefs</text>
+
+  <rect x="840" y="328" width="320" height="100" rx="4" fill="#141229" stroke="#2B2862"/>
+  <text x="852" y="350" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#F3ECDF">WorkManager</text>
+  <text x="852" y="370" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#45D6CF">SyncWorker</text>
+  <text x="852" y="390" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#45D6CF">ReminderWorker</text>
+  <text x="852" y="410" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#45D6CF">ReminderPlanner</text>
+
+  <rect x="840" y="440" width="320" height="60" rx="4" fill="#141229" stroke="#FFA552" stroke-width="1.5"/>
+  <text x="852" y="462" font-family="'DotGothic16', 'Courier New', monospace" font-size="13" fill="#FFA552">MainActivity</text>
+  <text x="852" y="484" font-family="'DotGothic16', 'Courier New', monospace" font-size="11.5" fill="#F3ECDF">10 Compose screens</text>
+
+  <!-- Flow arrows -->
+  <line x1="376" y1="330" x2="396" y2="330" stroke="#45D6CF" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="800" y1="330" x2="820" y2="330" stroke="#45D6CF" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- Footer -->
+  <text x="600" y="624" text-anchor="middle" font-family="'DotGothic16', 'Courier New', monospace" font-size="11" fill="#B8B2D6">desktop pushes snapshots one-way over your home LAN — the app only receives</text>
+</svg>

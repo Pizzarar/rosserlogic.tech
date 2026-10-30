@@ -7,6 +7,8 @@ extra:
   day_body: true
 ---
 
+<p><strong>Repository:</strong> <a href="https://github.com/Pizzarar/Roster" target="_blank" rel="noopener noreferrer">github.com/Pizzarar/Roster</a></p>
+
 <div class="tag-row">
 <span class="tag">TypeScript</span>
 <span class="tag">React Native (UI primitives)</span>
@@ -15,62 +17,31 @@ extra:
 <span class="tag">Git Worktrees</span>
 </div>
 
-Repository: <a href="https://github.com/Pizzarar/Roster" target="_blank" rel="noopener noreferrer">github.com/Pizzarar/Roster</a>
+## Overview
 
-## Overview &amp; Architecture
+Running a team of coding agents sounds clean in theory — until the screen fills with a wall of unnamed tabs and you can't tell who's leading, which worktree is dirty, or what's sitting in a human review gate waiting on you. Roster is the fix for that.
 
-Roster is a Paseo plugin written in TypeScript. Its manifest declares the package name `paseo-plugin-roster`, version `0.2.0` (unreleased — 0 git tags/releases), an MIT `LICENSE`, and a dependency on `@getpaseo/plugin` `0.13.2` (requiring Paseo `0.13.2+`). The UI is built with React Native primitives.
+It's a plugin for Paseo that turns a multi-agent workspace into something you can actually steer: a live roster with lead pins so the active Lead stays pinned above the workspace list, a board grouped by lead so every task lane is visible at a glance, a two-tap Stop for whatever's stuck, and lead handoffs (detach, adopt, relay) so a change of Lead doesn't strand the team. A workspace/worktree cleanup view surfaces stale worktrees that are safe to archive.
 
-The plugin is split across a client and a server surface, with a shared contract in between:
+It slots into a broader way of working: a self-hosted Paseo daemon on a private encrypted network, a role-scoped team, isolated git worktrees, and staged human checkpoints — all covered below.
 
-- **Client** (`index.client.tsx` + `client/`): sidebar lead pins, the agent board grouped by lead, a workspaces cleanup view, and plugin settings.
-- **Server** (`index.server.ts` + `server/`): two-tap Stop, lead handoffs (detach, adopt, relay), and the lead-finding system prompt line.
-- **Shared** (`shared/`): the settings schema and the client/server RPC contract.
+## The Workflow It Drives
 
-Documentation lives in `README.md` and `OVERVIEW.md`.
+Roster is the control surface for a coordinated team, not a single generalist chat thread. Work is split across role-scoped profiles — a **Lead** who coordinates; **implementers** (**standard**, **hard**, and a **work-order implementer** on trial); **Mechanical**; **Spec**; **Planner**; **Scout**; **Pre-check**; **Audit**; **cross-family reviewers** who critique output with an independent model family so no model grades its own work; and an **escalation-only senior reasoning tier** for the hardest knots.
 
-## The Paseo Network &amp; Multi-Agent Team Workflow
+Parallel streams run in their own isolated git worktrees so changes never collide, and each stream halts at staged human checkpoints — `Gate A → Gate B → Gate C` — before the next phase begins. `HANDOFF.md` and `DISPATCH_LOG.md` record who did what and where, keeping the whole chain reviewable.
 
-Roster was built to drive a specific way of working: not a single generalist chat thread, but a coordinated team of role-scoped agents running on a self-hosted Paseo daemon that can be reached from anywhere.
+The daemon lives on a private encrypted network rather than behind public ports, so the board, workspaces, and review gates look the same from a desktop or a phone — without opening inbound ports or standing up a public tunnel.
 
-### Anywhere Coordination over a Private Encrypted Network
+## Under the Hood
 
-The workstation Paseo daemon is bound to a private encrypted network rather than exposed through public ports. Any device on that network — desktop or phone — sees the same live agent board, workspaces, and review gates, so progress can be checked, a gate review answered, or a lead handoff triggered from anywhere without opening inbound ports or standing up a public tunnel.
-
-### Role-Scoped Profiles &amp; Cross-Family Review
-
-Work is split across specialized agent profiles matched to the shape of each task rather than piled into one long conversation, with no fixed model-to-role lock-in: **Lead** coordinates and dispatches; **implementers** (**standard**, **hard**, and a **work-order implementer** on trial) build features and scoped work orders; **Mechanical** handles low-judgment edits and build tasks; **Spec** and **Planner** turn goals into structured plans and work orders; **Scout** and **Pre-check** run one-shot lookups and pre-verify worker output before the Lead reads it; **Audit** runs read-only verification passes; **cross-family reviewers** critique output using a different model family than the one that produced the work so no model grades its own output; and an **escalation-only senior reasoning tier** handles the hardest architectural or debugging knots.
-
-### Worktree Isolation &amp; Human Gates
-
-Parallel streams each run in their own isolated git worktree so changes never collide, and every stream halts at staged human-in-the-loop gates (`Gate A → Gate B → Gate C`) before the next phase begins. Handoff state files and a persistent dispatch log record who did what and where, so the whole chain stays reviewable and reproducible. Roster makes that workflow manageable day-to-day: lead pins keep the active Lead above the workspace list, the handoff actions (detach, adopt, relay) move workers cleanly when a Lead is replaced, and the workspaces/worktree cleanup view surfaces stale worktrees that are safe to archive.
-
-## Recent Development
-
-Work on `origin/main` is tracked across three commits:
-
-- `fb34817` (2026-10-29) — Initial commit
-- `3eaa7a8` (2026-10-29) — Roster v0.1.0: lead pins, agent board, worktrees, stop
-- `13ee7ac` (2026-10-30) — Lead handoffs and workspace cleanup (v0.2.0)
+- **Package:** `paseo-plugin-roster` `0.2.0`, built on `@getpaseo/plugin` `0.13.2` (TypeScript + React Native UI primitives).
+- **Surfaces:** `client/` (lead pins, lead-grouped board, worktree cleanup, settings) · `server/` (two-tap Stop, lead handoffs, lead-finding prompt) · `shared/` (settings schema + RPC contract).
+- **History:** `fb34817` (initial commit) → `3eaa7a8` (v0.1.0) → `13ee7ac` (lead handoffs + workspace cleanup, v0.2.0).
 
 ## Gallery
 
 <figure>
-  <img src="https://placehold.co/1200x750/1e1c40/ff6fa5?text=proj-roster-board" data-asset="proj-roster-board" data-final="assets/img/proj-roster-board.webp" width="1200" height="750" alt="Roster agent board grouping Paseo agents by lead, status, and task lane">
-  <figcaption>Roster agent board, grouped by lead and status</figcaption>
-</figure>
-
-<figure>
-  <img src="https://placehold.co/1200x750/1e1c40/ff6fa5?text=proj-roster-sidebar" data-asset="proj-roster-sidebar" data-final="assets/img/proj-roster-sidebar.webp" width="1200" height="750" alt="Roster compact left sidebar roster tree view">
-  <figcaption>Compact left sidebar roster tree</figcaption>
-</figure>
-
-<figure>
-  <img src="https://placehold.co/1200x750/1e1c40/ff6fa5?text=proj-roster-workspaces" data-asset="proj-roster-workspaces" data-final="assets/img/proj-roster-workspaces.webp" width="1200" height="750" alt="Roster workspaces and worktree cleanup overview">
-  <figcaption>Workspaces and worktree cleanup overview</figcaption>
-</figure>
-
-<figure>
-  <img src="https://placehold.co/1200x750/1e1c40/ff6fa5?text=proj-roster-workflow-diagram" data-asset="proj-roster-workflow-diagram" data-final="assets/img/proj-roster-workflow-diagram.webp" width="1200" height="750" alt="High-level diagram of the private encrypted network to Paseo daemon to Lead and Worker worktrees with cross-family review gate workflow">
-  <figcaption>Private encrypted network → Paseo daemon → Lead/Worker worktrees with review gate</figcaption>
+  <img src="/static/previews/roster/workflow-diagram.svg" data-asset="proj-roster-workflow-diagram" width="1200" height="640" alt="Roster workflow diagram — operator to private encrypted network to Paseo daemon to lead to role-scoped team to cross-family review to staged human gates">
+  <figcaption>Private encrypted network → Paseo daemon → Lead → role-scoped team → review gates</figcaption>
 </figure>

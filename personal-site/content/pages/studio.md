@@ -8,19 +8,19 @@ extra:
 
 <h1 class="studio-wordmark font-display">Idle Minds</h1>
 
-Idle Minds is my game studio. It makes games built on systems that play themselves out — and that respect the player's time and money.
+Idle Minds is my game studio. I make games built on systems that play themselves out — and that respect your time and your money. Two games are in development today, and both follow the same three rules.
 
 ## Studio Philosophy
 
 - **Systemic simulations.** Games where interesting things emerge from interacting mechanics, not scripted set pieces.
-- **Deterministic mechanics.** A clear, inspectable ruleset the player can learn and master.
+- **Deterministic mechanics.** A clear, inspectable ruleset you can learn, test, and master.
 - **Player-respecting pricing.** Zero ads, zero in-app purchases, zero gacha. You buy the game once and you own it.
 
 ## Games
 
 ### Escape From Idle
 
-A post-apocalyptic modern-shooter idle game with Escape from Tarkov-style extraction raids and a Melvor-style ladder from manual play to automation. Currently in development.
+A post-apocalyptic idle game with Tarkov-style extraction raids and a Melvor-style ladder that carries you from manual play to full automation. Planned at $5 flat — no ads, IAP, or gacha. Currently in development.
 
 <div class="hero-actions"><a href="/escape-from-idle" class="btn btn-secondary">ESCAPE FROM IDLE</a></div>
 
@@ -36,6 +36,6 @@ A post-apocalyptic modern-shooter idle game with Escape from Tarkov-style extrac
 
 ### SportsBallBattles
 
-A Godot arcade football auto-battler and roster-management prototype pairing a deterministic simulation with 3D active-ragdoll playback. Currently a work-in-progress prototype with placeholder art.
+An arcade football auto-battler: draft and upgrade a roster between matches, then watch 3D active-ragdoll chaos play out on Game Day. A work-in-progress prototype with placeholder art.
 
 <div class="hero-actions"><a href="/projects/sportsballbattles" class="btn btn-secondary">SPORTSBALLBATTLES</a></div>

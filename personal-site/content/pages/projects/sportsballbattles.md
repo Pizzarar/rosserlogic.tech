@@ -1,6 +1,6 @@
 ---
 title: "SportsBallBattles"
-description: "A Godot 4.7.2 arcade football auto-battler and roster-management prototype pairing a pure deterministic simulation with 3D active-ragdoll Game Day playback."
+description: "A Godot arcade football auto-battler and roster-management prototype pairing a pure deterministic simulation with 3D active-ragdoll Game Day playback."
 aliases:
   - /sportsballbattles
 extra:
@@ -11,22 +11,26 @@ extra:
 <span class="tag">Godot 4.7.2</span>
 <span class="tag">GDScript 2.0</span>
 <span class="tag">Jolt Physics 3D</span>
-<span class="tag">GL Compatibility</span>
 <span class="tag">Deterministic Sim</span>
 <span class="tag">Active Ragdoll</span>
 </div>
 
 <p>SportsBallBattles is an Idle Minds prototype in active development. The repository is private, so there is no public source link or playable build yet.</p>
 
-## Overview &amp; Architecture
+## Overview
 
-SportsBallBattles is a Godot 4.7.2 project configured for the GL Compatibility renderer (Jolt Physics 3D) and GDScript 2.0. `project.godot` sets `config/name="Sports Ball Battler"`, the GL Compatibility renderer, and Jolt Physics 3D, with a main scene of `res://game/main.tscn`, 60 physics ticks per second, and autoload singletons `GameSession`, `Audio`, and `_mcp_game_helper`. The GUT test framework lives under `addons/gut/`.
+SportsBallBattles is an arcade football auto-battler. Between matches you draft, manage, and upgrade a roster; on Game Day you sit back and watch the plays unfold in 3D active-ragdoll chaos — limbs, tackles, and a broadcast camera that makes it feel like a real broadcast.
 
-The architecture separates a **pure deterministic simulation** from its **presentation**. The `sim/` layer is pure data with integer math, an injected `SimRng`, and an emitted `EventLog`, with zero scene/Node dependencies. The `presentation/playback/` layer renders 3D Game Day with active ragdoll physics (`ActiveRagdoll`, `Muscles`, `BodyDriver`, `ContactDirector`, `PhysicsLOD`), a physical football, throws/catches, broadcast camera and replay, 11-on-11 filler, physics freeze, procedural legs/feet, camera framing, game day juice, and night stadium mode.
+The engine is split clean down the middle, and that split is the interesting part. The **simulation** is pure deterministic integer math with zero scene dependencies, so every match resolves the same way every time. The **presentation** is a separate layer that reads the sim's output and renders the 3D ragdolls, the broadcast camera, and the stadium atmosphere. Simulation and spectacle are decoupled on purpose.
 
-Between matches, progression runs through hub roster management (Offense/Defense, drag-drop, compact cards), shop tier upgrades, a tutorial, and a hall of fame.
+The project is self-described as "complete except art and audio" — every visual below is work-in-progress placeholder geometry and UI.
 
-The project is self-described as "complete except art and audio" — all current visuals are work-in-progress placeholder geometry and UI.
+## Under the Hood
+
+- **Project:** Godot 4.7.2, GL Compatibility renderer, Jolt Physics 3D, GDScript 2.0.
+- **Simulation:** a `sim/` layer of pure data with integer math, an injected RNG, and an emitted event log — no scene or node dependencies.
+- **Presentation:** a `presentation/playback/` layer that drives active ragdolls, the physical football, throws and catches, broadcast camera and replay, 11-on-11 filler, and the night-stadium mode.
+- **Progression:** hub roster management, shop tier upgrades, a tutorial, and a hall of fame between matches.
 
 ## Gallery
 

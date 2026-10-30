@@ -61,7 +61,7 @@ Special projects outside the standard ticket queue (2024–present), spanning Se
 #### Automation, Recovery &amp; Root-Cause Engineering
 
 - Authored a PowerShell script to automatically re-register failing OCX components in the proprietary TKO application, replacing a manual remote-session fix averaging 3+ tickets/day across U.S. sites; distributed as a self-service tool to field technicians, driving peer-to-peer adoption that largely eliminated the ticket category.
-- Co-developed a Windows Recovery Environment PowerShell toolkit to streamline imaging and recovery; authored the offline account-recovery module, restoring authorized access to 4 locked legacy test systems running early-2000s software with no available installers and preventing loss of test data and configurations that could not be rebuilt.
+- Co-developed a Windows Recovery Environment PowerShell toolkit to streamline imaging and recovery; authored the offline account-recovery module, restoring authorized access to 4 locked legacy test systems running early-2000s software with no available installers — and preventing the loss of test data and configurations that couldn't be rebuilt.
 - Diagnosed same-day root cause of connectivity failures blocking 5–7 queued Hyper-V/VDI builds after the Azure AD transition, correlating it with a concurrent field-technician firmware-download issue to isolate a dual-connection security policy; deployed an interim workaround and escalated to Security, leading to a permanent routing fix.
 - Isolated application failures caused by the endpoint security stack by reproducing on clean non-domain systems, producing the evidence Security needed to approve exclusions.
 

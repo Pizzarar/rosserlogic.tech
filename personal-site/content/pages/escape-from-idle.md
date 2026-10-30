@@ -10,23 +10,22 @@ extra:
   <figcaption>In development: experimental UI build, work in progress</figcaption>
 </figure>
 
-**Escape From Idle** is a post-apocalyptic modern-shooter idle game with Escape from Tarkov-style extraction raids and hireable mercenaries.
+**Escape From Idle** is a post-apocalyptic modern-shooter idle game built around one tense loop: every extraction raid runs on a ticking timer, and the longer you stay, the better the loot — and the worse the threat. Push your luck too far and you lose the run; get out clean and you walk away loaded.
 
 ## Features
 
-- Extraction raids with a raid timer — threat and loot scale over time.
-- Loot containers themed to their location.
-- A Melvor-style ladder that takes you from manual play to full automation.
+- Extraction raids with a ticking raid timer — threat and loot scale together the longer you stay.
+- Loot containers themed to their location, so you learn where the good stuff hides.
+- Hireable mercenaries to build out your crew.
+- A Melvor-style ladder that carries you from running every raid by hand to full automation.
 
 ## Pricing
 
-Planned $5 flat price. No ads, no in-app purchases, no gacha.
+Planned $5 flat. No ads, no in-app purchases, no gacha.
 
 ## Status
 
-Currently in development by Idle Minds.
-
-<p class="text-ink-muted">[TODO(Aub): confirm engine, target platforms, release window, and store/wishlist link]</p>
+Currently in development at Idle Minds — engine, target platforms, release window, and store page details will be shared once locked in.
 
 ## Gallery
 
