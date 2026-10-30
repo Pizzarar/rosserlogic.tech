@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} - {{ site.title }}{% endblock %}
+{% block content %}
+<article class="window" aria-labelledby="doc-title">
+    <div class="window-bar"><span>DOC.SYS</span><span class="controls" aria-hidden="true"></span></div>
+    <div class="window-body content">
+        <h1 id="doc-title" class="page-title">{{ page.title }}</h1>
+        {% if page.toc | length > 1 %}
+        <nav class="toc">
+            <h4>{{ t.contents }}</h4>
+            <ul>
+            {% for entry in page.toc %}<li class="toc-level-{{ entry.level }}"><a href="#{{ entry.id }}">{{ entry.text }}</a></li>
+            {% endfor %}</ul>
+        </nav>
+        {% endif %}
+        {{ page.content | safe }}
+    </div>
+</article>
+{% endblock %}

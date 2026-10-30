@@ -1,0 +1,12 @@
+{
+  "version": "0.20.2",
+  "initialized_at": "2026-10-30T01:38:25.308194+00:00",
+  "agents": [
+    "claude",
+    "opencode"
+  ],
+  "hooks_installed": [
+    "claude",
+    "opencode"
+  ]
+}

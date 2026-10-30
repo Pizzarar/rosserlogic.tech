@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Bubble Era Anime — Tailwind v4 input stylesheet
+   Build:  tailwindcss -i src/theme.css -o dist/site.css --minify
+   Watch:  tailwindcss -i src/theme.css -o dist/site.css --watch
+   Source of truth for values: docs/design-tokens.json. Keep the two in sync.
+   ========================================================================== */
+@import "tailwindcss";
+
+/* 1. Raw tokens. Night is the default; put data-theme="day" on <html> or any element. */
+:root,
+[data-theme="night"] {
+  color-scheme: dark;
+  --be-surface: #12112a;
+  --be-surface-raised: #1e1c40;
+  --be-crt: #2b2862;
+  --be-ink: #f3ecdf;
+  --be-ink-muted: #b8b2d6;
+  --be-sunset-pink: #ff6fa5;
+  --be-sunset-orange: #ffa552;
+  --be-dusk-violet: #9a7bff;
+  --be-cel-teal: #45d6cf;
+  --be-on-accent: #12112a;
+  --be-on-violet: #12112a;
+  --be-phosphor: #7cff9b;
+  --be-gain: #5bd68a;
+  --be-loss: #ff7a7a;
+  --be-crt-gain: #5bd68a;
+  --be-crt-loss: #ff7a7a;
+  --be-shadow-color: #5b3f9e; /* violet: a dark shadow vanishes on navy */
+}
+
+[data-theme="day"] {
+  color-scheme: light;
+  --be-surface: #f4eee2;
+  --be-surface-raised: #e8dfcc;
+  --be-crt: #1b1a33;
+  --be-ink: #1b1a33;
+  --be-ink-muted: #4e4a6b;
+  --be-sunset-pink: #e8508a; /* fill only in Day — 3.1:1 as text, fails */
+  --be-sunset-orange: #f28c38;
+  --be-dusk-violet: #5b3f9e;
+  --be-cel-teal: #2fb5b0;
+  --be-on-accent: #1b1a33;
+  --be-on-violet: #f4eee2;
+  --be-gain: #1f7a45;
+  --be-loss: #b42e2e;
+  --be-shadow-color: #1b1a33;
+}
+
+/* 2. Wipe Tailwind defaults so off-theme classes (bg-blue-500, rounded-xl, shadow-lg, blur) don't exist. */
+@theme {
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --font-*: initial;
+  --blur-*: initial;
+
+  --radius-sm: 2px; /* the maximum. Everything else is square. */
+
+  --font-display: "Dela Gothic One", "Arial Black", sans-serif;
+  --font-sans: "M PLUS 1p", system-ui, sans-serif;
+  --font-pixel: "DotGothic16", ui-monospace, monospace;
+}
+
+/* 3. Map tokens to utilities. `inline` makes utilities read the live variable,
+      so a data-theme swap on any subtree recolors it. */
+@theme inline {
+  --color-surface: var(--be-surface);
+  --color-surface-raised: var(--be-surface-raised);
+  --color-crt: var(--be-crt);
+  --color-ink: var(--be-ink);
+  --color-ink-muted: var(--be-ink-muted);
+  --color-line: var(--be-ink);
+  --color-sunset-pink: var(--be-sunset-pink);
+  --color-sunset-orange: var(--be-sunset-orange);
+  --color-dusk-violet: var(--be-dusk-violet);
+  --color-cel-teal: var(--be-cel-teal);
+  --color-on-accent: var(--be-on-accent);
+  --color-on-violet: var(--be-on-violet);
+  --color-phosphor: var(--be-phosphor);
+  --color-gain: var(--be-gain);
+  --color-loss: var(--be-loss);
+  --color-crt-gain: var(--be-crt-gain);
+  --color-crt-loss: var(--be-crt-loss);
+
+  --shadow-window: 4px 4px 0 0 var(--be-shadow-color);
+  --shadow-pressed: 2px 2px 0 0 var(--be-shadow-color);
+}
+
+/* 4. Base */
+@layer base {
+  html { background: var(--be-surface); color: var(--be-ink); font-family: var(--font-sans); }
+  body { min-height: 100vh; font-size: 1rem; line-height: 1.625; }
+  h1, h2 { font-family: var(--font-display); font-weight: 400; line-height: 1.1; }
+  a { color: var(--be-cel-teal); text-underline-offset: 3px; }
+  [data-theme="day"] a { color: var(--be-dusk-violet); }
+  :focus-visible { outline: 2px solid var(--be-cel-teal); outline-offset: 2px; }
+  ::selection { background: var(--be-sunset-pink); color: var(--be-on-accent); }
+}
+
+/* 5. Components — use these class names; don't rebuild them from utilities. */
+@layer components {
+  /* Window: the only container. <section class="window"><div class="window-bar">…</div><div class="window-body">…</div></section> */
+  .window {
+    background: var(--be-surface-raised);
+    border: 2px solid var(--be-ink);
+    box-shadow: var(--shadow-window);
+  }
+  .window-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--be-dusk-violet); color: var(--be-on-violet);
+    border-bottom: 2px solid var(--be-ink);
+    font-family: var(--font-pixel); font-size: 0.875rem; line-height: 1.125rem; letter-spacing: 0.06em;
+  }
+  .window-bar .controls { flex-shrink: 0; white-space: nowrap; }
+  .window-bar .controls::after { content: "■ □ ×"; letter-spacing: 0.2em; } /* decoration only */
+  .window-body { padding: 1rem; }
+  .window-body img { max-width: 100%; height: auto; }
+  .window-crt .window-body {
+    background: var(--be-crt); color: var(--be-phosphor);
+    font-family: var(--font-pixel); font-size: 1.125rem; line-height: 1.5rem;
+  }
+  /* Day reading surface: résumé (html[data-theme=day]) and case-study
+     prose windows (page.extra.day_body → data-theme=day on the body). */
+  [data-theme="day"] .window { background: var(--be-surface); }
+  .window-body[data-theme="day"] { background: var(--be-surface); color: var(--be-ink); }
+
+  /* Buttons: one .btn-primary per screen */
+  .btn {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--be-ink);
+    box-shadow: var(--shadow-window);
+    font-family: var(--font-pixel); font-size: 0.875rem; letter-spacing: 0.06em;
+    text-decoration: none; cursor: pointer;
+    transition: transform 80ms, box-shadow 80ms;
+  }
+  .btn:hover, .btn:active { transform: translate(2px, 2px); box-shadow: var(--shadow-pressed); }
+  .btn-primary { background: var(--be-sunset-pink); color: var(--be-on-accent); }
+  .btn-secondary { background: var(--be-surface-raised); color: var(--be-ink); }
+
+  /* Ticker: CRT data strip. Always pair gain/loss color with ▲/▼. */
+  .ticker {
+    background: var(--be-crt); color: var(--be-phosphor);
+    border-block: 2px solid var(--be-ink);
+    font-family: var(--font-pixel); font-size: 1.125rem; line-height: 1.5rem;
+    padding: 0.5rem 1.5rem; white-space: nowrap; overflow: hidden;
+  }
+  .ticker .up { color: var(--be-crt-gain); }
+  .ticker .down { color: var(--be-crt-loss); }
+
+  /* Tags / badges */
+  .tag {
+    display: inline-block; padding: 0.125rem 0.5rem; border-radius: 2px;
+    border: 2px solid var(--be-ink);
+    font-family: var(--font-pixel); font-size: 0.75rem; letter-spacing: 0.06em;
+  }
+
+  /* Pixel-art images: integer scaling only (×2, ×3, ×4) */
+  .pixelated { image-rendering: pixelated; }
+
+  /* CRT scanlines — ONE section per page, max */
+  .scanlines { position: relative; }
+  .scanlines::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0.18) 0 1px, transparent 1px 3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Résumé / any page: clean print */
+@media print {
+  html, body { background: #fff !important; color: #000 !important; }
+  nav, footer, .scanlines::after, .no-print { display: none !important; }
+  .window { box-shadow: none; border: 1px solid #000; }
+  .window-bar { background: #fff; color: #000; }
+  a { color: #000; }
+}

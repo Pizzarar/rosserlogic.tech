@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{% if page.title != site.title %}{{ page.title }} - {{ site.title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
+{% block content %}
+<article class="window" aria-labelledby="page-title">
+    <div class="window-bar"><span id="page-title">{{ page.title | upper }}</span><span class="controls" aria-hidden="true"></span></div>
+    {% set _day_body = page.extra.day_body | default(value=false) %}
+    {% set _custom_h1 = page.extra.custom_h1 | default(value=false) %}
+    <div class="window-body content"{% if _day_body %} data-theme="day"{% endif %}>
+        {% if not _custom_h1 %}<h1 class="page-title">{{ page.title }}</h1>{% endif %}
+        {{ page.content | safe }}
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,144 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install seite
+        run: |
+          curl -fsSL https://seite.sh/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Set base_url in seite.toml
+        working-directory: personal-site
+        run: |
+          BASE_URL="${{ steps.pages.outputs.base_url }}"
+          if [ -z "$BASE_URL" ]; then
+            BASE_URL="https://pizzarar.github.io/rosserlogic.tech"
+          fi
+          echo "Using base_url: $BASE_URL"
+          python3 - "$BASE_URL" <<'PY'
+          import pathlib
+          import re
+          import sys
+
+          base_url = sys.argv[1]
+          path = pathlib.Path("seite.toml")
+          text = path.read_text(encoding="utf-8")
+          text, count = re.subn(
+              r'(?m)^base_url\s*=.*$',
+              'base_url = "%s"' % base_url,
+              text,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit("base_url key not found in seite.toml")
+          path.write_text(text, encoding="utf-8")
+          print("set base_url = %s" % base_url)
+          PY
+
+      - name: Build site
+        working-directory: personal-site
+        run: seite build
+
+      - name: Rewrite root-relative paths for project subpath
+        if: steps.pages.outputs.base_path != ''
+        working-directory: personal-site/dist
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import pathlib
+          import re
+
+          base = os.environ["BASE_PATH"].rstrip("/")
+          if not base.startswith("/"):
+              base = "/" + base
+
+          attr_re = re.compile(r'(?<![\w-])(href|src)(\s*=\s*)(["\'])([^"\']*)\3')
+          srcset_re = re.compile(r'(?<![\w-])srcset(\s*=\s*)(["\'])([^"\']*)\2')
+          refresh_re = re.compile(
+              r'(?is)(<meta[^>]*http-equiv\s*=\s*["\']refresh["\'][^>]*'
+              r'content\s*=\s*["\'][^"\']*?)\burl=/(?!/)'
+          )
+
+          def fix_url(value):
+              if not value.startswith("/") or value.startswith("//"):
+                  return value
+              if value == base or value.startswith(base + "/"):
+                  return value
+              return base + value
+
+          def srcset_sub(match):
+              out = []
+              for item in match.group(3).split(","):
+                  token = item.strip()
+                  if token.startswith("/static/"):
+                      token = base + token
+                  if token:
+                      out.append(token)
+              return "srcset" + match.group(1) + match.group(2) + ", ".join(out) + match.group(2)
+
+          def fix_html(text):
+              text = attr_re.sub(
+                  lambda m: m.group(1) + m.group(2) + m.group(3) + fix_url(m.group(4)) + m.group(3),
+                  text,
+              )
+              text = srcset_re.sub(srcset_sub, text)
+              text = refresh_re.sub(lambda m: m.group(1) + "url=" + base + "/", text)
+              for quote in ("'", '"'):
+                  text = text.replace(
+                      "fetch(" + quote + "/search-index.json" + quote + ")",
+                      "fetch(" + quote + base + "/search-index.json" + quote + ")",
+                  )
+              return text
+
+          changed = 0
+          total = 0
+          for path in pathlib.Path(".").rglob("*.html"):
+              total += 1
+              original = path.read_text(encoding="utf-8")
+              updated = fix_html(original)
+              if updated != original:
+                  path.write_text(updated, encoding="utf-8")
+                  changed += 1
+          print("rewrote %d of %d html files with base path %s" % (changed, total, base))
+          PY
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: personal-site/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
