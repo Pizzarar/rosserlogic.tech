@@ -33,6 +33,14 @@ Currently in development at Idle Minds. Engine, target platforms, release window
 ## Gallery
 
 <figure>
+  <picture>
+    <source media='(prefers-reduced-motion: no-preference)' srcset='/static/previews/efi/combat-loop.webp' type='image/webp'>
+    <img src='/static/previews/efi/combat-poster.png' width='800' height='525' loading='lazy' alt='Looping capture of a fight in the raid view prototype: a scav steps out in a dockside container corridor, takes hits as its health bar drops, and goes down.'>
+  </picture>
+  <figcaption>UI lab prototype of the raid view, not in the main game yet. Real in-engine capture of one scav fight. Placeholder art, built by AI agents: Blender-rendered backgrounds, Piskel sprites.</figcaption>
+</figure>
+
+<figure>
   <img src="/static/previews/efi/efi-raids.png" data-asset="efi-raids" data-final="static/previews/efi/efi-raids.png" width="1920" height="1080" alt="Escape From Idle extraction raids screen: experimental UI build, work in progress" loading="lazy" decoding="async">
   <figcaption>In development: experimental UI build, work in progress</figcaption>
 </figure>
