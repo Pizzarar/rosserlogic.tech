@@ -1,6 +1,6 @@
 ---
 title: "Aubrey Rosser"
-description: "Résumé — End User Support Specialist, Tier II. 7+ years in IT operations, escalation management, ServiceNow workflow & CMDB design, and process improvement."
+description: "Résumé: End User Support Specialist, Tier II. 7+ years in IT operations, escalation management, ServiceNow workflow & CMDB design, and process improvement."
 extra:
   theme: day
 ---
@@ -44,7 +44,7 @@ IT professional with 7+ years of progressive experience spanning end-user suppor
 
 ## Experience
 
-### Vertiv — End User Support Specialist, Tier II
+### Vertiv, End User Support Specialist, Tier II
 
 <p class="post-meta">August 2021 – Present</p>
 
@@ -61,7 +61,7 @@ Special projects outside the standard ticket queue (2024–present), spanning Se
 #### Automation, Recovery &amp; Root-Cause Engineering
 
 - Authored a PowerShell script to automatically re-register failing OCX components in the proprietary TKO application, replacing a manual remote-session fix averaging 3+ tickets/day across U.S. sites; distributed as a self-service tool to field technicians, driving peer-to-peer adoption that largely eliminated the ticket category.
-- Co-developed a Windows Recovery Environment PowerShell toolkit to streamline imaging and recovery; authored the offline account-recovery module, restoring authorized access to 4 locked legacy test systems running early-2000s software with no available installers — and preventing the loss of test data and configurations that couldn't be rebuilt.
+- Co-developed a Windows Recovery Environment PowerShell toolkit to streamline imaging and recovery; authored the offline account-recovery module, restoring authorized access to 4 locked legacy test systems running early-2000s software with no available installers, and preventing the loss of test data and configurations that couldn't be rebuilt.
 - Diagnosed same-day root cause of connectivity failures blocking 5–7 queued Hyper-V/VDI builds after the Azure AD transition, correlating it with a concurrent field-technician firmware-download issue to isolate a dual-connection security policy; deployed an interim workaround and escalated to Security, leading to a permanent routing fix.
 - Isolated application failures caused by the endpoint security stack by reproducing on clean non-domain systems, producing the evidence Security needed to approve exclusions.
 
@@ -81,7 +81,7 @@ Special projects outside the standard ticket queue (2024–present), spanning Se
 - Perform break/fix troubleshooting across desktops, laptops, peripherals, and mobile devices; provide account provisioning, access management, and identity support across enterprise systems.
 - Support corporate office, warehouse, and field technicians across multiple facility types and business units.
 
-### Ascena Service Desk — Help Desk Analyst, Tier I – Tier II
+### Ascena Service Desk, Help Desk Analyst, Tier I – Tier II
 
 <p class="post-meta">October 2017 – August 2021</p>
 
@@ -124,7 +124,7 @@ Promoted from Tier I to Tier II based on performance and expanded responsibiliti
 
 ### Eastern Gateway Community College
 
-Coursework toward A.A.S., Information Technology (ITSA). Institution closed prior to completion — no degree completed.
+Coursework toward A.A.S., Information Technology (ITSA). Institution closed prior to completion. No degree completed.
 
 ### ServiceNow CSA Training
 

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/sprites/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/sprites/favicon-16.png">
     <title>{% block title %}{{ site.title }}{% endblock %}</title>
     <meta name="description" content="{{ page.description | default(value=site.description) }}">
     <link rel="canonical" href="{{ site.base_url }}{{ page.url | default(value='/') }}">
@@ -95,9 +96,9 @@
         @media (min-width: 900px) {
             .hero-split { grid-template-columns: 1.15fr 0.85fr; align-items: center; }
         }
-        .hero-art { display: flex; align-items: center; }
-        .hero-skyline { width: 100%; height: auto; display: block; border: 2px solid var(--be-ink); }
-        @media (min-width: 900px) { .hero-skyline { max-height: 300px; object-fit: cover; } }
+        .pixelated { image-rendering: pixelated; }
+        .hero-art { display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px solid var(--be-ink); }
+        .hero-skyline { display: block; flex: none; width: 440px; height: 240px; max-width: none; }
 
         /* Structured metadata strip (ROLE / LOCATION / STUDIO) */
         .meta-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--be-ink); margin: 1rem 0; }
@@ -117,7 +118,9 @@
         @media (min-width: 640px) { .card-grid { grid-template-columns: 1fr 1fr; } }
         .card { display: block; border: 2px solid var(--be-ink); background: var(--be-surface); padding: 1rem; text-decoration: none; color: var(--be-ink); box-shadow: var(--shadow-window); }
         .card:hover { transform: translate(2px, 2px); box-shadow: var(--shadow-pressed); }
-        .card .card-label { display: block; font-family: var(--font-pixel); font-size: .7rem; letter-spacing: .08em; color: var(--be-cel-teal); margin-bottom: .375rem; }
+        .card .card-label { display: flex; align-items: center; gap: .5rem; font-family: var(--font-pixel); font-size: .7rem; letter-spacing: .08em; color: var(--be-cel-teal); margin-bottom: .375rem; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+        @media (max-width: 399px) { .page-title { font-size: 1.5rem; } }
         .card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.125rem; line-height: 1.2; margin: 0 0 .5rem; color: var(--be-ink); }
         .card p { margin: 0; color: var(--be-ink-muted); font-size: .9rem; line-height: 1.5; }
 
@@ -150,6 +153,9 @@
         .content em { font-style: italic; }
         .content a { color: var(--be-cel-teal); }
         [data-theme="day"] .content a { color: var(--be-dusk-violet); }
+        .content [data-theme="day"] a { color: var(--be-dusk-violet); }
+        .content [data-theme="day"] :focus-visible { outline-color: var(--be-dusk-violet); }
+        .card-grid + p { margin-top: 1rem; }
         .content blockquote { margin: 1rem 0; padding: .5rem 1rem; border-left: 4px solid var(--be-dusk-violet); color: var(--be-ink-muted); }
         .content code { font-family: var(--font-pixel); font-size: .875em; background: var(--be-crt); color: var(--be-phosphor); padding: .1rem .35rem; }
         .content pre { background: var(--be-crt); color: var(--be-phosphor); border: 2px solid var(--be-ink); padding: 1rem; overflow-x: auto; margin: 1rem 0; }
@@ -160,6 +166,8 @@
         .content hr { border: 0; border-top: 2px solid var(--be-ink); margin: 2rem 0; }
         .content img { max-width: 100%; height: auto; display: block; border: 2px solid var(--be-ink); }
         .content figure { margin: 1rem 0; }
+        .pixel-diagram { display: block; }
+        .pixel-diagram img { display: block; margin: 0 auto; max-width: none; image-rendering: pixelated; }
         .content figcaption { font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; color: var(--be-ink-muted); margin-top: .5rem; }
 
         /* Portrait phone screenshots (native mobile-app captures) */
@@ -170,6 +178,10 @@
         .phone-hero img { width: 100%; height: auto; }
         .phone-placeholder { max-width: 100%; margin: 1.25rem auto; }
         .phone-placeholder img { width: 100%; height: auto; }
+        .card .card-label img { flex: none; image-rendering: pixelated; }
+        .window-bar .controls::after { content: ""; display: inline-block; vertical-align: middle; width: 56px; height: 16px; image-rendering: pixelated;
+            background: url(/static/sprites/ctl-min.png) 0 0 / 16px 16px no-repeat, url(/static/sprites/ctl-max.png) 20px 0 / 16px 16px no-repeat, url(/static/sprites/ctl-close.png) 40px 0 / 16px 16px no-repeat; }
+        .studio-wordmark img { display: block; max-width: 100%; border: 0; box-shadow: none; image-rendering: pixelated; }
         .studio-wordmark { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 6vw, 3rem); line-height: 1.05; letter-spacing: .03em; color: var(--be-sunset-pink); margin: 0 0 1rem; }
 
         /* Meta + lists */
@@ -217,6 +229,18 @@
         /* Footer */
         .site-footer { margin-top: 3rem; background: var(--be-dusk-violet); color: var(--be-on-violet); border-top: 2px solid var(--be-ink); }
         .site-footer .ticker { border-block: 2px solid var(--be-ink); }
+
+        /* Scrolling ticker: two identical runs, track slides by one run (-50%) for a seamless loop. */
+        .ticker-marquee { padding-inline: 0; }
+        .ticker-track { display: flex; width: max-content; animation: ticker-scroll 40s linear infinite; }
+        .ticker-run { flex: none; padding-left: 1.5rem; }
+        .ticker-marquee:hover .ticker-track { animation-play-state: paused; }
+        @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track { animation: none; width: auto; display: block; white-space: normal; }
+            .ticker-run { padding-left: 1.5rem; display: block; padding-right: 1.5rem; }
+            .ticker-run + .ticker-run { display: none; }
+        }
         .footer-inner { width: 100%; max-width: 72rem; margin-inline: auto; padding: 1.5rem 1rem; font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; }
         .footer-nav { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin-bottom: .75rem; }
         .footer-nav a { color: var(--be-on-violet); text-decoration: none; }

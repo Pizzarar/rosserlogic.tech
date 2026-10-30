@@ -19,16 +19,16 @@ extra:
 
 ## Overview
 
-SportsBallBattles is an arcade football auto-battler. Between matches you draft, manage, and upgrade a roster; on Game Day you sit back and watch the plays unfold in 3D active-ragdoll chaos — limbs, tackles, and a broadcast camera that makes it feel like a real broadcast.
+SportsBallBattles is an arcade football auto-battler. Between matches you draft, manage, and upgrade a roster; on Game Day you sit back and watch the plays unfold in 3D active-ragdoll chaos: limbs, tackles, and a broadcast camera with replay.
 
-The engine is split clean down the middle, and that split is the interesting part. The **simulation** is pure deterministic integer math with zero scene dependencies, so every match resolves the same way every time. The **presentation** is a separate layer that reads the sim's output and renders the 3D ragdolls, the broadcast camera, and the stadium atmosphere. Simulation and spectacle are decoupled on purpose.
+The engine is split clean down the middle, and that split is the interesting part. The **simulation** is pure deterministic integer math with zero scene dependencies, so every match resolves the same way every time. The **presentation** is a separate layer that reads the sim's output and renders the 3D ragdolls, the broadcast camera, and the stadium atmosphere. Simulation and presentation are decoupled.
 
-The project is self-described as "complete except art and audio" — every visual below is work-in-progress placeholder geometry and UI.
+The project is self-described as "complete except art and audio". Every visual below is work-in-progress placeholder geometry and UI.
 
 ## Under the Hood
 
 - **Project:** Godot 4.7.2, GL Compatibility renderer, Jolt Physics 3D, GDScript 2.0.
-- **Simulation:** a `sim/` layer of pure data with integer math, an injected RNG, and an emitted event log — no scene or node dependencies.
+- **Simulation:** a `sim/` layer of pure data with integer math, an injected RNG, and an emitted event log, with no scene or node dependencies.
 - **Presentation:** a `presentation/playback/` layer that drives active ragdolls, the physical football, throws and catches, broadcast camera and replay, 11-on-11 filler, and the night-stadium mode.
 - **Progression:** hub roster management, shop tier upgrades, a tutorial, and a hall of fame between matches.
 
@@ -37,26 +37,26 @@ The project is self-described as "complete except art and audio" — every visua
 Every capture below is labeled **work in progress, placeholder art**.
 
 <figure>
-  <img src="/static/previews/sportsballbattles/night-kickoff.png" data-asset="proj-sportsballbattles-night-kickoff" data-final="static/previews/sportsballbattles/night-kickoff.png" width="1200" height="750" alt="SportsBallBattles night stadium kickoff view — work in progress, placeholder art">
+  <img src="/static/previews/sportsballbattles/night-kickoff.png" data-asset="proj-sportsballbattles-night-kickoff" data-final="static/previews/sportsballbattles/night-kickoff.png" width="1200" height="750" alt="SportsBallBattles night stadium kickoff view: work in progress, placeholder art">
   <figcaption>work in progress, placeholder art</figcaption>
 </figure>
 
 <figure>
-  <img src="/static/previews/sportsballbattles/pre-snap-formation.png" data-asset="proj-sportsballbattles-pre-snap-formation" data-final="static/previews/sportsballbattles/pre-snap-formation.png" width="1200" height="750" alt="SportsBallBattles pre-snap formation view — work in progress, placeholder art">
+  <img src="/static/previews/sportsballbattles/pre-snap-formation.png" data-asset="proj-sportsballbattles-pre-snap-formation" data-final="static/previews/sportsballbattles/pre-snap-formation.png" width="1200" height="750" alt="SportsBallBattles pre-snap formation view: work in progress, placeholder art">
   <figcaption>work in progress, placeholder art</figcaption>
 </figure>
 
 <figure>
-  <img src="/static/previews/sportsballbattles/hub-offense.png" data-asset="proj-sportsballbattles-hub-offense" data-final="static/previews/sportsballbattles/hub-offense.png" width="1200" height="750" alt="SportsBallBattles hub offense roster view — work in progress, placeholder art">
+  <img src="/static/previews/sportsballbattles/hub-offense.png" data-asset="proj-sportsballbattles-hub-offense" data-final="static/previews/sportsballbattles/hub-offense.png" width="1200" height="750" alt="SportsBallBattles hub offense roster view: work in progress, placeholder art">
   <figcaption>work in progress, placeholder art</figcaption>
 </figure>
 
 <figure>
-  <img src="/static/previews/sportsballbattles/shop-upgrades.png" data-asset="proj-sportsballbattles-shop-upgrades" data-final="static/previews/sportsballbattles/shop-upgrades.png" width="1200" height="750" alt="SportsBallBattles shop upgrades view — work in progress, placeholder art">
+  <img src="/static/previews/sportsballbattles/shop-upgrades.png" data-asset="proj-sportsballbattles-shop-upgrades" data-final="static/previews/sportsballbattles/shop-upgrades.png" width="1200" height="750" alt="SportsBallBattles shop upgrades view: work in progress, placeholder art">
   <figcaption>work in progress, placeholder art</figcaption>
 </figure>
 
 <figure>
-  <img src="/static/previews/sportsballbattles/hall-of-fame.png" data-asset="proj-sportsballbattles-hall-of-fame" data-final="static/previews/sportsballbattles/hall-of-fame.png" width="1200" height="750" alt="SportsBallBattles hall of fame view — work in progress, placeholder art">
+  <img src="/static/previews/sportsballbattles/hall-of-fame.png" data-asset="proj-sportsballbattles-hall-of-fame" data-final="static/previews/sportsballbattles/hall-of-fame.png" width="1200" height="750" alt="SportsBallBattles hall of fame view: work in progress, placeholder art">
   <figcaption>work in progress, placeholder art</figcaption>
 </figure>

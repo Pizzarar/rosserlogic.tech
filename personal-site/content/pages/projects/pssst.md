@@ -17,17 +17,17 @@ extra:
 <span class="tag">Room</span>
 </div>
 
-<p><strong>Android repo:</strong> <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--Android" target="_blank" rel="noopener noreferrer">Pssst — OSRS Companion App (Android)</a> &middot; <strong>RuneLite plugin repo:</strong> <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--RL" target="_blank" rel="noopener noreferrer">Pssst — OSRS Companion App (RuneLite)</a></p>
+<p><strong>Android repo:</strong> <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--Android" target="_blank" rel="noopener noreferrer">Pssst: OSRS Companion App (Android)</a> &middot; <strong>RuneLite plugin repo:</strong> <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--RL" target="_blank" rel="noopener noreferrer">Pssst: OSRS Companion App (RuneLite)</a></p>
 
-<p><strong>Release:</strong> signed <code>v1.0.0</code> Android APK — <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--Android/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">download on GitHub Releases</a>. Both repositories carry a BSD-2-Clause license.</p>
+<p><strong>Release:</strong> signed <code>v1.0.0</code> Android APK: <a href="https://github.com/Pizzarar/Pssst---OSRS-Companion-App--Android/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer">download on GitHub Releases</a>. Both repositories carry a BSD-2-Clause license.</p>
 
 ## Overview
 
 When I step away from my desk in Old School RuneScape, I still want to know the moment a farming patch finishes, a birdhouse is ready to check, or a Grand Exchange offer fills. I don't want to leave a port open on my PC for that, and I don't want my account state routed through someone else's server. So I built Pssst.
 
-It's a two-part companion. A RuneLite plugin runs inside the desktop client and pushes snapshots of my account **one-way over my home LAN** to a Kotlin app on my phone. The desktop plugin only ever sends — it never listens, never opens a port, and never touches the cloud. The phone app does the receiving and turns those snapshots into a dashboard of live timers, bank and inventory, Grand Exchange offers, and progression.
+It's a two-part companion. A RuneLite plugin runs inside the desktop client and pushes snapshots of my account **one-way over my home LAN** to a Kotlin app on my phone. The desktop plugin only ever sends. It never listens, never opens a port, and never touches the cloud. The phone app does the receiving and turns those snapshots into a dashboard of live timers, bank and inventory, Grand Exchange offers, and progression.
 
-The desktop plugin runs as a **developer / sideload build** — it is functional, but it is **not** listed on the official RuneLite Plugin Hub.
+The desktop plugin runs as a **developer / sideload build**. It is functional, but it is **not** listed on the official RuneLite Plugin Hub.
 
 ## Under the Hood
 
@@ -45,7 +45,7 @@ The desktop plugin is functional via a **developer/sideload build** and is **not
 <div class="phone-hero">
 <figure>
   <img src="/static/previews/pssst/overview.png" data-asset="proj-pssst-overview" data-final="static/previews/pssst/overview.png" width="444" height="927" alt="Pssst Android companion app Overview dashboard tab showing live Old School RuneScape account state">
-  <figcaption>Overview dashboard tab — live account state on Android</figcaption>
+  <figcaption>Overview dashboard tab: live account state on Android</figcaption>
 </figure>
 </div>
 
@@ -72,6 +72,9 @@ The desktop plugin is functional via a **developer/sideload build** and is **not
 </div>
 
 <figure>
-  <img src="/static/previews/pssst/architecture.svg" data-asset="proj-pssst-architecture" width="1200" height="640" alt="Pssst architecture diagram — RuneLite plugin to Android companion data flow">
+  <picture class="pixel-diagram">
+    <source media="(min-width: 1200px)" srcset="/static/previews/pssst/architecture.png" width="1056" height="560">
+    <img src='/static/previews/pssst/architecture-narrow.png' data-asset="proj-pssst-architecture" width="272" height="1648" alt="Pssst architecture diagram: RuneLite plugin to Android companion data flow" class="pixelated">
+  </picture>
   <figcaption>RuneLite plugin → LAN → Android app data flow</figcaption>
 </figure>

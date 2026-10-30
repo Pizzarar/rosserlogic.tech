@@ -1,9 +1,9 @@
 ---
 title: "Contact"
-description: "Get in touch with Aubrey Rosser — Columbus, OH area."
+description: "Get in touch with Aubrey Rosser, based in the Columbus, OH area."
 ---
 
-Got a role in mind, a project worth kicking around, or just want to say hi? Drop me a line below — I read every message that comes through and try to get back within a day or two.
+Got a role in mind, a project worth kicking around, or just want to say hi? Drop me a line below. I read every message that comes through and try to get back within a day or two.
 
 <form action="https://formspree.io/f/mgaalkpw" method="POST" class="contact-form">
 <div class="contact-form-field"><label for="name">Name</label><input type="text" name="name" id="name" required></div>
