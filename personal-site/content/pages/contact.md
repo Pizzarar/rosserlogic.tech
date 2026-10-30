@@ -2,6 +2,9 @@
 title: "Contact"
 image: /static/sprites/og-contact.png
 description: "Get in touch with Aubrey Rosser, based in the Columbus, OH area."
+extra:
+  body_style: crt
+  banner: contact
 ---
 
 Got a role in mind, a project worth kicking around, or just want to say hi? Drop me a line below. I read every message that comes through and try to get back within a day or two.

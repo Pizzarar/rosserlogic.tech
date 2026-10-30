@@ -155,7 +155,8 @@
         .content em { font-style: italic; }
         .content a { color: var(--be-cel-teal); }
         [data-theme="day"] .content a { color: var(--be-dusk-violet); }
-        .content [data-theme="day"] a { color: var(--be-dusk-violet); }
+        .content [data-theme="day"] a, .content[data-theme="day"] a:not(.btn) { color: var(--be-dusk-violet); }
+        .content[data-theme="day"] .btn-secondary { color: var(--be-ink); }
         .content [data-theme="day"] :focus-visible { outline-color: var(--be-dusk-violet); }
         .card-grid + p { margin-top: 1rem; }
         .content blockquote { margin: 1rem 0; padding: .5rem 1rem; border-left: 4px solid var(--be-dusk-violet); color: var(--be-ink-muted); }
@@ -248,6 +249,51 @@
         .footer-nav a { color: var(--be-on-violet); text-decoration: none; }
         .footer-nav a:hover { text-decoration: underline; }
         .footer-copy { margin: 0; }
+
+        /* Gate 4 sample: page banner + reading bodies that keep the theme going down the page */
+        .page-banner { overflow: hidden; display: flex; justify-content: center; background: var(--be-surface); border-bottom: 2px solid var(--be-ink); }
+        .page-banner img { display: block; flex: none; max-width: none; width: auto; height: 112px; image-rendering: pixelated; }
+        /* page backdrop: banded dusk (hard stops, like the sky bands); the panel carries the only texture */
+        body.reading { background: linear-gradient(to bottom, #12112a 0 30%, #1e1c40 30% 55%, #2b2862 55% 75%, #5b3f9e 75%); }
+        /* keep the footer at the viewport bottom on short pages, so no backdrop band shows under it */
+        body.reading { min-height: 100vh; display: flex; flex-direction: column; }
+        body.reading main#main { flex: 1 0 auto; }
+        /* LIGHT option: tractor-feed printer paper. Cream, sprocket holes down both edges (desktop only). */
+        .window-body.body-paper { position: relative; padding: 1.5rem 2.75rem;
+            background:
+                radial-gradient(circle at center, var(--be-shadow-color) 0 3px, transparent 3.5px) left 10px top 8px / 12px 24px repeat-y,
+                radial-gradient(circle at center, var(--be-shadow-color) 0 3px, transparent 3.5px) right 10px top 8px / 12px 24px repeat-y,
+                #f4eee2; }
+        .body-paper code { background: #e8dfcc; color: var(--be-ink); border: 1px solid #cfc6ae; }
+        .body-paper pre code { border: 0; background: none; color: inherit; }
+        .window-body.body-paper::before, .window-body.body-paper::after { content: ""; position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed #cfc6ae; }
+        .window-body.body-paper::before { left: 32px; }
+        .window-body.body-paper::after { right: 32px; }
+        /* DARK option: the window stays a night panel, CRT scanlines on the glass */
+        .window-body.body-crt { background: repeating-linear-gradient(to bottom, rgb(18 17 42 / .45) 0 1px, transparent 1px 3px), var(--be-surface-raised); padding: 1.5rem 2rem; }
+        .body-crt h2, .body-paper h2 { display: flex; align-items: center; gap: .75rem; }
+        .body-crt h2::before, .body-paper h2::before { content: ""; flex: none; width: 12px; height: 12px; background: var(--be-sunset-pink); box-shadow: -2px 2px 0 var(--be-ink); }
+        .body-paper h2::before { background: var(--be-dusk-violet); }
+        .body-crt .tag { background: var(--be-surface); }
+        .body-crt hr, .body-paper hr { border: 0; height: 4px; background: repeating-linear-gradient(90deg, var(--be-sunset-pink) 0 8px, transparent 8px 12px, var(--be-sunset-orange) 12px 20px, transparent 20px 24px); }
+        @media (max-width: 640px) {
+            .window-body.body-crt { padding: 1rem; }
+            .window-body.body-paper { padding: 1rem; background: #f4eee2; }
+            .window-body.body-paper::before, .window-body.body-paper::after { display: none; }
+        }
+        @media print {
+            html { color-scheme: light !important; }
+            body.reading, .window-body.body-crt, .window-body.body-paper { background: #fff !important; color: #000 !important; padding: 0 !important; }
+            body.reading { display: block; min-height: 0; }
+            .page-banner, .site-header, .body-paper::before, .body-paper::after, .body-crt h2::before, .body-paper h2::before { display: none !important; }
+            .reading .window { border: 0; box-shadow: none; background: #fff; }
+            .reading .window-bar { display: none; }
+            .reading main#main { padding: 0; }
+            .reading .content *, .reading .resume-meta { color: #000 !important; }
+            .reading .tag { background: #fff !important; border-color: #000; }
+            .reading .content h2, .reading .content h3, .reading .content h4 { break-after: avoid; page-break-after: avoid; }
+            .site-footer { display: none !important; }
+        }
     </style>
     {% block extra_css %}{% endblock %}
     {% if math_enabled %}
@@ -255,7 +301,7 @@
     {% endif %}
     {% block head %}{% endblock %}
 </head>
-<body>
+<body{% if page.extra.body_style %} class="reading"{% endif %}>
     <a href="#main" class="skip-link">{{ t.skip_to_content }}</a>
     <header class="site-header">
     {% block header %}

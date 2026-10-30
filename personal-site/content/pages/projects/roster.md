@@ -5,7 +5,8 @@ description: "Roster is a TypeScript plugin for Paseo for running a team of codi
 aliases:
   - /roster
 extra:
-  day_body: true
+  body_style: crt
+  banner: roster
 ---
 
 <p><strong>Repository:</strong> <a href="https://github.com/Pizzarar/Roster" target="_blank" rel="noopener noreferrer">github.com/Pizzarar/Roster</a></p>
@@ -23,6 +24,15 @@ extra:
 Roster is a plugin for Paseo for running a team of coding agents. It adds a live roster with lead pins, so the active Lead stays pinned above the workspace list; a board grouped by lead; a two-tap Stop for a stuck agent; and lead handoffs (detach, adopt, relay). A workspace and worktree cleanup view shows stale worktrees that are safe to archive.
 
 It slots into a broader way of working: a self-hosted Paseo daemon on a private encrypted network, a role-scoped team, isolated git worktrees, and staged human checkpoints, all covered below.
+
+## How It Works
+
+Roster doesn't rename agents. The agents rename and retire themselves, following naming rules I set in their instructions (a new lead takes the `★ LEAD` prefix; the one it replaces renames itself `(old)`). Roster reads those names and labels and sorts agents from them.
+
+- **Spotting a lead:** an agent with a `role=lead` label is a lead. Without a role label, Roster checks the name: by default a name starting with `★ LEAD` is a lead, and one starting with `(old)` is a retired lead. Both patterns can be changed in the plugin settings.
+- **Pinning:** every active lead gets its own row at the top of Roster's sidebar section, above the board and Workspaces links. The row label drops the `★ LEAD ·` prefix. Retired leads aren't pinned.
+- **Handoffs:** when an agent creates another, Paseo labels the new one with its creator. When a new lead is created by another agent, Roster detaches it from its creator. If the creator was a lead, Roster moves that lead's running workers to the new lead and forwards their finished, failed and needs-permission events to it.
+- **Finding the lead:** Roster adds one line to every new agent's instructions: run `paseo ls -g --json` and pick the agent in the project's folder whose name starts with `★ LEAD`, not `(old)`.
 
 ## The Workflow It Drives
 

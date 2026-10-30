@@ -5,7 +5,8 @@ description: "Pssst pairs a Java 11 RuneLite desktop plugin with a native Kotlin
 aliases:
   - /pssst
 extra:
-  day_body: true
+  body_style: crt
+  banner: pssst
 ---
 
 <div class="tag-row">

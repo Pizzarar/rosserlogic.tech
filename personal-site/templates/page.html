@@ -3,9 +3,15 @@
 {% block content %}
 <article class="window" aria-labelledby="page-title">
     <div class="window-bar"><span id="page-title">{{ page.title | upper }}</span><span class="controls" aria-hidden="true"></span></div>
-    {% set _day_body = page.extra.day_body | default(value=false) %}
+    {% set _style = page.extra.body_style | default(value="") %}
+    {% set _day_body = page.extra.day_body | default(value=false) or _style == "paper" %}
+    {% set _banner = page.extra.banner | default(value="") %}
+    {% if _banner %}<div class="page-banner" aria-hidden="true"><picture>
+        <source media="(min-width: 1200px)" srcset="/static/sprites/banner-{{ _banner }}.png" width="1152" height="112">
+        <img src='/static/sprites/banner-{{ _banner }}-narrow.png' width="1200" height="112" alt="" class="pixelated">
+    </picture></div>{% endif %}
     {% set _custom_h1 = page.extra.custom_h1 | default(value=false) %}
-    <div class="window-body content"{% if _day_body %} data-theme="day"{% endif %}>
+    <div class="window-body content{% if _style %} body-{{ _style }}{% endif %}"{% if _day_body %} data-theme="day"{% endif %}>
         {% if not _custom_h1 %}<h1 class="page-title">{{ page.title }}</h1>{% endif %}
         {{ page.content | safe }}
     </div>

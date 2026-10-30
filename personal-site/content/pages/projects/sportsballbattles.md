@@ -5,7 +5,8 @@ description: "A Godot arcade football auto-battler and roster-management prototy
 aliases:
   - /sportsballbattles
 extra:
-  day_body: true
+  body_style: crt
+  banner: sportsballbattles
 ---
 
 <div class="tag-row">

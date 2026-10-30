@@ -3,6 +3,8 @@ title: "Idle Minds"
 image: /static/sprites/og-studio.png
 description: "Idle Minds is Aubrey Rosser's game studio. Systemic simulations, deterministic mechanics, and player-respecting pricing."
 extra:
+  body_style: crt
+  banner: studio
   studio_mode: true
   custom_h1: true
 ---
