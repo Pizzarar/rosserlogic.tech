@@ -180,6 +180,10 @@
         .phone-hero { max-width: 300px; margin: 1.25rem auto; }
         .phone-hero img { width: 100%; height: auto; }
         .phone-placeholder { max-width: 100%; margin: 1.25rem auto; }
+        /* Desktop app captures (Roster before/after): native size max, stacked on narrow screens */
+        .shot-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.25rem; align-items: start; margin: 1.25rem 0; }
+        .shot-pair figure, .shot-wide figure { display: table; margin: 0 auto 1.25rem; }
+        .shot-pair figcaption, .shot-wide figcaption { display: table-caption; caption-side: bottom; }
         .phone-placeholder img { width: 100%; height: auto; }
         .card .card-label img { flex: none; image-rendering: pixelated; }
         .window-bar .controls::after { content: ""; display: inline-block; vertical-align: middle; width: 56px; height: 16px; image-rendering: pixelated;

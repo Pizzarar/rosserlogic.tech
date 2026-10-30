@@ -34,6 +34,32 @@ Roster doesn't rename agents. The agents rename and retire themselves, following
 - **Handoffs:** when an agent creates another, Paseo labels the new one with its creator. When a new lead is created by another agent, Roster detaches it from its creator. If the creator was a lead, Roster moves that lead's running workers to the new lead and forwards their finished, failed and needs-permission events to it.
 - **Finding the lead:** Roster adds one line to every new agent's instructions: run `paseo ls -g --json` and pick the agent in the project's folder whose name starts with `★ LEAD`, not `(old)`.
 
+## Before and After
+
+Real captures of my Paseo, October 2026. Names are shown as they are; agent names that came from chat prompts are blacked out.
+
+<div class="shot-pair">
+<figure>
+  <img src='/static/previews/roster/before-workspace-list.png' data-asset="proj-roster-before-list" width="466" height="1555" alt="Before: Paseo's own workspace list, one row per agent under each project folder, with several names blacked out">
+  <figcaption>Before: Paseo's own workspace list, one row per agent under each folder (top part shown). Real capture of my Paseo, Oct 2026; names from chat prompts blacked out.</figcaption>
+</figure>
+<figure>
+  <img src='/static/previews/roster/after-sidebar.png' data-asset="proj-roster-sidebar" width="492" height="1367" alt="After: Roster's sidebar section with six lead rows and three brainstorm rows pinned above Paseo's workspace list">
+  <figcaption>After: Roster's sidebar section, with each active lead pinned above the workspace list. Real capture of my Paseo, Oct 2026.</figcaption>
+</figure>
+</div>
+
+<div class="shot-wide">
+<figure>
+  <img src='/static/previews/roster/after-board.png' data-asset="proj-roster-board" width="787" height="1152" alt="After: the Roster board, with a lead and its six workers listed under one group, each showing status, model name and folder">
+  <figcaption>After: the Roster board, agents grouped under their lead with status, model and folder (model names shown as-is). Real capture of my Paseo, Oct 2026.</figcaption>
+</figure>
+<figure>
+  <img src='/static/previews/roster/after-workspaces.png' data-asset="proj-roster-workspaces" width="787" height="1254" alt="After: the Roster Workspaces view, sorted cleanup-first, listing workspaces with unpushed commits, idle agents and an Archive button each">
+  <figcaption>After: the Workspaces view, sorted cleanup-first, showing what archiving each workspace would affect. Real capture of my Paseo, Oct 2026.</figcaption>
+</figure>
+</div>
+
 ## The Workflow It Drives
 
 Roster is the control surface for a coordinated team, not a single generalist chat thread. Work is split across role-scoped profiles: a **Lead** who coordinates; **implementers** (**standard**, **hard**, and a **work-order implementer** on trial); **Mechanical**; **Spec**; **Planner**; **Scout**; **Pre-check**; **Audit**; **cross-family reviewers** who critique output with an independent model family so no model grades its own work; and an **escalation-only senior reasoning tier** for the hardest knots.
