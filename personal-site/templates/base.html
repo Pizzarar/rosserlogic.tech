@@ -6,6 +6,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/sprites/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/sprites/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/sprites/apple-touch-icon.png">
     <title>{% block title %}{{ site.title }}{% endblock %}</title>
     <meta name="description" content="{{ page.description | default(value=site.description) }}">
     <link rel="canonical" href="{{ site.base_url }}{{ page.url | default(value='/') }}">
@@ -97,6 +98,7 @@
             .hero-split { grid-template-columns: 1.15fr 0.85fr; align-items: center; }
         }
         .pixelated { image-rendering: pixelated; }
+        .e404-art { display: block; max-width: none; margin: 0 auto 1rem; }
         .hero-art { display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px solid var(--be-ink); }
         .hero-skyline { display: block; flex: none; width: 440px; height: 240px; max-width: none; }
 

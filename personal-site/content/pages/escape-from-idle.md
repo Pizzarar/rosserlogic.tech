@@ -1,5 +1,6 @@
 ---
 title: "Escape From Idle"
+image: /static/sprites/og-escape-from-idle.png
 description: "Escape From Idle is a post-apocalyptic modern-shooter idle game with extraction raids and a Melvor-style automation ladder. In development by Idle Minds."
 extra:
   studio_mode: true

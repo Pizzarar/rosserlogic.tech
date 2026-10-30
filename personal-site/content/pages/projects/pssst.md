@@ -1,5 +1,6 @@
 ---
 title: "Pssst: OSRS Companion"
+image: /static/sprites/og-pssst.png
 description: "Pssst pairs a Java 11 RuneLite desktop plugin with a native Kotlin / Jetpack Compose Android companion app to surface live Old School RuneScape account state over LAN."
 aliases:
   - /pssst

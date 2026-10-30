@@ -1,5 +1,6 @@
 ---
 title: "Projects"
+image: /static/sprites/og-projects.png
 description: "Case studies and project work: developer tooling, games and simulation, and enterprise IT / ServiceNow infrastructure."
 ---
 
@@ -24,7 +25,6 @@ description: "Case studies and project work: developer tooling, games and simula
       <a class="card" href="/projects/sportsballbattles"><span class="card-label">CASE STUDY</span><h3>SportsBallBattles</h3><p>An arcade football auto-battler. Draft and upgrade a roster between matches, then watch 3D active-ragdoll chaos unfold on Game Day.</p><div class="tag-row"><span class="tag">Godot 4.7.2</span><span class="tag">Jolt Physics 3D</span><span class="tag">Deterministic Sim</span><span class="tag">Active Ragdoll</span></div></a>
       <a class="card" href="/escape-from-idle"><span class="card-label">IN DEVELOPMENT</span><h3>Escape From Idle</h3><p>A post-apocalyptic idle game with Tarkov-style extraction raids and a Melvor-style ladder from manual play to full automation.</p><div class="tag-row"><span class="tag">Idle</span><span class="tag">Extraction Raids</span><span class="tag">Automation Ladder</span></div></a>
     </div>
-    <p><strong>Gurubashi</strong>: a World of Warcraft addon for Death Rolls and gold betting, with a "Goblins &amp; Gold" cartel-casino UI theme.</p>
   </div>
 </section>
 

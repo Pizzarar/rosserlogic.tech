@@ -1,5 +1,6 @@
 ---
 title: "Roster & Paseo Multi-Agent Workflow"
+image: /static/sprites/og-roster.png
 description: "Roster is a TypeScript plugin for Paseo for running a team of coding agents: a live roster, a board grouped by lead, workspace cleanup, and lead handoffs."
 aliases:
   - /roster

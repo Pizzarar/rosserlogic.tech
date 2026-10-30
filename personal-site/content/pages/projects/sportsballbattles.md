@@ -1,5 +1,6 @@
 ---
 title: "SportsBallBattles"
+image: /static/sprites/og-sportsballbattles.png
 description: "A Godot arcade football auto-battler and roster-management prototype pairing a pure deterministic simulation with 3D active-ragdoll Game Day playback."
 aliases:
   - /sportsballbattles
@@ -44,6 +45,14 @@ Every capture below is labeled **work in progress, placeholder art**.
 <figure>
   <img src="/static/previews/sportsballbattles/pre-snap-formation.png" data-asset="proj-sportsballbattles-pre-snap-formation" data-final="static/previews/sportsballbattles/pre-snap-formation.png" width="1200" height="750" alt="SportsBallBattles pre-snap formation view: work in progress, placeholder art">
   <figcaption>work in progress, placeholder art</figcaption>
+</figure>
+
+<figure>
+  <picture>
+    <source media='(prefers-reduced-motion: no-preference)' srcset='/static/previews/sportsballbattles/tackle-loop.webp' type='image/webp'>
+    <img src='/static/previews/sportsballbattles/tackle-poster.png' width='800' height='450' loading='lazy' alt='Looping capture of a Game Day playback: a receiver catches a pass, and a defender tackles the receiver, who falls as a ragdoll. Work in progress, placeholder art.'>
+  </picture>
+  <figcaption>work in progress, placeholder art. Looping capture of one Game Day play: a pass completion, then the tackle.</figcaption>
 </figure>
 
 <figure>

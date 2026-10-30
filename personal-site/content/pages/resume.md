@@ -1,5 +1,6 @@
 ---
 title: "Aubrey Rosser"
+image: /static/sprites/og-resume.png
 description: "Résumé: End User Support Specialist, Tier II. 7+ years in IT operations, escalation management, ServiceNow workflow & CMDB design, and process improvement."
 extra:
   theme: day

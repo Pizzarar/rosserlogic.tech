@@ -1,5 +1,6 @@
 ---
 title: "Contact"
+image: /static/sprites/og-contact.png
 description: "Get in touch with Aubrey Rosser, based in the Columbus, OH area."
 ---
 
