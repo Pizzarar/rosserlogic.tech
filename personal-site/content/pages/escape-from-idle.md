@@ -148,3 +148,40 @@ Rendered corridor, pixel enemy, cover to shoot from.
   </picture>
   <figcaption>The current corridor look: a scav aiming over sandbags. UI lab prototype, placeholder art built by AI agents.</figcaption>
 </figure>
+
+## Recent Work
+
+### Main game
+
+- Raid kit board: pick a destination and read its briefing on one board before a raid.
+- Hydroponics: up to four shelf rows, five kinds of grower, and crops that only grow on some of them.
+- Traders: contract offers as pick or pass cards, and a mood line for each trader.
+- Items now carry a rarity.
+- Hideout rooms you haven't unlocked yet stay hidden.
+
+### UI lab: new enemy sprites
+
+Lab only, not in the main game yet. The sprites are AI-generated, with extra poses and mirrors made by script.
+
+<div class="pgal" data-pgal data-pgal-full role="region" aria-roledescription="gallery" aria-label="UI lab: new enemy sprites">
+<div class="pgal-dev" data-title="UI lab: scav sprites"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
+  <img src='/static/previews/efi/lab/scav-matrix-a.png' data-asset="efi-lab-scav-matrix-a" data-final="static/previews/efi/lab/scav-matrix-a.png" class="pixelated" width="752" height="456" loading="lazy" alt="Pixel scav sprite sheet, three rows (facing right, facing the camera, facing left) by four poses: idle, breathe, aim and fire.">
+  <figcaption>Scav: three angles × idle, breathe, aim, fire. AI-generated, lab only.</figcaption>
+</figure></li>
+<li><figure>
+  <img src='/static/previews/efi/lab/scav-matrix-b.png' data-asset="efi-lab-scav-matrix-b" data-final="static/previews/efi/lab/scav-matrix-b.png" class="pixelated" width="752" height="456" loading="lazy" alt="Pixel scav sprite sheet, three rows by four poses: flinching, hiding in cover, aiming from cover and firing from cover.">
+  <figcaption>Scav: flinch and three cover poses. AI-generated, lab only.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/efi/lab/rx3b-scav.png" data-asset="efi-lab-rx3b-scav" data-final="static/previews/efi/lab/rx3b-scav.png" width="960" height="600" loading="lazy" alt="Raid corridor between red shipping containers: the pixel scav stands in the centre and fires toward the camera, a health bar labelled SCAV below it.">
+  <figcaption>The scav in the raid corridor, firing. Lab capture; AI-generated sprite, AI placeholder background.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/efi/lab/rx3b-armored.png" data-asset="efi-lab-rx3b-armored" data-final="static/previews/efi/lab/rx3b-armored.png" width="960" height="600" loading="lazy" alt="The same container corridor with an armored scav sprite firing toward the camera.">
+  <figcaption>The armored scav in the same spot. Lab capture; AI-generated sprite, AI placeholder background.</figcaption>
+</figure></li>
+</ul>
+</div></div>
+</div>

@@ -61,6 +61,29 @@ Real captures of my Paseo, October 2026. Names are shown as they are; agent name
 </div></div>
 </div>
 
+## Recent Work
+
+Roster 0.3.0, plus the updates merged on 30 and 31 October 2026.
+
+<div class="pgal" data-pgal data-pgal-full role="region" aria-roledescription="gallery" aria-label="Recent Roster features">
+<div class="pgal-dev" data-title="Roster: recent work"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
+  <img src='/static/previews/roster/recent/brainstorm-bar.png' data-asset="roster-recent-brainstorm-bar" width="1200" height="750" loading="lazy" alt="Close-up of the top of the Workspaces screen: the Brainstorm bar with a waiting-on-you count, Check in all, and a lead picker, the open brainstorms listed below it, then sort and filter chips.">
+  <figcaption>The Brainstorm bar: start or open a brainstorm for any lead, and see who is waiting on me. Real capture, 31 Oct 2026, actual size.</figcaption>
+</figure></li>
+<li><figure>
+  <img src='/static/previews/roster/recent/workspaces-brainstorm-bar.png' data-asset="roster-recent-workspaces" width="1520" height="726" loading="lazy" alt="The redesigned Workspaces screen: a Brainstorm bar at the top with a lead picker and a Create brainstorm button, an auto-archive line, sort and filter chips, and workspaces grouped by project. Four workspace names are blacked out.">
+  <figcaption>The whole Workspaces screen, redesigned and grouped by project. Real capture, 31 Oct 2026; names from chat prompts blacked out.</figcaption>
+</figure></li>
+<li><figure>
+  <img src='/static/previews/roster/recent/raised-hands.png' data-asset="roster-recent-raised-hands" width="918" height="574" loading="lazy" alt="Top of the Roster sidebar: a raised-hand count of 1, and below it one queued request from the PLUGINS lead with its reason and an Open button.">
+  <figcaption>The 🙋 queue: leads waiting on me, oldest first, each with an Open button. Real capture, 31 Oct 2026, enlarged 2×.</figcaption>
+</figure></li>
+</ul>
+</div></div>
+</div>
+
 ## The Workflow It Drives
 
 Roster is the control surface for a coordinated team, not a single generalist chat thread. Work is split across role-scoped profiles: a **Lead** who coordinates; **implementers** (**standard**, **hard**, and a **work-order implementer** on trial); **Mechanical**; **Spec**; **Planner**; **Scout**; **Pre-check**; **Audit**; **cross-family reviewers** who critique output with an independent model family so no model grades its own work; and an **escalation-only senior reasoning tier** for the hardest knots.
@@ -71,9 +94,9 @@ The daemon lives on a private encrypted network rather than behind public ports,
 
 ## Under the Hood
 
-- **Package:** `paseo-plugin-roster` `0.2.0`, built on `@getpaseo/plugin` `0.13.2` (TypeScript + React Native UI primitives).
+- **Package:** `paseo-plugin-roster` `0.3.0`, built on `@getpaseo/plugin` `0.13.2` (TypeScript + React Native UI primitives).
 - **Surfaces:** `client/` (lead pins, lead-grouped board, worktree cleanup, settings) · `server/` (two-tap Stop, lead handoffs, lead-finding prompt) · `shared/` (settings schema + RPC contract).
-- **History:** `fb34817` (initial commit) → `3eaa7a8` (v0.1.0) → `13ee7ac` (lead handoffs + workspace cleanup, v0.2.0).
+- **History:** `fb34817` (initial commit) → `3eaa7a8` (v0.1.0) → `13ee7ac` (lead handoffs + workspace cleanup, v0.2.0) → `a1287b9` (chosen sidebar sections, v0.3.0).
 
 ## Gallery
 
