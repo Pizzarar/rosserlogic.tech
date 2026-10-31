@@ -27,15 +27,20 @@ A post-apocalyptic idle game with Tarkov-style extraction raids and a Melvor-sty
 
 <div class="hero-actions"><a href="/escape-from-idle" class="btn btn-secondary">ESCAPE FROM IDLE</a></div>
 
-<figure>
+<div class="pgal" data-pgal role="region" aria-roledescription="gallery" aria-label="Escape From Idle screenshots">
+<div class="pgal-dev" data-title="Escape From Idle"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
   <img src="/static/previews/efi/efi-hideout.png" data-asset="efi-key-art" data-final="static/previews/efi/efi-hideout.png" width="1920" height="1080" alt="Escape From Idle hideout overview: experimental UI build, work in progress" loading="lazy" decoding="async">
-  <figcaption>In development: experimental UI build, work in progress</figcaption>
-</figure>
-
-<figure>
+  <figcaption>Hideout overview. In development: experimental UI build, work in progress</figcaption>
+</figure></li>
+<li><figure>
   <img src="/static/previews/efi/efi-raids.png" data-asset="efi-raids" data-final="static/previews/efi/efi-raids.png" width="1920" height="1080" alt="Escape From Idle extraction raids screen: experimental UI build, work in progress" loading="lazy" decoding="async">
-  <figcaption>In development: experimental UI build, work in progress</figcaption>
-</figure>
+  <figcaption>Extraction raids screen. In development: experimental UI build, work in progress</figcaption>
+</figure></li>
+</ul>
+</div></div>
+</div>
 
 ### SportsBallBattles
 

@@ -44,33 +44,31 @@ The desktop plugin is functional via a **developer/sideload build** and is **not
 
 ## Gallery
 
-<div class="phone-hero">
-<figure>
-  <img src="/static/previews/pssst/overview.png" data-asset="proj-pssst-overview" data-final="static/previews/pssst/overview.png" width="444" height="927" alt="Pssst Android companion app Overview dashboard tab showing live Old School RuneScape account state">
+<div class="pgal pgal--port" data-pgal role="region" aria-roledescription="gallery" aria-label="Pssst app screenshots">
+<div class="pgal-dev" data-title="Pssst on Android"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
+  <img loading="lazy" src="/static/previews/pssst/overview.png" data-asset="proj-pssst-overview" data-final="static/previews/pssst/overview.png" width="444" height="927" alt="Pssst Android companion app Overview dashboard tab showing live Old School RuneScape account state">
   <figcaption>Overview dashboard tab: live account state on Android</figcaption>
-</figure>
-</div>
-
-<div class="phone-grid">
-<figure>
-  <img src="/static/previews/pssst/timers-dailies.png" data-asset="proj-pssst-timers-dailies" data-final="static/previews/pssst/timers-dailies.png" width="444" height="973" alt="Pssst Android companion app Timers &amp; Dailies tab showing active OSRS timers and daily tasks">
+</figure></li>
+<li><figure>
+  <img loading="lazy" src="/static/previews/pssst/timers-dailies.png" data-asset="proj-pssst-timers-dailies" data-final="static/previews/pssst/timers-dailies.png" width="444" height="973" alt="Pssst Android companion app Timers &amp; Dailies tab showing active OSRS timers and daily tasks">
   <figcaption>Timers &amp; Dailies tab</figcaption>
-</figure>
-
-<figure>
-  <img src="/static/previews/pssst/storage.png" data-asset="proj-pssst-storage" data-final="static/previews/pssst/storage.png" width="444" height="927" alt="Pssst Android companion app Storage &amp; Bank tab">
+</figure></li>
+<li><figure>
+  <img loading="lazy" src="/static/previews/pssst/storage.png" data-asset="proj-pssst-storage" data-final="static/previews/pssst/storage.png" width="444" height="927" alt="Pssst Android companion app Storage &amp; Bank tab">
   <figcaption>Storage &amp; Bank tab</figcaption>
-</figure>
-
-<figure>
-  <img src="/static/previews/pssst/exchange.png" data-asset="proj-pssst-exchange" data-final="static/previews/pssst/exchange.png" width="444" height="927" alt="Pssst Android companion app Grand Exchange offers tab">
+</figure></li>
+<li><figure>
+  <img loading="lazy" src="/static/previews/pssst/exchange.png" data-asset="proj-pssst-exchange" data-final="static/previews/pssst/exchange.png" width="444" height="927" alt="Pssst Android companion app Grand Exchange offers tab">
   <figcaption>Grand Exchange offers tab</figcaption>
-</figure>
-
-<figure>
-  <img src="/static/previews/pssst/progress.png" data-asset="proj-pssst-progress" data-final="static/previews/pssst/progress.png" width="444" height="973" alt="Pssst Android companion app Progression &amp; goals tab">
+</figure></li>
+<li><figure>
+  <img loading="lazy" src="/static/previews/pssst/progress.png" data-asset="proj-pssst-progress" data-final="static/previews/pssst/progress.png" width="444" height="973" alt="Pssst Android companion app Progression &amp; goals tab">
   <figcaption>Progression &amp; goals tab</figcaption>
-</figure>
+</figure></li>
+</ul>
+</div></div>
 </div>
 
 <figure>

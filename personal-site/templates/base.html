@@ -173,18 +173,46 @@
         .pixel-diagram img { display: block; margin: 0 auto; max-width: none; image-rendering: pixelated; }
         .content figcaption { font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; color: var(--be-ink-muted); margin-top: .5rem; }
 
-        /* Portrait phone screenshots (native mobile-app captures) */
-        .phone-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); gap: 1.25rem; justify-content: center; margin: 1.25rem 0; }
-        .phone-grid figure { margin: 0; }
-        .phone-grid img { width: 100%; height: auto; }
-        .phone-hero { max-width: 300px; margin: 1.25rem auto; }
-        .phone-hero img { width: 100%; height: auto; }
-        .phone-placeholder { max-width: 100%; margin: 1.25rem auto; }
-        /* Desktop app captures (Roster before/after): native size max, stacked on narrow screens */
-        .shot-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.25rem; align-items: start; margin: 1.25rem 0; }
-        .shot-pair figure, .shot-wide figure { display: table; margin: 0 auto 1.25rem; }
-        .shot-pair figcaption, .shot-wide figcaption { display: table-caption; caption-side: bottom; }
-        .phone-placeholder img { width: 100%; height: auto; }
+        /* Gallery (Gate 8, frame picked in Gate 8b: the site's own pixel window). Title from data-title on .pgal-dev; on wide screens
+           the violet bar also holds ◀ n/N ▶, at <=480px the controls move to a bar under the screen. No JS: a scroll-snap strip. */
+        .pgal { --px: 2px; --ar: 16 / 10; max-width: var(--pgal-max, 760px); margin: 1.5rem auto 2rem; }
+        .pgal--tall { --ar: 2 / 3; --pgal-max: 520px; }
+        .pgal--port { --ar: 4 / 9; --pgal-max: 380px; }
+        .pgal-dev { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; border: 2px solid var(--be-ink); box-shadow: var(--shadow-window); background: var(--be-surface-raised); }
+        .content .pgal--crop .pgal-track img { object-fit: cover; object-position: top center; }
+        .pgal-screen { position: relative; grid-row: 2; grid-column: 1 / -1; margin: .5rem; aspect-ratio: var(--ar); border: 2px solid var(--be-ink); background: #12112A; }
+        .content .pgal-track, .pgal-track { position: absolute; inset: 0; display: flex; margin: 0; padding: 0; list-style: none; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; }
+        .pgal-track:focus-visible { outline: 2px solid var(--be-cel-teal); outline-offset: 2px; }
+        .content .pgal-track > li, .pgal-track > li { flex: 0 0 100%; min-width: 0; height: 100%; margin: 0; padding: 0; scroll-snap-align: center; scroll-snap-stop: always; }
+        .pgal-track > li::marker { content: none; }
+        .content .pgal-track figure { display: flex; flex-direction: column; height: 100%; margin: 0; }
+        .pgal-track picture { display: contents; }
+        .content .pgal-track img { flex: 1 1 auto; min-height: 0; width: 100%; height: 100%; max-width: none; object-fit: contain; border: 0; image-rendering: auto; }
+        .content .pgal-track figcaption { flex: none; margin: 0; padding: .35rem .5rem; background: #12112A; color: var(--be-phosphor); font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .04em; text-align: left; }
+        .pgal:not(.is-js)::after { content: "← swipe for more →"; display: block; margin-top: .5rem; text-align: center; font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; color: var(--be-ink-muted); }
+        .pgal.is-js .pgal-track { scrollbar-width: none; }
+        .pgal.is-js .pgal-track::-webkit-scrollbar { display: none; }
+        .content .pgal.is-js .pgal-track figcaption { display: none; }
+        .pgal-chin { grid-row: 1; grid-column: 2; display: flex; align-items: center; padding: 2px .4rem 2px 0; background: var(--be-dusk-violet); border-bottom: 2px solid var(--be-ink); }
+        .pgal-btn { box-sizing: content-box; width: calc(13 * var(--px)); height: calc(11 * var(--px)); padding: 8px; margin: -8px 0; border: 0; cursor: pointer; image-rendering: pixelated; background: url({{ site.base_url }}/static/sprites/gal-btn-prev.png) 0 0 / 100% 100% no-repeat; background-origin: content-box; background-clip: content-box; }
+        .pgal-next { background-image: url({{ site.base_url }}/static/sprites/gal-btn-next.png); }
+        .pgal-btn:hover { filter: brightness(1.06); }
+        .pgal-btn:active { transform: translateY(var(--px)); }
+        .pgal-btn:focus-visible { outline: 2px solid #12112A; outline-offset: 2px; }
+        .pgal-count { min-width: 5ch; text-align: center; font-family: var(--font-pixel); font-size: .85rem; letter-spacing: .06em; color: var(--be-on-violet); }
+        .pgal-capbox { margin-top: .75rem; text-align: center; }
+        .pgal-cap { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--be-ink-muted); min-height: 3em; }
+        /* a single pixel sprite at an integer scale: 8x, 4x on phones */
+        .content .px-figure { text-align: center; }
+        .content .px-figure img { width: 384px; height: 608px; max-width: none; margin-inline: auto; background: #12112A; border: 2px solid var(--be-ink); }
+        @media (max-width: 480px) { .content .px-figure img { width: 192px; height: 304px; } }
+        .pgal-full { font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; color: var(--be-cel-teal); }
+        .pgal .pgal-dev::before { content: attr(data-title); grid-row: 1; grid-column: 1; min-width: 0; padding: .3rem .5rem; background: var(--be-dusk-violet); color: var(--be-on-violet); border-bottom: 2px solid var(--be-ink); font-family: var(--font-pixel); font-size: .875rem; letter-spacing: .06em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pgal:not(.is-js) .pgal-dev::before { grid-column: 1 / -1; }
+        @media (max-width: 480px) {
+            .pgal .pgal-dev::before { grid-column: 1 / -1; }
+            .pgal .pgal-chin { grid-row: 3; grid-column: 1 / -1; justify-content: center; padding: .25rem 0; border-bottom: 0; border-top: 2px solid var(--be-ink); }
+        }
         .card .card-label img { flex: none; image-rendering: pixelated; }
         .window-bar .controls::after { content: ""; display: inline-block; vertical-align: middle; width: 56px; height: 16px; image-rendering: pixelated;
             background: url({{ site.base_url }}/static/sprites/ctl-min.png) 0 0 / 16px 16px no-repeat, url({{ site.base_url }}/static/sprites/ctl-max.png) 20px 0 / 16px 16px no-repeat, url({{ site.base_url }}/static/sprites/ctl-close.png) 40px 0 / 16px 16px no-repeat; }
@@ -382,6 +410,66 @@
             });
         }
         input.addEventListener('input', function(){ load(function(){ doSearch(input.value); }); });
+    })();
+    </script>
+    <script>
+    (function(){
+        var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        [].forEach.call(document.querySelectorAll('[data-pgal]'), function(g){
+            var dev = g.querySelector('.pgal-dev'), tr = g.querySelector('.pgal-track');
+            if (!dev || !tr) return;
+            var sl = [].slice.call(tr.children), n = sl.length, i = 0, t = null, lock = 0;
+            if (n < 2) return;
+            g.classList.add('is-js');
+            var chin = document.createElement('div');
+            chin.className = 'pgal-chin';
+            chin.innerHTML = '<button type="button" class="pgal-btn pgal-prev" aria-label="Previous screenshot"></button><span class="pgal-count" aria-hidden="true"></span><button type="button" class="pgal-btn pgal-next" aria-label="Next screenshot"></button>';
+            dev.appendChild(chin);
+            var box = document.createElement('div'), cap = document.createElement('p'), full = null;
+            box.className = 'pgal-capbox';
+            cap.className = 'pgal-cap';
+            box.appendChild(cap);
+            if (g.hasAttribute('data-pgal-full')) {
+                full = document.createElement('a');
+                full.className = 'pgal-full';
+                full.textContent = 'Open full size';
+                full.target = '_blank';
+                full.rel = 'noopener noreferrer';
+                box.appendChild(full);
+            }
+            dev.parentNode.insertBefore(box, dev.nextSibling);
+            var cnt = chin.querySelector('.pgal-count');
+            tr.removeAttribute('tabindex');
+            tr.removeAttribute('aria-label');
+            tr.setAttribute('role', 'presentation');
+            sl.forEach(function(li, k){ li.setAttribute('role', 'group'); li.setAttribute('aria-roledescription', 'slide'); li.setAttribute('aria-label', (k + 1) + ' of ' + n); });
+            function paint(){
+                cnt.textContent = (i + 1) + ' / ' + n;
+                var fc = sl[i].querySelector('figcaption');
+                cap.textContent = fc ? fc.textContent : '';
+                sl.forEach(function(li, k){ if (k === i) li.removeAttribute('aria-hidden'); else li.setAttribute('aria-hidden', 'true'); });
+                if (full) { var im = sl[i].querySelector('img'); full.href = im ? im.getAttribute('src') : '#'; }
+            }
+            function go(k){
+                i = (k + n) % n;
+                lock = rm ? 0 : Date.now() + 700;
+                tr.scrollTo({ left: sl[i].offsetLeft, behavior: rm ? 'auto' : 'smooth' });
+                paint();
+            }
+            chin.querySelector('.pgal-prev').addEventListener('click', function(){ go(i - 1); });
+            chin.querySelector('.pgal-next').addEventListener('click', function(){ go(i + 1); });
+            g.addEventListener('keydown', function(e){
+                if (e.key === 'ArrowLeft') { e.preventDefault(); go(i - 1); }
+                else if (e.key === 'ArrowRight') { e.preventDefault(); go(i + 1); }
+            });
+            tr.addEventListener('scroll', function(){
+                clearTimeout(t);
+                t = setTimeout(function(){ if (Date.now() < lock) return; var k = Math.round(tr.scrollLeft / tr.clientWidth); if (k !== i && k >= 0 && k < n) { i = k; paint(); } }, 90);
+            }, { passive: true });
+            if (window.ResizeObserver) new ResizeObserver(function(){ tr.scrollLeft = sl[i].offsetLeft; }).observe(tr);
+            paint();
+            cap.setAttribute('aria-live', 'polite');
+        });
     })();
     </script>
     {% block extra_js %}{% endblock %}

@@ -38,26 +38,27 @@ Roster doesn't rename agents. The agents rename and retire themselves, following
 
 Real captures of my Paseo, October 2026. Names are shown as they are; agent names that came from chat prompts are blacked out.
 
-<div class="shot-pair">
-<figure>
-  <img src='/static/previews/roster/before-workspace-list.png' data-asset="proj-roster-before-list" width="466" height="1555" alt="Before: Paseo's own workspace list, one row per agent under each project folder, with several names blacked out">
+<div class="pgal pgal--tall pgal--crop" data-pgal data-pgal-full role="region" aria-roledescription="gallery" aria-label="Roster screenshots, before and after">
+<div class="pgal-dev" data-title="Roster: before / after"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
+  <img src='/static/previews/roster/before-workspace-list.png' data-asset="proj-roster-before-list" width="466" height="1555" loading="lazy" alt="Before: Paseo's own workspace list, one row per agent under each project folder, with several names blacked out">
   <figcaption>Before: Paseo's own workspace list, one row per agent under each folder (top part shown). Real capture of my Paseo, Oct 2026; names from chat prompts blacked out.</figcaption>
-</figure>
-<figure>
-  <img src='/static/previews/roster/after-sidebar.png' data-asset="proj-roster-sidebar" width="492" height="1367" alt="After: Roster's sidebar section with six lead rows and three brainstorm rows pinned above Paseo's workspace list">
+</figure></li>
+<li><figure>
+  <img src='/static/previews/roster/after-sidebar.png' data-asset="proj-roster-sidebar" width="492" height="1367" loading="lazy" alt="After: Roster's sidebar section with six lead rows and three brainstorm rows pinned above Paseo's workspace list">
   <figcaption>After: Roster's sidebar section, with each active lead pinned above the workspace list. Real capture of my Paseo, Oct 2026.</figcaption>
-</figure>
-</div>
-
-<div class="shot-wide">
-<figure>
-  <img src='/static/previews/roster/after-board.png' data-asset="proj-roster-board" width="787" height="1152" alt="After: the Roster board, with a lead and its six workers listed under one group, each showing status, model name and folder">
+</figure></li>
+<li><figure>
+  <img src='/static/previews/roster/after-board.png' data-asset="proj-roster-board" width="787" height="1152" loading="lazy" alt="After: the Roster board, with a lead and its six workers listed under one group, each showing status, model name and folder">
   <figcaption>After: the Roster board, agents grouped under their lead with status, model and folder (model names shown as-is). Real capture of my Paseo, Oct 2026.</figcaption>
-</figure>
-<figure>
-  <img src='/static/previews/roster/after-workspaces.png' data-asset="proj-roster-workspaces" width="787" height="1254" alt="After: the Roster Workspaces view, sorted cleanup-first, listing workspaces with unpushed commits, idle agents and an Archive button each">
+</figure></li>
+<li><figure>
+  <img src='/static/previews/roster/after-workspaces.png' data-asset="proj-roster-workspaces" width="787" height="1254" loading="lazy" alt="After: the Roster Workspaces view, sorted cleanup-first, listing workspaces with unpushed commits, idle agents and an Archive button each">
   <figcaption>After: the Workspaces view, sorted cleanup-first, showing what archiving each workspace would affect. Real capture of my Paseo, Oct 2026.</figcaption>
-</figure>
+</figure></li>
+</ul>
+</div></div>
 </div>
 
 ## The Workflow It Drives

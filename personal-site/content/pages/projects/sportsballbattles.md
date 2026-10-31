@@ -38,15 +38,32 @@ The project is self-described as "complete except art and audio". Every visual b
 
 Every capture below is labeled **work in progress, placeholder art**.
 
-<figure>
-  <img src="/static/previews/sportsballbattles/night-kickoff.png" data-asset="proj-sportsballbattles-night-kickoff" data-final="static/previews/sportsballbattles/night-kickoff.png" width="1200" height="750" alt="SportsBallBattles night stadium kickoff view: work in progress, placeholder art">
-  <figcaption>work in progress, placeholder art</figcaption>
-</figure>
-
-<figure>
-  <img src="/static/previews/sportsballbattles/pre-snap-formation.png" data-asset="proj-sportsballbattles-pre-snap-formation" data-final="static/previews/sportsballbattles/pre-snap-formation.png" width="1200" height="750" alt="SportsBallBattles pre-snap formation view: work in progress, placeholder art">
-  <figcaption>work in progress, placeholder art</figcaption>
-</figure>
+<div class="pgal" data-pgal role="region" aria-roledescription="gallery" aria-label="SportsBallBattles screenshots">
+<div class="pgal-dev" data-title="SportsBallBattles"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
+  <img src='/static/previews/sportsballbattles/night-kickoff.png' data-asset="proj-sportsballbattles-night-kickoff" data-final="static/previews/sportsballbattles/night-kickoff.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles night stadium kickoff view: work in progress, placeholder art">
+  <figcaption>Night stadium kickoff view: work in progress, placeholder art</figcaption>
+</figure></li>
+<li><figure>
+  <img src='/static/previews/sportsballbattles/pre-snap-formation.png' data-asset="proj-sportsballbattles-pre-snap-formation" data-final="static/previews/sportsballbattles/pre-snap-formation.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles pre-snap formation view: work in progress, placeholder art">
+  <figcaption>Pre-snap formation view: work in progress, placeholder art</figcaption>
+</figure></li>
+<li><figure>
+  <img src='/static/previews/sportsballbattles/hub-offense.png' data-asset="proj-sportsballbattles-hub-offense" data-final="static/previews/sportsballbattles/hub-offense.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles hub offense roster view: work in progress, placeholder art">
+  <figcaption>Hub offense roster view: work in progress, placeholder art</figcaption>
+</figure></li>
+<li><figure>
+  <img src='/static/previews/sportsballbattles/shop-upgrades.png' data-asset="proj-sportsballbattles-shop-upgrades" data-final="static/previews/sportsballbattles/shop-upgrades.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles shop upgrades view: work in progress, placeholder art">
+  <figcaption>Shop upgrades view: work in progress, placeholder art</figcaption>
+</figure></li>
+<li><figure>
+  <img src='/static/previews/sportsballbattles/hall-of-fame.png' data-asset="proj-sportsballbattles-hall-of-fame" data-final="static/previews/sportsballbattles/hall-of-fame.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles hall of fame view: work in progress, placeholder art">
+  <figcaption>Hall of fame view: work in progress, placeholder art</figcaption>
+</figure></li>
+</ul>
+</div></div>
+</div>
 
 <figure>
   <picture>
@@ -56,17 +73,3 @@ Every capture below is labeled **work in progress, placeholder art**.
   <figcaption>work in progress, placeholder art. Looping capture of one Game Day play: a pass completion, then the tackle.</figcaption>
 </figure>
 
-<figure>
-  <img src="/static/previews/sportsballbattles/hub-offense.png" data-asset="proj-sportsballbattles-hub-offense" data-final="static/previews/sportsballbattles/hub-offense.png" width="1200" height="750" alt="SportsBallBattles hub offense roster view: work in progress, placeholder art">
-  <figcaption>work in progress, placeholder art</figcaption>
-</figure>
-
-<figure>
-  <img src="/static/previews/sportsballbattles/shop-upgrades.png" data-asset="proj-sportsballbattles-shop-upgrades" data-final="static/previews/sportsballbattles/shop-upgrades.png" width="1200" height="750" alt="SportsBallBattles shop upgrades view: work in progress, placeholder art">
-  <figcaption>work in progress, placeholder art</figcaption>
-</figure>
-
-<figure>
-  <img src="/static/previews/sportsballbattles/hall-of-fame.png" data-asset="proj-sportsballbattles-hall-of-fame" data-final="static/previews/sportsballbattles/hall-of-fame.png" width="1200" height="750" alt="SportsBallBattles hall of fame view: work in progress, placeholder art">
-  <figcaption>work in progress, placeholder art</figcaption>
-</figure>
