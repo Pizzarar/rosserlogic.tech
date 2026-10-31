@@ -11,7 +11,7 @@ extra:
 <h2 id="sw-title">Software</h2>
 <p class="lead">Tools I built to solve problems I kept running into, then polished into something I use every day.</p>
 <div class="card-grid">
-  <a class="card" href="/projects/roster"><span class="card-label">CASE STUDY</span><h3>Roster &amp; Paseo Multi-Agent Workflow</h3><p>A Paseo plugin for running a team of coding agents: a live roster with lead pins, a board grouped by lead, worktree cleanup, and lead handoffs.</p><div class="tag-row"><span class="tag">TypeScript</span><span class="tag">@getpaseo/plugin 0.13.2</span><span class="tag">Git Worktrees</span></div></a>
+  <a class="card" href="/projects/roster"><span class="card-label">CASE STUDY</span><h3>Roster &amp; Paseo Multi-Agent Workflow</h3><p>A Paseo plugin for running a team of coding agents: a live roster with project lanes, a board grouped by lead, worktree cleanup, and lead handoffs.</p><div class="tag-row"><span class="tag">TypeScript</span><span class="tag">@getpaseo/plugin 0.13.2</span><span class="tag">Git Worktrees</span></div></a>
   <a class="card" href="/projects/pssst"><span class="card-label">CASE STUDY</span><h3>Pssst: OSRS Companion</h3><p>Farming patches, birdhouses, and GE offers on your phone, over your own home LAN, with no open ports and no third-party server in the middle.</p><div class="tag-row"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Java 11</span><span class="tag">RuneLite API</span><span class="tag">Room</span></div></a>
 </div>
 </section>

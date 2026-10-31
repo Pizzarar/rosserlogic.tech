@@ -21,7 +21,7 @@ extra:
 
 ## Overview
 
-Roster is a plugin for Paseo for running a team of coding agents. It adds a live roster with lead pins, so the active Lead stays pinned above the workspace list; a board grouped by lead; a two-tap Stop for a stuck agent; and lead handoffs (detach, adopt, relay). A workspace and worktree cleanup view shows stale worktrees that are safe to archive.
+Roster is a plugin for Paseo for running a team of coding agents. It adds a live roster: a sidebar with one lane per project (the lead, its paired brainstorm and a count of its running workers), with a raised-hands banner on top for leads waiting on me; a board grouped by lead; a two-tap Stop for a stuck agent; and lead handoffs (detach, adopt, relay). A workspace and worktree cleanup view shows stale worktrees that are safe to archive.
 
 It slots into a broader way of working: a self-hosted Paseo daemon on a private encrypted network, a role-scoped team, isolated git worktrees, and staged human checkpoints, all covered below.
 
@@ -30,7 +30,7 @@ It slots into a broader way of working: a self-hosted Paseo daemon on a private 
 Roster doesn't rename agents. The agents rename and retire themselves, following naming rules I set in their instructions (a new lead takes the `★ LEAD` prefix; the one it replaces renames itself `(old)`). Roster reads those names and labels and sorts agents from them.
 
 - **Spotting a lead:** an agent with a `role=lead` label is a lead. Without a role label, Roster checks the name: by default a name starting with `★ LEAD` is a lead, and one starting with `(old)` is a retired lead. Both patterns can be changed in the plugin settings.
-- **Pinning:** every active lead gets its own row at the top of Roster's sidebar section, above the board and Workspaces links. The row label drops the `★ LEAD ·` prefix. Retired leads aren't pinned.
+- **Project lanes:** Roster's sidebar section has one lane per project, pairing the lead with its brainstorm. Each lane shows a chip with the lead's short name, plus a count of its running workers when it has any, and a check-in button. Clicking a lane opens the brainstorm, or the lead if the brainstorm preset is off. A single raised-hands banner on top shows the leads waiting on me. (Lanes replaced pinned lead rows in Roster PR #7; the check-in button came in PR #8.)
 - **Handoffs:** when an agent creates another, Paseo labels the new one with its creator. When a new lead is created by another agent, Roster detaches it from its creator. If the creator was a lead, Roster moves that lead's running workers to the new lead and forwards their finished, failed and needs-permission events to it.
 - **Finding the lead:** Roster adds one line to every new agent's instructions: run `paseo ls -g --json` and pick the agent in the project's folder whose name starts with `★ LEAD`, not `(old)`.
 
@@ -46,8 +46,8 @@ Real captures of my Paseo, October 2026. Names are shown as they are; agent name
   <figcaption>Before: Paseo's own workspace list, one row per agent under each folder (top part shown). Real capture of my Paseo, Oct 2026; names from chat prompts blacked out.</figcaption>
 </figure></li>
 <li><figure>
-  <img src='/static/previews/roster/after-sidebar.png' data-asset="proj-roster-sidebar" width="492" height="1367" loading="lazy" alt="After: Roster's sidebar section with six lead rows and three brainstorm rows pinned above Paseo's workspace list">
-  <figcaption>After: Roster's sidebar section, with each active lead pinned above the workspace list. Real capture of my Paseo, Oct 2026.</figcaption>
+  <img src='/static/previews/roster/after-sidebar.png' data-asset="proj-roster-sidebar" width="492" height="1367" loading="lazy" alt="After, before PR #7: Roster's sidebar section with six lead rows and three brainstorm rows pinned above Paseo's workspace list">
+  <figcaption>After, before PR #7: Roster's sidebar section with each active lead pinned above the workspace list. The pins have since become project lanes (see Recent Work). Real capture of my Paseo, Oct 2026.</figcaption>
 </figure></li>
 <li><figure>
   <img src='/static/previews/roster/after-board.png' data-asset="proj-roster-board" width="787" height="1152" loading="lazy" alt="After: the Roster board, with a lead and its six workers listed under one group, each showing status, model name and folder">
@@ -69,6 +69,10 @@ Roster 0.3.0, plus the updates merged on 30 and 31 October 2026.
 <div class="pgal-dev" data-title="Roster: recent work"><div class="pgal-screen">
 <ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
 <li><figure>
+  <img src='/static/previews/roster/recent/project-lanes.png' data-asset="roster-recent-project-lanes" width="956" height="668" loading="lazy" alt="Roster's sidebar section with a 4 run count and a PROJECTS list of four lanes: SITE POLISH, UI LAB, MAIN GAME and PLUGINS. Each lane has a status dot, a check-in button and a lead chip such as ★ ord23 · 2w, then a Workspaces link below.">
+  <figcaption>Project lanes: one per project, each with a lead chip, a running-worker count when any are running (2w on UI LAB) and a check-in button. Real capture, 31 Oct 2026, enlarged 2×.</figcaption>
+</figure></li>
+<li><figure>
   <img src='/static/previews/roster/recent/brainstorm-bar.png' data-asset="roster-recent-brainstorm-bar" width="1200" height="750" loading="lazy" alt="Close-up of the top of the Workspaces screen: the Brainstorm bar with a waiting-on-you count, Check in all, and a lead picker, the open brainstorms listed below it, then sort and filter chips.">
   <figcaption>The Brainstorm bar: start or open a brainstorm for any lead, and see who is waiting on me. Real capture, 31 Oct 2026, actual size.</figcaption>
 </figure></li>
@@ -78,7 +82,7 @@ Roster 0.3.0, plus the updates merged on 30 and 31 October 2026.
 </figure></li>
 <li><figure>
   <img src='/static/previews/roster/recent/raised-hands.png' data-asset="roster-recent-raised-hands" width="918" height="574" loading="lazy" alt="Top of the Roster sidebar: a raised-hand count of 1, and below it one queued request from the PLUGINS lead with its reason and an Open button.">
-  <figcaption>The 🙋 queue: leads waiting on me, oldest first, each with an Open button. Real capture, 31 Oct 2026, enlarged 2×.</figcaption>
+  <figcaption>The raised-hands queue: leads waiting on me, oldest first, each with an Open button. Real capture, 31 Oct 2026, enlarged 2×.</figcaption>
 </figure></li>
 </ul>
 </div></div>
@@ -95,7 +99,7 @@ The daemon lives on a private encrypted network rather than behind public ports,
 ## Under the Hood
 
 - **Package:** `paseo-plugin-roster` `0.3.0`, built on `@getpaseo/plugin` `0.13.2` (TypeScript + React Native UI primitives).
-- **Surfaces:** `client/` (lead pins, lead-grouped board, worktree cleanup, settings) · `server/` (two-tap Stop, lead handoffs, lead-finding prompt) · `shared/` (settings schema + RPC contract).
+- **Surfaces:** `client/` (project lanes, lead-grouped board, worktree cleanup, settings) · `server/` (two-tap Stop, lead handoffs, lead-finding prompt) · `shared/` (settings schema + RPC contract).
 - **History:** `fb34817` (initial commit) → `3eaa7a8` (v0.1.0) → `13ee7ac` (lead handoffs + workspace cleanup, v0.2.0) → `a1287b9` (chosen sidebar sections, v0.3.0).
 
 ## Gallery
