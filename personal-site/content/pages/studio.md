@@ -23,7 +23,7 @@ Idle Minds is my game studio. I make games built on systems that play themselves
 
 ### Escape From Idle
 
-A post-apocalyptic idle game with Tarkov-style extraction raids and a Melvor-style ladder that carries you from manual play to full automation. Planned at $5 flat, with no ads, IAP, or gacha. Currently in development.
+A post-apocalyptic idle game with Tarkov-style extraction raids and a Melvor-style ladder that carries you from manual play to full automation. No ads, IAP, or gacha. Currently in development.
 
 <div class="hero-actions"><a href="/escape-from-idle" class="btn btn-secondary">ESCAPE FROM IDLE</a></div>
 

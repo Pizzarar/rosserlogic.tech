@@ -118,6 +118,8 @@
         /* Card grid (featured projects) */
         .card-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
         @media (min-width: 640px) { .card-grid { grid-template-columns: 1fr 1fr; } }
+        /* A lone last card in a 2-column grid sits centred at half width (no blank slot on the right) */
+        @media (min-width: 640px) { .card-grid > .card:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .5rem); } }
         .card { display: block; border: 2px solid var(--be-ink); background: var(--be-surface); padding: 1rem; text-decoration: none; color: var(--be-ink); box-shadow: var(--shadow-window); }
         .card:hover { transform: translate(2px, 2px); box-shadow: var(--shadow-pressed); }
         .card .card-label { display: flex; align-items: center; gap: .5rem; font-family: var(--font-pixel); font-size: .7rem; letter-spacing: .08em; color: var(--be-cel-teal); margin-bottom: .375rem; }

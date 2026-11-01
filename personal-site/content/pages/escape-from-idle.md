@@ -22,9 +22,9 @@ extra:
 - Hireable mercenaries to build out your crew.
 - A Melvor-style ladder that carries you from running every raid by hand to full automation.
 
-## Pricing
+## No ads
 
-Planned $5 flat. No ads, no in-app purchases, no gacha.
+No ads, no in-app purchases, no gacha.
 
 ## Status
 
