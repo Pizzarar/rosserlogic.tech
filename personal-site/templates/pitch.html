@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+{% block title %}{% if page.title != site.title %}{{ page.title }} - {{ site.title }}{% else %}{{ page.title }}{% endif %}{% endblock %}
+{% block extra_css %}
+<style>
+    /* ============================================================
+       Pitch page — Mock A (fade-in). All selectors scoped under .pitch-a.
+       Tokens from theme-pack/theme.css (night). Provider colours from VibeSquad.
+       ============================================================ */
+    .pitch-a { width: 100%; }
+    .pitch-a .pitch-body { padding: 1.25rem 1rem 1.5rem; }
+
+    /* Reveal gating: hidden states exist ONLY when JS adds `.js` to <html>.
+       No JS -> everything visible and readable. */
+    .js .pitch-a [data-reveal] {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity .55s ease, transform .55s ease;
+    }
+    .js .pitch-a [data-reveal].is-visible { opacity: 1; transform: none; }
+
+    /* Connector lines "draw" in (grow) + glow after the step above appears. */
+    .js .pitch-a [data-reveal-line] {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top center;
+        transition: opacity .4s ease .12s, transform .5s ease .12s;
+    }
+    .js .pitch-a [data-reveal-line].is-visible { opacity: 1; transform: scaleY(1); }
+
+    /* Reduced motion / no IntersectionObserver: finished chart, nothing moves. */
+    .pitch-a.no-motion [data-reveal],
+    .pitch-a.no-motion [data-reveal-line] { opacity: 1 !important; transform: none !important; }
+
+    /* --- Headings --- */
+    .pitch-a .page-title { margin-bottom: .25rem; }
+    .pitch-a .pitch-h2 {
+        font-family: var(--font-display); font-weight: 400;
+        font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.15;
+        color: var(--be-ink); margin: 2.5rem 0 1.25rem;
+    }
+
+    /* --- Part 1: flowchart --- */
+    .pitch-a .pitch-flow {
+        list-style: none; margin: 0 auto; padding: 0;
+        max-width: 620px;
+    }
+    .pitch-a .flow-step { display: flex; flex-direction: column; align-items: center; }
+    .pitch-a .flow-node {
+        width: 100%;
+        border: 2px solid var(--be-ink);
+        background: var(--be-surface);
+        box-shadow: var(--shadow-window);
+        padding: 1rem 1rem 1.1rem;
+        text-align: center;
+    }
+    .pitch-a .node-title {
+        font-family: var(--font-display); font-weight: 400;
+        font-size: 1.25rem; line-height: 1.2; color: var(--be-ink);
+        margin: 0 0 .9rem;
+    }
+    .pitch-a .node-num {
+        font-family: var(--font-pixel); font-size: .8rem; letter-spacing: .08em;
+        color: var(--be-cel-teal); margin-right: .4rem;
+    }
+    .pitch-a .node-copy { margin: .9rem 0 0; color: var(--be-ink); line-height: 1.6; }
+    .pitch-a .node-copy.muted { color: var(--be-ink-muted); }
+
+    /* Cast figures (sprites) */
+    .pitch-a .pair { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2rem; }
+    .pitch-a .lead { display: flex; justify-content: center; }
+    .pitch-a .cast { margin: 0; text-align: center; }
+    .pitch-a .cast img { display: block; margin: 0 auto; width: 84px; height: 84px; }
+    .pitch-a .cast-cap {
+        font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .08em;
+        color: var(--be-ink-muted); margin-top: .4rem;
+    }
+
+    /* Step 2: lead -> three workers branch (org-chart connectors, CSS) */
+    .pitch-a .branch { position: relative; width: min(100%, 420px); height: 34px; margin: .25rem auto 0; }
+    .pitch-a .branch-seg { position: absolute; background: var(--be-cel-teal); box-shadow: 0 0 6px var(--be-cel-teal); }
+    .pitch-a .branch-seg.seg-down { left: calc(50% - 1px); top: 0; width: 2px; height: 18px; }
+    .pitch-a .branch-seg.seg-across { left: 16.666%; top: 18px; width: 66.668%; height: 2px; }
+    .pitch-a .branch-seg.seg-drop { top: 18px; width: 2px; height: 16px; }
+    .pitch-a .branch-seg.d1 { left: calc(16.666% - 1px); }
+    .pitch-a .branch-seg.d2 { left: calc(50% - 1px); }
+    .pitch-a .branch-seg.d3 { left: calc(83.333% - 1px); }
+
+    .pitch-a .workers {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        width: min(100%, 420px); margin: 0 auto;
+    }
+    .pitch-a .worker-cap {
+        font-family: var(--font-pixel); font-size: .72rem; letter-spacing: .06em;
+        color: var(--be-ink-muted); margin-top: .35rem; line-height: 1.4;
+    }
+    .pitch-a .sym { display: block; font-size: 1rem; line-height: 1; margin-top: .35rem; }
+    .pitch-a .sym-w1 { color: #ff6e59; text-shadow: 0 0 8px #ff6e59; }
+    .pitch-a .sym-w2 { color: #00f0ff; text-shadow: 0 0 8px #00f0ff; }
+    .pitch-a .sym-w3 { color: #b86bff; text-shadow: 0 0 8px #b86bff; }
+
+    /* Vertical connectors between steps */
+    .pitch-a .flow-link {
+        width: 2px; height: 40px; margin: .5rem 0;
+        background: var(--be-cel-teal); box-shadow: 0 0 8px var(--be-cel-teal);
+    }
+    /* Loop back up to step 1 */
+    .pitch-a .flow-loop { display: flex; flex-direction: column; align-items: center; margin-top: .5rem; }
+    .pitch-a .loop-line {
+        width: 2px; height: 34px; transform-origin: bottom center;
+        background: var(--be-sunset-pink); box-shadow: 0 0 8px var(--be-sunset-pink);
+    }
+    .pitch-a .loop-caption {
+        font-family: var(--font-pixel); font-size: .72rem; letter-spacing: .08em;
+        color: var(--be-sunset-pink); margin-top: .4rem;
+    }
+
+    .pitch-a .chart-label {
+        max-width: 620px; margin: 1rem auto 0;
+        font-family: var(--font-pixel); font-size: .7rem; letter-spacing: .06em;
+        color: var(--be-ink-muted); text-align: center;
+    }
+
+    /* --- Part 2: journey --- */
+    .pitch-a .journey { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2rem; }
+    .pitch-a .beat-quote {
+        font-family: var(--font-display); font-weight: 400;
+        font-size: clamp(1.15rem, 3vw, 1.5rem); line-height: 1.2;
+        color: var(--be-ink); margin: 0 0 .4rem;
+    }
+    .pitch-a .beat-line { margin: 0 0 .9rem; color: var(--be-ink-muted); line-height: 1.6; }
+
+    /* Screenshots in window chrome */
+    .pitch-a .shot { margin: 0; }
+    /* Portrait shots: cap the figure and centre it in the column */
+    .pitch-a .shot-portrait { max-width: 390px; margin-inline: auto; }
+    .pitch-a .shot-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 900px) { .pitch-a .shot-grid { grid-template-columns: 1fr 1fr; } }
+    .pitch-a .shot-body { padding: .5rem; }
+    .pitch-a .shot-body img { display: block; width: 100%; height: auto; background: var(--be-surface); }
+    .pitch-a .shot-phone .shot-body { display: flex; justify-content: center; padding: .75rem; }
+    .pitch-a .shot-phone .shot-body img { width: 300px; max-width: 100%; height: auto; }
+    .pitch-a .shot-cap {
+        font-family: var(--font-pixel); font-size: .72rem; letter-spacing: .06em;
+        color: var(--be-ink-muted); margin: .5rem 0 0;
+    }
+
+    /* --- What it saved --- */
+    .pitch-a .saved { margin-top: 2rem; border: 2px solid var(--be-ink); box-shadow: var(--shadow-window); background: var(--be-surface-raised); padding: 1rem; }
+    .pitch-a .saved-title {
+        font-family: var(--font-display); font-weight: 400; font-size: 1.25rem;
+        color: var(--be-ink); margin: 0 0 .9rem;
+    }
+    .pitch-a .saved-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .9rem; }
+    .pitch-a .saved-row { display: flex; flex-direction: column; gap: .35rem; }
+    .pitch-a .saved-row p { margin: 0; color: var(--be-ink); line-height: 1.6; }
+    .pitch-a .pill {
+        align-self: flex-start;
+        font-family: var(--font-pixel); font-size: .7rem; letter-spacing: .1em;
+        padding: .15rem .5rem; border: 2px solid var(--be-ink); border-radius: 2px;
+    }
+    .pitch-a .pill-measured { color: var(--be-on-accent); background: var(--be-cel-teal); }
+    .pitch-a .pill-projected { color: var(--be-on-violet); background: var(--be-sunset-orange); }
+
+    /* Sprites at integer scale: x3 desktop, x2 at <=480px */
+    @media (max-width: 480px) {
+        .pitch-a .cast img { width: 56px; height: 56px; }
+        .pitch-a .branch, .pitch-a .workers { width: min(100%, 320px); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="pitch-a">
+<article class="window" aria-labelledby="pitch-title">
+    <div class="window-bar"><span id="pitch-title">{{ page.title | upper }}</span><span class="controls" aria-hidden="true"></span></div>
+    <div class="window-body pitch-body">
+        <h1 class="page-title">{{ page.title }}</h1>
+
+        <section class="pitch-section" aria-labelledby="pitch-how">
+            <h2 id="pitch-how" class="pitch-h2">How it works</h2>
+            <ol class="pitch-flow">
+                <li class="flow-step">
+                    <div class="flow-node" data-reveal>
+                        <h3 class="node-title"><span class="node-num">1</span>You + Brainstorm</h3>
+                        <div class="pair">
+                            <figure class="cast">
+                                <img class="pixelated" src='/static/previews/pitch/cast-you-goofy.png' width="84" height="84" alt="Pixel nerd-face avatar representing you">
+                                <figcaption class="cast-cap">YOU</figcaption>
+                            </figure>
+                            <figure class="cast">
+                                <img class="pixelated" src='/static/previews/pitch/cast-brainstorm.png' width="84" height="84" alt="Brainstorm buddy, agent-drawn pixel art">
+                                <figcaption class="cast-cap">BRAINSTORM</figcaption>
+                            </figure>
+                        </div>
+                        <p class="node-copy">You've got ideas. You talk them through with your brainstorming buddy, and anything off-topic gets parked so nothing derails.</p>
+                    </div>
+                    <div class="flow-link" data-reveal-line aria-hidden="true"></div>
+                </li>
+
+                <li class="flow-step">
+                    <div class="flow-node" data-reveal>
+                        <h3 class="node-title"><span class="node-num">2</span>Lead + Workers</h3>
+                        <div class="lead">
+                            <figure class="cast">
+                                <img class="pixelated" src='/static/previews/pitch/cast-lead.png' width="84" height="84" alt="Lead agent, agent-drawn pixel art">
+                                <figcaption class="cast-cap">LEAD</figcaption>
+                            </figure>
+                        </div>
+                        <div class="branch" aria-hidden="true">
+                            <span class="branch-seg seg-down"></span>
+                            <span class="branch-seg seg-across"></span>
+                            <span class="branch-seg seg-drop d1"></span>
+                            <span class="branch-seg seg-drop d2"></span>
+                            <span class="branch-seg seg-drop d3"></span>
+                        </div>
+                        <div class="workers">
+                            <figure class="cast worker">
+                                <img class="pixelated" src='/static/previews/pitch/cast-worker-1.png' width="84" height="84" alt="Worker agent, Claude, agent-drawn pixel art">
+                                <figcaption class="worker-cap"><span class="sym sym-w1" aria-hidden="true">✶</span>CLAUDE</figcaption>
+                            </figure>
+                            <figure class="cast worker">
+                                <img class="pixelated" src='/static/previews/pitch/cast-worker-2.png' width="84" height="84" alt="Worker agent, Gemini, agent-drawn pixel art">
+                                <figcaption class="worker-cap"><span class="sym sym-w2" aria-hidden="true">◆</span>GEMINI</figcaption>
+                            </figure>
+                            <figure class="cast worker">
+                                <img class="pixelated" src='/static/previews/pitch/cast-worker-3.png' width="84" height="84" alt="Worker agent, DeepSeek, agent-drawn pixel art">
+                                <figcaption class="worker-cap"><span class="sym sym-w3" aria-hidden="true">▲</span>DEEPSEEK</figcaption>
+                            </figure>
+                        </div>
+                        <p class="node-copy">The buddy hands the plan to the lead, who splits it up and sends each piece to the cheapest model that can handle it.</p>
+                    </div>
+                    <div class="flow-link" data-reveal-line aria-hidden="true"></div>
+                </li>
+
+                <li class="flow-step">
+                    <div class="flow-node" data-reveal>
+                        <h3 class="node-title"><span class="node-num">3</span>Back to you</h3>
+                        <p class="node-copy">When something needs your call, your phone pings. You say yes or no.</p>
+                    </div>
+                    <div class="flow-loop">
+                        <span class="loop-line" data-reveal-line aria-hidden="true"></span>
+                        <span class="loop-caption" data-reveal>↺ back to step 1</span>
+                    </div>
+                </li>
+            </ol>
+            <p class="chart-label">Portraits: agent-drawn pixel art from VibeSquad's sprite generator.</p>
+        </section>
+
+        <section class="pitch-section" aria-labelledby="pitch-got-here">
+            <h2 id="pitch-got-here" class="pitch-h2">How I got here</h2>
+            <ol class="journey">
+                <li class="beat" data-reveal>
+                    <h3 class="beat-quote">"I was getting lost in the sauce."</h3>
+                    <p class="beat-line">Too many agent chats, no idea who was doing what.</p>
+                    <figure class="shot shot-portrait">
+                        <div class="window">
+                            <div class="window-bar"><span>roster &middot; before</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><img src='/static/previews/pitch/j1-sidebar-before.png' width="492" height="1367" loading="lazy" alt="The old roster: a long flat sidebar of agent chats with no team structure"></div>
+                        </div>
+                        <figcaption class="shot-cap">The old roster sidebar</figcaption>
+                    </figure>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <h3 class="beat-quote">"I wanted one place to see the team,"</h3>
+                    <p class="beat-line">so I built my own team-first UI.</p>
+                    <figure class="shot">
+                        <div class="window">
+                            <div class="window-bar"><span>team &middot; drawer</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><img src='/static/previews/pitch/j2-team-drawer.png' width="1200" height="760" loading="lazy" alt="Early team view: everyone drawn together in a single team panel"></div>
+                        </div>
+                        <figcaption class="shot-cap">Team drawer</figcaption>
+                    </figure>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <h3 class="beat-quote">"Then it needed structure":</h3>
+                    <p class="beat-line">lanes, a lead per lane, workers under each lead.</p>
+                    <figure class="shot">
+                        <div class="window">
+                            <div class="window-bar"><span>team &middot; lanes</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><img src='/static/previews/pitch/j3-lanes-tree.png' width="1200" height="750" loading="lazy" alt="Team structure: lanes with a lead per lane and workers underneath"></div>
+                        </div>
+                        <figcaption class="shot-cap">Lanes, a lead, workers</figcaption>
+                    </figure>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <h3 class="beat-quote">"Then it needed to feel like chat":</h3>
+                    <p class="beat-line">tabs, split view, focus mode, pasted images.</p>
+                    <div class="shot-grid">
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>chat &middot; split</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><img src='/static/previews/pitch/j4-split.png' width="1200" height="750" loading="lazy" alt="Split view: a chat beside its details, with tabs"></div>
+                            </div>
+                            <figcaption class="shot-cap">Split view</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>chat &middot; composer</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><img src='/static/previews/pitch/j4-composer-images.png' width="1200" height="750" loading="lazy" alt="Composer with pasted images in the conversation"></div>
+                            </div>
+                            <figcaption class="shot-cap">Composer with images</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <h3 class="beat-quote">"Then the talking got its own flow":</h3>
+                    <p class="beat-line">the brainstorm buddy, an idea inbox, restarting a long chat from a short summary.</p>
+                    <div class="shot-grid">
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>brainstorm &middot; inbox</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><img src='/static/previews/pitch/j5-idea-inbox.png' width="1040" height="1000" loading="lazy" alt="The idea inbox that collects brainstorm items"></div>
+                            </div>
+                            <figcaption class="shot-cap">Idea inbox</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>brainstorm &middot; restart</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><img src='/static/previews/pitch/j5-restart-summary.png' width="1200" height="750" loading="lazy" alt="A chat restarted from a short summary"></div>
+                            </div>
+                            <figcaption class="shot-cap">Restarted from summary</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <h3 class="beat-quote">"Then I wanted it on my phone":</h3>
+                    <p class="beat-line">phone app (PWA) and a desktop app.</p>
+                    <figure class="shot shot-phone shot-portrait">
+                        <div class="window">
+                            <div class="window-bar"><span>vibesquad &middot; phone</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><img src='/static/previews/pitch/j6-phone.png' width="390" height="875" loading="lazy" alt="The phone app showing the team on mobile"></div>
+                        </div>
+                        <figcaption class="shot-cap">Phone app (PWA)</figcaption>
+                    </figure>
+                </li>
+            </ol>
+
+            <div class="saved" data-reveal>
+                <h3 class="saved-title">What it saved</h3>
+                <ul class="saved-rows">
+                    <li class="saved-row">
+                        <span class="pill pill-measured">MEASURED</span>
+                        <p>New leads in the VibeSquad lane now start at 3k&ndash;4k tokens of context (3 measurements, one lead), down from about 80k after reading a handoff. Escape From Idle leads still start at 87k&ndash;155k; trimming its rules is next.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-measured">MEASURED</span>
+                        <p>Workers get about 770 characters of team rules (about 200 tokens) instead of the lead-only rules. Before the split, one project's rules file put about 5.5k tokens into every worker start, and 68% of it was lead-only.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-projected">PROJECTED</span>
+                        <p>A restarted brainstorm reads a short lane summary (about 5k tokens) instead of carrying a chat of about 150k.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</article>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    var root = document.querySelector('.pitch-a');
+    if (!root) return;
+
+    // Gate all hidden states on `.js` (added only when JS actually runs).
+    document.documentElement.classList.add('js');
+
+    // Reduced motion -> finished chart, no motion.
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+        root.classList.add('no-motion');
+        return;
+    }
+
+    var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    [].forEach.call(root.querySelectorAll('[data-reveal], [data-reveal-line]'), function(el){
+        io.observe(el);
+    });
+})();
+</script>
+{% endblock %}

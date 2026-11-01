@@ -18,6 +18,7 @@ image: /static/sprites/og-home.png
       <div class="hero-actions">
         <a href="/resume" class="btn btn-primary">&gt; VIEW RÉSUMÉ</a>
         <a href="/projects" class="btn btn-secondary">PROJECTS</a>
+        <a href="/pitch" class="btn btn-secondary">PITCH</a>
         <a href="/studio" class="btn btn-secondary">IDLE MINDS</a>
       </div>
     </div>
