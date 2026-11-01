@@ -17,6 +17,6 @@ Got a role in mind, a project worth kicking around, or just want to say hi? Drop
 <button type="submit" class="btn btn-primary">&gt; SEND MESSAGE</button>
 </form>
 
-Or reach me directly at **aubross [at] hotmail [dot] com**.
+Or reach me directly at **rosserlogic.tech [at] gmail [dot] com**.
 
 Based in the Columbus, OH area.

@@ -3,7 +3,7 @@
 {% block extra_css %}
 <style>
     /* ============================================================
-       Pitch page — Mock A (fade-in). All selectors scoped under .pitch-a.
+       VibeSquad page — Mock A (fade-in). All selectors scoped under .pitch-a.
        Tokens from theme-pack/theme.css (night). Provider colours from VibeSquad.
        ============================================================ */
     .pitch-a { width: 100%; }
@@ -30,6 +30,30 @@
     /* Reduced motion / no IntersectionObserver: finished chart, nothing moves. */
     .pitch-a.no-motion [data-reveal],
     .pitch-a.no-motion [data-reveal-line] { opacity: 1 !important; transform: none !important; }
+
+    /* --- Intro --- */
+    .pitch-a .vs-tag {
+        display: block;
+        font-family: var(--font-pixel);
+        font-size: .7rem;
+        letter-spacing: .08em;
+        color: var(--be-cel-teal);
+        margin-bottom: .375rem;
+    }
+    .pitch-a .vs-lede {
+        color: var(--be-ink);
+        line-height: 1.6;
+        max-width: 62ch;
+        font-size: 1.1rem;
+        margin: .5rem 0 0;
+    }
+
+    /* --- Hero art --- */
+    .pitch-a .vs-hero { margin: 1rem 0 0; }
+    .pitch-a .vs-hero img { width: 184px; height: 136px; }
+    @media (min-width: 420px) {
+        .pitch-a .vs-hero img { width: 368px; height: 272px; }
+    }
 
     /* --- Headings --- */
     .pitch-a .page-title { margin-bottom: .25rem; }
@@ -166,6 +190,64 @@
         .pitch-a .cast img { width: 56px; height: 56px; }
         .pitch-a .branch, .pitch-a .workers { width: min(100%, 320px); }
     }
+
+    /* ============================================================
+       Wide desktop layout (>=1024px): use the width instead of
+       stacking. Below 1024px the page looks exactly as before.
+       ============================================================ */
+    @media (min-width: 1024px) {
+        /* Intro: two columns; the second holds the hero art later */
+        .pitch-a .vs-intro {
+            display: grid;
+            grid-template-columns: 1fr minmax(0, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        /* Flowchart fills the column */
+        .pitch-a .pitch-flow { max-width: none; }
+        .pitch-a .chart-label { max-width: none; }
+
+        /* Each flow node: figures on the left, copy on the right */
+        .pitch-a .flow-node:has(.node-figs) {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            column-gap: 2rem;
+            align-items: center;
+            text-align: left;
+        }
+        .pitch-a .flow-node:has(.node-figs) .node-title { grid-column: 1 / -1; text-align: center; }
+        .pitch-a .flow-node:has(.node-figs) .node-figs { grid-column: 1; }
+        .pitch-a .flow-node:has(.node-figs) .node-copy { grid-column: 2; margin: 0; text-align: left; }
+        .pitch-a .branch, .pitch-a .workers { width: min(100%, 520px); }
+
+        /* Journey: text beside screenshots, alternating sides */
+        .pitch-a .beat {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 2rem;
+            align-items: center;
+        }
+        .pitch-a .beat:has(.shot-grid) { grid-template-columns: minmax(200px, 1fr) 3fr; }
+        .pitch-a .beat > .beat-text { grid-column: 1; align-self: center; }
+        .pitch-a .beat > .shot, .pitch-a .beat > .shot-grid { grid-column: 2; grid-row: 1; }
+        .pitch-a .beat:nth-child(even) > .beat-text { grid-column: 2; }
+        .pitch-a .beat:nth-child(even) > .shot,
+        .pitch-a .beat:nth-child(even) > .shot-grid { grid-column: 1; }
+        .pitch-a .beat:nth-child(even):has(.shot-grid) { grid-template-columns: 3fr minmax(200px, 1fr); }
+        .pitch-a .beat-quote { font-size: clamp(1.5rem, 2.2vw, 2rem); }
+        .pitch-a .beat-line { font-size: 1.15rem; }
+        .pitch-a .beat > .shot:not(.shot-portrait) { max-width: 460px; justify-self: center; width: 100%; }
+        .pitch-a .shot-portrait { max-width: 290px; justify-self: center; }
+
+        /* What it saved: three equal cards */
+        .pitch-a .saved-rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .pitch-a .saved-row {
+            border: 2px solid var(--be-ink);
+            background: var(--be-surface);
+            padding: 1rem;
+        }
+    }
 </style>
 {% endblock %}
 
@@ -174,7 +256,18 @@
 <article class="window" aria-labelledby="pitch-title">
     <div class="window-bar"><span id="pitch-title">{{ page.title | upper }}</span><span class="controls" aria-hidden="true"></span></div>
     <div class="window-body pitch-body">
-        <h1 class="page-title">{{ page.title }}</h1>
+        <header class="vs-intro">
+          <div class="vs-intro-text">
+            <span class="card-label vs-tag">AGENTIC DEVELOPMENT ENVIRONMENT</span>
+            <h1 class="page-title">{{ page.title }}</h1>
+            <p class="vs-lede">An app for running a squad of AI coding agents. You bring the ideas; it keeps them sorted, keeps each agent in its own lane, sends work to the right model, and checks the work before it gets to you.</p>
+          </div>
+          <figure class="vs-hero">
+            <img class="pixelated" src='/static/previews/pitch/hero-diorama.png' width="368" height="272"
+                 alt="Pixel diorama: you and the brainstorm buddy on the top floor, the lead in the middle, three workers below, with neon lines between them">
+            <figcaption class="shot-cap">Agent-drawn pixel art</figcaption>
+          </figure>
+        </header>
 
         <section class="pitch-section" aria-labelledby="pitch-how">
             <h2 id="pitch-how" class="pitch-h2">How it works</h2>
@@ -182,15 +275,17 @@
                 <li class="flow-step">
                     <div class="flow-node" data-reveal>
                         <h3 class="node-title"><span class="node-num">1</span>You + Brainstorm</h3>
-                        <div class="pair">
-                            <figure class="cast">
-                                <img class="pixelated" src='/static/previews/pitch/cast-you-goofy.png' width="84" height="84" alt="Pixel nerd-face avatar representing you">
-                                <figcaption class="cast-cap">YOU</figcaption>
-                            </figure>
-                            <figure class="cast">
-                                <img class="pixelated" src='/static/previews/pitch/cast-brainstorm.png' width="84" height="84" alt="Brainstorm buddy, agent-drawn pixel art">
-                                <figcaption class="cast-cap">BRAINSTORM</figcaption>
-                            </figure>
+                        <div class="node-figs">
+                            <div class="pair">
+                                <figure class="cast">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-you-goofy.png' width="84" height="84" alt="Pixel nerd-face avatar representing you">
+                                    <figcaption class="cast-cap">YOU</figcaption>
+                                </figure>
+                                <figure class="cast">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-brainstorm.png' width="84" height="84" alt="Brainstorm buddy, agent-drawn pixel art">
+                                    <figcaption class="cast-cap">BRAINSTORM</figcaption>
+                                </figure>
+                            </div>
                         </div>
                         <p class="node-copy">You've got ideas. You talk them through with your brainstorming buddy, and anything off-topic gets parked so nothing derails.</p>
                     </div>
@@ -200,32 +295,34 @@
                 <li class="flow-step">
                     <div class="flow-node" data-reveal>
                         <h3 class="node-title"><span class="node-num">2</span>Lead + Workers</h3>
-                        <div class="lead">
-                            <figure class="cast">
-                                <img class="pixelated" src='/static/previews/pitch/cast-lead.png' width="84" height="84" alt="Lead agent, agent-drawn pixel art">
-                                <figcaption class="cast-cap">LEAD</figcaption>
-                            </figure>
-                        </div>
-                        <div class="branch" aria-hidden="true">
-                            <span class="branch-seg seg-down"></span>
-                            <span class="branch-seg seg-across"></span>
-                            <span class="branch-seg seg-drop d1"></span>
-                            <span class="branch-seg seg-drop d2"></span>
-                            <span class="branch-seg seg-drop d3"></span>
-                        </div>
-                        <div class="workers">
-                            <figure class="cast worker">
-                                <img class="pixelated" src='/static/previews/pitch/cast-worker-1.png' width="84" height="84" alt="Worker agent, Claude, agent-drawn pixel art">
-                                <figcaption class="worker-cap"><span class="sym sym-w1" aria-hidden="true">✶</span>CLAUDE</figcaption>
-                            </figure>
-                            <figure class="cast worker">
-                                <img class="pixelated" src='/static/previews/pitch/cast-worker-2.png' width="84" height="84" alt="Worker agent, Gemini, agent-drawn pixel art">
-                                <figcaption class="worker-cap"><span class="sym sym-w2" aria-hidden="true">◆</span>GEMINI</figcaption>
-                            </figure>
-                            <figure class="cast worker">
-                                <img class="pixelated" src='/static/previews/pitch/cast-worker-3.png' width="84" height="84" alt="Worker agent, DeepSeek, agent-drawn pixel art">
-                                <figcaption class="worker-cap"><span class="sym sym-w3" aria-hidden="true">▲</span>DEEPSEEK</figcaption>
-                            </figure>
+                        <div class="node-figs">
+                            <div class="lead">
+                                <figure class="cast">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-lead.png' width="84" height="84" alt="Lead agent, agent-drawn pixel art">
+                                    <figcaption class="cast-cap">LEAD</figcaption>
+                                </figure>
+                            </div>
+                            <div class="branch" aria-hidden="true">
+                                <span class="branch-seg seg-down"></span>
+                                <span class="branch-seg seg-across"></span>
+                                <span class="branch-seg seg-drop d1"></span>
+                                <span class="branch-seg seg-drop d2"></span>
+                                <span class="branch-seg seg-drop d3"></span>
+                            </div>
+                            <div class="workers">
+                                <figure class="cast worker">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-1.png' width="84" height="84" alt="Worker agent, Claude, agent-drawn pixel art">
+                                    <figcaption class="worker-cap"><span class="sym sym-w1" aria-hidden="true">✶</span>CLAUDE</figcaption>
+                                </figure>
+                                <figure class="cast worker">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-2.png' width="84" height="84" alt="Worker agent, Gemini, agent-drawn pixel art">
+                                    <figcaption class="worker-cap"><span class="sym sym-w2" aria-hidden="true">◆</span>GEMINI</figcaption>
+                                </figure>
+                                <figure class="cast worker">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-3.png' width="84" height="84" alt="Worker agent, DeepSeek, agent-drawn pixel art">
+                                    <figcaption class="worker-cap"><span class="sym sym-w3" aria-hidden="true">▲</span>DEEPSEEK</figcaption>
+                                </figure>
+                            </div>
                         </div>
                         <p class="node-copy">The buddy hands the plan to the lead, who splits it up and sends each piece to the cheapest model that can handle it.</p>
                     </div>
@@ -250,68 +347,78 @@
             <h2 id="pitch-got-here" class="pitch-h2">How I got here</h2>
             <ol class="journey">
                 <li class="beat" data-reveal>
-                    <h3 class="beat-quote">"I was getting lost in the sauce."</h3>
-                    <p class="beat-line">Too many agent chats, no idea who was doing what.</p>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"I was getting lost in the sauce."</h3>
+                        <p class="beat-line">Too many agent chats, no idea who was doing what.</p>
+                    </div>
                     <figure class="shot shot-portrait">
                         <div class="window">
                             <div class="window-bar"><span>roster &middot; before</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><img src='/static/previews/pitch/j1-sidebar-before.png' width="492" height="1367" loading="lazy" alt="The old roster: a long flat sidebar of agent chats with no team structure"></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j1-sidebar-before.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j1-sidebar-before.png' width="492" height="1367" loading="lazy" alt="The old roster: a long flat sidebar of agent chats with no team structure"></a></div>
                         </div>
                         <figcaption class="shot-cap">The old roster sidebar</figcaption>
                     </figure>
                 </li>
 
                 <li class="beat" data-reveal>
-                    <h3 class="beat-quote">"I wanted one place to see the team,"</h3>
-                    <p class="beat-line">so I built my own team-first UI.</p>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"I wanted one place to see the team,"</h3>
+                        <p class="beat-line">so I built my own team-first UI.</p>
+                    </div>
                     <figure class="shot">
                         <div class="window">
                             <div class="window-bar"><span>team &middot; drawer</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><img src='/static/previews/pitch/j2-team-drawer.png' width="1200" height="760" loading="lazy" alt="Early team view: everyone drawn together in a single team panel"></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j2-team-drawer.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j2-team-drawer.png' width="1200" height="760" loading="lazy" alt="Early team view: everyone drawn together in a single team panel"></a></div>
                         </div>
                         <figcaption class="shot-cap">Team drawer</figcaption>
                     </figure>
                 </li>
 
                 <li class="beat" data-reveal>
-                    <h3 class="beat-quote">"Then it needed structure":</h3>
-                    <p class="beat-line">lanes, a lead per lane, workers under each lead.</p>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then it needed structure":</h3>
+                        <p class="beat-line">lanes, a lead per lane, workers under each lead.</p>
+                    </div>
                     <figure class="shot">
                         <div class="window">
                             <div class="window-bar"><span>team &middot; lanes</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><img src='/static/previews/pitch/j3-lanes-tree.png' width="1200" height="750" loading="lazy" alt="Team structure: lanes with a lead per lane and workers underneath"></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j3-lanes-tree.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j3-lanes-tree.png' width="1200" height="750" loading="lazy" alt="Team structure: lanes with a lead per lane and workers underneath"></a></div>
                         </div>
                         <figcaption class="shot-cap">Lanes, a lead, workers</figcaption>
                     </figure>
                 </li>
 
                 <li class="beat" data-reveal>
-                    <h3 class="beat-quote">"Then lanes grew into Squads":</h3>
-                    <p class="beat-line">one squad per project, each with its brainstorm buddy and lead paired up, and workers underneath.</p>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then lanes grew into Squads":</h3>
+                        <p class="beat-line">one squad per project, each with its brainstorm buddy and lead paired up, and workers underneath.</p>
+                    </div>
                     <figure class="shot shot-portrait">
                         <div class="window">
                             <div class="window-bar"><span>squads &middot; sidebar</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><img src='/static/previews/pitch/j3b-squads-sidebar.png' width="398" height="1330" loading="lazy" alt="VibeSquad sidebar: squads for Escape From Idle, VibeSquad, Plugins and Tooling and rosserlogic.tech, each nesting a brainstorm buddy and lead pair with workers underneath"></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j3b-squads-sidebar.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j3b-squads-sidebar.png' width="398" height="1330" loading="lazy" alt="VibeSquad sidebar: squads for Escape From Idle, VibeSquad, Plugins and Tooling and rosserlogic.tech, each nesting a brainstorm buddy and lead pair with workers underneath"></a></div>
                         </div>
                         <figcaption class="shot-cap">Squads, each with its buddy + lead pair</figcaption>
                     </figure>
                 </li>
 
                 <li class="beat" data-reveal>
-                    <h3 class="beat-quote">"Then it needed to feel like chat":</h3>
-                    <p class="beat-line">tabs, split view, focus mode, pasted images.</p>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then it needed to feel like chat":</h3>
+                        <p class="beat-line">tabs, split view, focus mode, pasted images.</p>
+                    </div>
                     <div class="shot-grid">
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>chat &middot; split</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><img src='/static/previews/pitch/j4-split.png' width="1200" height="750" loading="lazy" alt="Split view: a chat beside its details, with tabs"></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j4-split.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j4-split.png' width="1200" height="750" loading="lazy" alt="Split view: a chat beside its details, with tabs"></a></div>
                             </div>
                             <figcaption class="shot-cap">Split view</figcaption>
                         </figure>
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>chat &middot; composer</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><img src='/static/previews/pitch/j4-composer-images.png' width="1200" height="750" loading="lazy" alt="Composer with pasted images in the conversation"></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j4-composer-images.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j4-composer-images.png' width="1200" height="750" loading="lazy" alt="Composer with pasted images in the conversation"></a></div>
                             </div>
                             <figcaption class="shot-cap">Composer with images</figcaption>
                         </figure>
@@ -319,20 +426,22 @@
                 </li>
 
                 <li class="beat" data-reveal>
-                    <h3 class="beat-quote">"Then the talking got its own flow":</h3>
-                    <p class="beat-line">the brainstorm buddy, an idea inbox, restarting a long chat from a short summary.</p>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then the talking got its own flow":</h3>
+                        <p class="beat-line">the brainstorm buddy, an idea inbox, restarting a long chat from a short summary.</p>
+                    </div>
                     <div class="shot-grid">
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>brainstorm &middot; inbox</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><img src='/static/previews/pitch/j5-idea-inbox.png' width="1040" height="1000" loading="lazy" alt="The idea inbox that collects brainstorm items"></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j5-idea-inbox.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j5-idea-inbox.png' width="1040" height="1000" loading="lazy" alt="The idea inbox that collects brainstorm items"></a></div>
                             </div>
                             <figcaption class="shot-cap">Idea inbox</figcaption>
                         </figure>
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>brainstorm &middot; restart</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><img src='/static/previews/pitch/j5-restart-summary.png' width="1200" height="750" loading="lazy" alt="A chat restarted from a short summary"></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j5-restart-summary.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j5-restart-summary.png' width="1200" height="750" loading="lazy" alt="A chat restarted from a short summary"></a></div>
                             </div>
                             <figcaption class="shot-cap">Restarted from summary</figcaption>
                         </figure>
@@ -340,12 +449,14 @@
                 </li>
 
                 <li class="beat" data-reveal>
-                    <h3 class="beat-quote">"Then I wanted it on my phone":</h3>
-                    <p class="beat-line">phone app (PWA) and a desktop app.</p>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then I wanted it on my phone":</h3>
+                        <p class="beat-line">phone app (PWA) and a desktop app.</p>
+                    </div>
                     <figure class="shot shot-phone shot-portrait">
                         <div class="window">
                             <div class="window-bar"><span>vibesquad &middot; phone</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><img src='/static/previews/pitch/j6-phone.png' width="390" height="875" loading="lazy" alt="The phone app showing the team on mobile"></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j6-phone.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j6-phone.png' width="390" height="875" loading="lazy" alt="The phone app showing the team on mobile"></a></div>
                         </div>
                         <figcaption class="shot-cap">Phone app (PWA)</figcaption>
                     </figure>
