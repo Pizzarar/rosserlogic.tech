@@ -47,6 +47,7 @@
         font-size: 1.1rem;
         margin: .5rem 0 0;
     }
+    .pitch-a .vs-beta { margin: .5rem 0 0; color: var(--be-ink-muted); font-weight: 700; }
 
     /* --- Hero art --- */
     .pitch-a .vs-hero { margin: 1rem 0 0; }
@@ -238,10 +239,11 @@
         .pitch-a .beat-quote { font-size: clamp(1.5rem, 2.2vw, 2rem); }
         .pitch-a .beat-line { font-size: 1.15rem; }
         .pitch-a .beat > .shot:not(.shot-portrait) { max-width: 460px; justify-self: center; width: 100%; }
+        .pitch-a .beat > .shot.shot-wide { max-width: 640px; }
         .pitch-a .shot-portrait { max-width: 290px; justify-self: center; }
 
-        /* What it saved: three equal cards */
-        .pitch-a .saved-rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        /* What it saved: four cards, 2x2 */
+        .pitch-a .saved-rows { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         .pitch-a .saved-row {
             border: 2px solid var(--be-ink);
             background: var(--be-surface);
@@ -261,6 +263,7 @@
             <span class="card-label vs-tag">AGENTIC DEVELOPMENT ENVIRONMENT</span>
             <h1 class="page-title">{{ page.title }}</h1>
             <p class="vs-lede">An app for running a squad of AI coding agents. You bring the ideas; it keeps them sorted, keeps each agent in its own lane, sends work to the right model, and checks the work before it gets to you.</p>
+            <p class="vs-beta">In public beta on Windows.</p>
           </div>
           <figure class="vs-hero">
             <img class="pixelated" src='/static/previews/pitch/hero-diorama.png' width="368" height="272"
@@ -461,6 +464,57 @@
                         <figcaption class="shot-cap">Phone app (PWA)</figcaption>
                     </figure>
                 </li>
+
+                <li class="beat" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then it needed to install like a real app":</h3>
+                        <p class="beat-line">a one-step Windows installer with its runtime bundled, a first-run checklist, and signed auto-updates on a stable or beta channel.</p>
+                    </div>
+                    <figure class="shot">
+                        <div class="window">
+                            <div class="window-bar"><span>vibesquad &middot; setup</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j7-first-run.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j7-first-run.png' width="520" height="383" loading="lazy" alt="The first-run setup checklist confirming Paseo, Claude Code, Gemini and Git are installed"></a></div>
+                        </div>
+                        <figcaption class="shot-cap">First-run checklist</figcaption>
+                    </figure>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then it needed to be a full dev environment":</h3>
+                        <p class="beat-line">changes, files, terminal and scripts panels; a command palette (Ctrl+K); search across transcripts; rewind, fork and export a chat.</p>
+                    </div>
+                    <div class="shot-grid">
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; files</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8a-files-panel.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8a-files-panel.png' width="320" height="620" loading="lazy" alt="The Files panel in the side dock, listing the VibeSquad repo's folders and files, next to the Changes, Terminal and Scripts tabs"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Files panel</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; ctrl+k</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8b-command-palette.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8b-command-palette.png' width="640" height="426" loading="lazy" alt="The command palette listing actions such as New Agent and Search All Transcripts, then the teams"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Command palette</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then teams got pinned":</h3>
+                        <p class="beat-line">a grid of pinned teams, quick idea capture with a "send it there" fix for a misrouted idea, and a Done shelf with Reopen.</p>
+                    </div>
+                    <figure class="shot shot-wide">
+                        <div class="window">
+                            <div class="window-bar"><span>squad &middot; pinned</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j9-pinned-teams.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j9-pinned-teams.png' width="962" height="265" loading="lazy" alt="A squad's pinned teams grid: two team tiles with recent messages and a New idea tile"></a></div>
+                        </div>
+                        <figcaption class="shot-cap">Pinned teams</figcaption>
+                    </figure>
+                </li>
             </ol>
 
             <div class="saved" data-reveal>
@@ -477,6 +531,10 @@
                     <li class="saved-row">
                         <span class="pill pill-projected">PROJECTED</span>
                         <p>A restarted brainstorm reads a short lane summary (about 5k tokens) instead of carrying a chat of about 150k.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-measured">MEASURED</span>
+                        <p>A 41-task checklist of everyday jobs in an agent IDE: 21 passed at v0.1.1, 41 passed after two rounds of work.</p>
                     </li>
                 </ul>
             </div>
