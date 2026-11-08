@@ -159,7 +159,7 @@
     /* Portrait shots: cap the figure and centre it in the column */
     .pitch-a .shot-portrait { max-width: 390px; margin-inline: auto; }
     .pitch-a .shot-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    @media (min-width: 900px) { .pitch-a .shot-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .pitch-a .shot-grid { grid-template-columns: 1fr 1fr; } .pitch-a .shot-grid--narrow-first { grid-template-columns: 1fr 2fr; align-items: start; } }
     .pitch-a .shot-body { padding: .5rem; }
     .pitch-a .shot-body img { display: block; width: 100%; height: auto; background: var(--be-surface); }
     .pitch-a .shot-phone .shot-body { display: flex; justify-content: center; padding: .75rem; }
@@ -210,16 +210,20 @@
         .pitch-a .chart-label { max-width: none; }
 
         /* Each flow node: figures on the left, copy on the right */
-        .pitch-a .flow-node:has(.node-figs) {
+        .pitch-a .flow-node:has(.node-figs),
+        .pitch-a .flow-node--figs {
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             column-gap: 2rem;
             align-items: center;
             text-align: left;
         }
-        .pitch-a .flow-node:has(.node-figs) .node-title { grid-column: 1 / -1; text-align: center; }
-        .pitch-a .flow-node:has(.node-figs) .node-figs { grid-column: 1; }
-        .pitch-a .flow-node:has(.node-figs) .node-copy { grid-column: 2; margin: 0; text-align: left; }
+        .pitch-a .flow-node:has(.node-figs) .node-title,
+        .pitch-a .flow-node--figs .node-title { grid-column: 1 / -1; text-align: center; }
+        .pitch-a .flow-node:has(.node-figs) .node-figs,
+        .pitch-a .flow-node--figs .node-figs { grid-column: 1; }
+        .pitch-a .flow-node:has(.node-figs) .node-copy,
+        .pitch-a .flow-node--figs .node-copy { grid-column: 2; margin: 0; text-align: left; }
         .pitch-a .branch, .pitch-a .workers { width: min(100%, 520px); }
 
         /* Journey: text beside screenshots, alternating sides */
@@ -229,13 +233,13 @@
             column-gap: 2rem;
             align-items: center;
         }
-        .pitch-a .beat:has(.shot-grid) { grid-template-columns: minmax(200px, 1fr) 3fr; }
+        .pitch-a .beat:has(.shot-grid), .pitch-a .beat--grid { grid-template-columns: minmax(200px, 1fr) 3fr; }
         .pitch-a .beat > .beat-text { grid-column: 1; align-self: center; }
         .pitch-a .beat > .shot, .pitch-a .beat > .shot-grid { grid-column: 2; grid-row: 1; }
         .pitch-a .beat:nth-child(even) > .beat-text { grid-column: 2; }
         .pitch-a .beat:nth-child(even) > .shot,
         .pitch-a .beat:nth-child(even) > .shot-grid { grid-column: 1; }
-        .pitch-a .beat:nth-child(even):has(.shot-grid) { grid-template-columns: 3fr minmax(200px, 1fr); }
+        .pitch-a .beat:nth-child(even):has(.shot-grid), .pitch-a .beat--grid:nth-child(even) { grid-template-columns: 3fr minmax(200px, 1fr); }
         .pitch-a .beat-quote { font-size: clamp(1.5rem, 2.2vw, 2rem); }
         .pitch-a .beat-line { font-size: 1.15rem; }
         .pitch-a .beat > .shot:not(.shot-portrait) { max-width: 460px; justify-self: center; width: 100%; }
@@ -276,7 +280,7 @@
             <h2 id="pitch-how" class="pitch-h2">How it works</h2>
             <ol class="pitch-flow">
                 <li class="flow-step">
-                    <div class="flow-node" data-reveal>
+                    <div class="flow-node flow-node--figs" data-reveal>
                         <h3 class="node-title"><span class="node-num">1</span>You + Brainstorm</h3>
                         <div class="node-figs">
                             <div class="pair">
@@ -296,7 +300,7 @@
                 </li>
 
                 <li class="flow-step">
-                    <div class="flow-node" data-reveal>
+                    <div class="flow-node flow-node--figs" data-reveal>
                         <h3 class="node-title"><span class="node-num">2</span>Lead + Workers</h3>
                         <div class="node-figs">
                             <div class="lead">
@@ -405,7 +409,7 @@
                     </figure>
                 </li>
 
-                <li class="beat" data-reveal>
+                <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then it needed to feel like chat":</h3>
                         <p class="beat-line">tabs, split view, focus mode, pasted images.</p>
@@ -428,7 +432,7 @@
                     </div>
                 </li>
 
-                <li class="beat" data-reveal>
+                <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then the talking got its own flow":</h3>
                         <p class="beat-line">the brainstorm buddy, an idea inbox, restarting a long chat from a short summary.</p>
@@ -473,22 +477,22 @@
                     <figure class="shot">
                         <div class="window">
                             <div class="window-bar"><span>vibesquad &middot; setup</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><a href='/static/previews/pitch/j7-first-run.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j7-first-run.png' width="520" height="383" loading="lazy" alt="The first-run setup checklist confirming Paseo, Claude Code, Gemini and Git are installed"></a></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j7-first-run.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j7-first-run.png' width="520" height="326" loading="lazy" alt="The first-run setup checklist confirming Claude Code, Gemini / Antigravity and Git are installed"></a></div>
                         </div>
                         <figcaption class="shot-cap">First-run checklist</figcaption>
                     </figure>
                 </li>
 
-                <li class="beat" data-reveal>
+                <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then it needed to be a full dev environment":</h3>
                         <p class="beat-line">changes, files, terminal and scripts panels; a command palette (Ctrl+K); search across transcripts; rewind, fork and export a chat.</p>
                     </div>
-                    <div class="shot-grid">
+                    <div class="shot-grid shot-grid--narrow-first">
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>vibesquad &middot; files</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8a-files-panel.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8a-files-panel.png' width="320" height="620" loading="lazy" alt="The Files panel in the side dock, listing the VibeSquad repo's folders and files, next to the Changes, Terminal and Scripts tabs"></a></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8a-files-panel.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8a-files-panel.png' width="320" height="539" loading="lazy" alt="The Files panel in the side dock, listing the VibeSquad repo's folders and files, next to the Changes, Terminal and Scripts tabs"></a></div>
                             </div>
                             <figcaption class="shot-cap">Files panel</figcaption>
                         </figure>
@@ -504,15 +508,15 @@
 
                 <li class="beat" data-reveal>
                     <div class="beat-text">
-                        <h3 class="beat-quote">"Then teams got pinned":</h3>
-                        <p class="beat-line">a grid of pinned teams, quick idea capture with a "send it there" fix for a misrouted idea, and a Done shelf with Reopen.</p>
+                        <h3 class="beat-quote">"Then squads got an overview":</h3>
+                        <p class="beat-line">a card per squad with its team avatars and a Needs-you count, a New squad tile, and a usage panel showing each provider's % used, reset time and burn rate.</p>
                     </div>
-                    <figure class="shot shot-wide">
+                    <figure class="shot">
                         <div class="window">
-                            <div class="window-bar"><span>squad &middot; pinned</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><a href='/static/previews/pitch/j9-pinned-teams.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j9-pinned-teams.png' width="962" height="265" loading="lazy" alt="A squad's pinned teams grid: two team tiles with recent messages and a New idea tile"></a></div>
+                            <div class="window-bar"><span>squads &middot; usage</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j9-pinned-teams.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j9-pinned-teams.png' width="642" height="495" loading="lazy" alt="The Squads view: Escape From Idle and VibeSquad squad cards with team avatars and a 7 Need you badge, a New squad tile, and the Usage panel with Gemini and Claude percent used, reset times and burn rates"></a></div>
                         </div>
-                        <figcaption class="shot-cap">Pinned teams</figcaption>
+                        <figcaption class="shot-cap">Squads and usage</figcaption>
                     </figure>
                 </li>
             </ol>
