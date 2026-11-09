@@ -174,7 +174,7 @@
         .content img { max-width: 100%; height: auto; display: block; border: 2px solid var(--be-ink); }
         .content figure { margin: 1rem 0; }
         .pixel-diagram { display: block; }
-        .pixel-diagram img { display: block; margin: 0 auto; max-width: none; image-rendering: pixelated; }
+        .pixel-diagram img { display: block; margin: 0 auto; max-width: 100%; height: auto; image-rendering: pixelated; }
         .content figcaption { font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; color: var(--be-ink-muted); margin-top: .5rem; }
 
         /* Gallery (Gate 8, frame picked in Gate 8b: the site's own pixel window). Title from data-title on .pgal-dev; on wide screens
@@ -313,13 +313,11 @@
         .body-paper h2::before { background: var(--be-dusk-violet); }
         .body-crt .tag { background: var(--be-surface); }
         .body-crt hr, .body-paper hr { border: 0; height: 4px; background: repeating-linear-gradient(90deg, var(--be-sunset-pink) 0 8px, transparent 8px 12px, var(--be-sunset-orange) 12px 20px, transparent 20px 24px); }
-        /* Gate 19-2: VIBE OS desktop. Compact taskbar (>=900px) + decorative side lanes (>=1424px). */
+        /* Gate 19-2/20: VIBE OS desktop. Compact taskbar (>=900px), aligned to the 72rem content column. */
         .nav-brand img, .nav-status { display: none; }
-        .side-lane { display: none; }
-        body.reading .desktop-stage { flex: 1 0 auto; }
         @media (min-width: 900px) {
             .site-header { background: var(--panel-grad); box-shadow: inset 0 1px 0 var(--bevel-hi), inset 0 -1px 0 var(--bevel-lo); }
-            .site-header .nav-inner { max-width: 1424px; flex-wrap: nowrap; padding: .375rem 8px; gap: .5rem; }
+            .site-header .nav-inner { max-width: 72rem; flex-wrap: nowrap; padding: .375rem 8px; gap: .5rem; }
             .nav-brand { display: inline-flex; align-items: center; gap: .5rem; flex: none; padding: .3rem .75rem .3rem .5rem; font-family: var(--font-pixel); font-size: .875rem; letter-spacing: .06em; background: var(--be-sunset-pink); color: var(--be-on-accent); border: 2px solid var(--be-ink); box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), 2px 2px 0 0 var(--be-shadow-color); }
             .nav-brand:hover { color: var(--be-on-accent); transform: translate(1px, 1px); }
             .nav-brand img { display: block; image-rendering: pixelated; }
@@ -339,27 +337,12 @@
             .nav-brand { padding-right: .5rem; }
             .search-form { flex-basis: 9rem; }
         }
-        @media (min-width: 1424px) {
-            .desktop-stage { display: grid; grid-template-columns: 138px minmax(0, 1128px) 138px; gap: 10px; max-width: 1424px; margin-inline: auto; align-items: start; }
-            .desktop-stage > main#main { padding-inline: 0; max-width: none; }
-            .side-lane { display: flex; flex-direction: column; gap: 10px; position: sticky; top: 1rem; padding-top: 1rem; }
-            .side-lane .window { box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), 3px 3px 0 0 var(--be-shadow-color); }
-            .side-lane .window-bar { padding: .2rem .375rem; font-size: .6875rem; line-height: 1rem; letter-spacing: .04em; justify-content: flex-start; white-space: nowrap; overflow: hidden; }
-            .side-lane .window-body { padding: .375rem; display: flex; flex-direction: column; align-items: center; gap: .375rem; }
-            .side-lane .window-body img { max-width: none; }
-            .sl-avatar { border: 2px solid var(--be-ink); background: var(--be-surface); }
-            .sl-rows { width: 100%; margin: 0; display: flex; flex-direction: column; gap: .25rem; font-family: var(--font-pixel); letter-spacing: .04em; }
-            .sl-rows div { padding: .125rem .25rem; background: var(--be-surface); border: 1px solid var(--be-ink); }
-            .sl-rows dt { font-size: .625rem; color: var(--be-ink-muted); margin: 0; }
-            .sl-rows dd { font-size: .6875rem; color: var(--be-ink); margin: 0; overflow-wrap: anywhere; }
-            .sl-icons { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: .375rem; }
-            .sl-icons span { display: flex; align-items: center; justify-content: center; padding: .375rem 0; background: var(--be-surface); border: 2px solid var(--be-ink); box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo); }
-            .sl-icons img { image-rendering: pixelated; }
-            .sl-crt { width: 100%; padding: .25rem; background: var(--be-crt); color: var(--be-phosphor); border: 2px solid var(--be-ink); font-family: var(--font-pixel); font-size: .625rem; letter-spacing: .04em; text-align: center; }
-        }
-        @media (min-width: 1560px) {
-            .desktop-stage { grid-template-columns: 168px minmax(0, 1128px) 168px; max-width: 1484px; }
-        }
+        /* Gate 20: site-wide PC-98 masthead strip under the header + sticker bumper dock in the footer (both decorative). */
+        .pc98-masthead { max-width: 72rem; margin: .75rem auto 0; overflow: hidden; display: flex; justify-content: center; background: var(--be-crt); border: 2px solid var(--be-ink); box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), 3px 3px 0 0 var(--be-shadow-color); }
+        .pc98-masthead img { display: block; flex: none; max-width: none; width: auto; height: 56px; image-rendering: pixelated; }
+        @media (max-width: 1199px) { .pc98-masthead { margin-inline: .5rem; } }
+        .footer-stickers { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .75rem 1.5rem; padding: 1rem; border-bottom: 2px solid var(--be-ink); background: var(--be-dusk-violet); }
+        .footer-stickers img { display: block; image-rendering: pixelated; }
         @media (max-width: 640px) {
             .window-body.body-crt { padding: 1rem; }
             .window-body.body-paper { padding: 1rem; background: #f4eee2; }
@@ -369,7 +352,7 @@
             html { color-scheme: light !important; }
             body, body.reading, .window-body.body-crt, .window-body.body-paper { background: #fff !important; background-image: none !important; color: #000 !important; padding: 0 !important; }
             body.reading { display: block; min-height: 0; }
-            .side-lane, .page-banner, .site-header, .body-paper::before, .body-paper::after, .body-crt h2::before, .body-paper h2::before { display: none !important; }
+            .pc98-masthead, .footer-stickers, .page-banner, .site-header, .body-paper::before, .body-paper::after, .body-crt h2::before, .body-paper h2::before { display: none !important; }
             .reading .window { border: 0; box-shadow: none; background: #fff; }
             .reading .window-bar { display: none; }
             .reading main#main { padding: 0; }
@@ -407,62 +390,21 @@
         <div id="search-results" aria-live="polite"></div>
     {% endblock %}
     </header>
-    <div class="desktop-stage">
-    <aside class="side-lane side-lane--left" aria-hidden="true">
-        <section class="window">
-            <div class="window-bar"><span>SYS_MON.EXE</span></div>
-            <div class="window-body">
-                <img class="pixelated sl-avatar" src='/static/previews/pitch/cast-brainstorm.png' width="64" height="64" alt="">
-                <img class="pixelated" src='/static/sprites/sticker-vibe-os.png' width="120" height="56" alt="">
-                <dl class="sl-rows">
-                    <div><dt>LOC</dt><dd>COLUMBUS, OH</dd></div>
-                    <div><dt>EXP</dt><dd>7+ YRS IT OPS</dd></div>
-                    <div><dt>FLEET</dt><dd>~1,850 ENDPOINTS</dd></div>
-                    <div><dt>CMDB</dt><dd>800+ MODELS</dd></div>
-                </dl>
-            </div>
-        </section>
-        <section class="window">
-            <div class="window-bar"><span>DESK_ICONS.GRP</span></div>
-            <div class="window-body">
-                <div class="sl-icons">
-                    <span><img class="pixelated" src='/static/sprites/icon-terminal.png' width="32" height="32" alt=""></span>
-                    <span><img class="pixelated" src='/static/sprites/icon-server.png' width="32" height="32" alt=""></span>
-                    <span><img class="pixelated" src='/static/sprites/icon-phone.png' width="32" height="32" alt=""></span>
-                    <span><img class="pixelated" src='/static/sprites/icon-controller.png' width="32" height="32" alt=""></span>
-                </div>
-            </div>
-        </section>
-    </aside>
+    <div class="pc98-masthead" aria-hidden="true"><picture>
+        <source media="(min-width: 1200px)" srcset="/static/sprites/banner-masthead.png" width="1152" height="56">
+        <img class="pixelated" src='/static/sprites/banner-masthead-narrow.png' width="1200" height="56" alt="">
+    </picture></div>
     <main id="main">
         {% block content %}{% endblock %}
     </main>
-    <aside class="side-lane side-lane--right" aria-hidden="true">
-        <section class="window">
-            <div class="window-bar"><span>SQUAD_LINK.EXE</span></div>
-            <div class="window-body">
-                <img class="pixelated sl-avatar" src='/static/previews/pitch/cast-lead.png' width="64" height="64" alt="">
-                <img class="pixelated" src='/static/sprites/sticker-idle-minds.png' width="120" height="56" alt="">
-                <dl class="sl-rows">
-                    <div><dt>ITSM</dt><dd>SERVICENOW</dd></div>
-                    <div><dt>AUTO</dt><dd>POWERSHELL</dd></div>
-                    <div><dt>GAME</dt><dd>GODOT 4</dd></div>
-                    <div><dt>APP</dt><dd>KOTLIN + RL</dd></div>
-                </dl>
-            </div>
-        </section>
-        <section class="window">
-            <div class="window-bar"><span>TAPE_DECK.SYS</span></div>
-            <div class="window-body">
-                <img class="pixelated" src='/static/sprites/sticker-pc98-stamp.png' width="120" height="56" alt="">
-                <div class="sl-crt">[ OK ] SYSTEM READY</div>
-            </div>
-        </section>
-    </aside>
-    </div>
     <footer class="site-footer">
         {% block footer %}
         <div class="ticker" aria-hidden="true">[ OK ] SYSTEM READY</div>
+        <div class="footer-stickers" aria-hidden="true">
+            <img class="pixelated" src='/static/sprites/sticker-vibe-os.png' width="120" height="56" alt="">
+            <img class="pixelated" src='/static/sprites/sticker-idle-minds.png' width="120" height="56" alt="">
+            <img class="pixelated" src='/static/sprites/sticker-pc98-stamp.png' width="120" height="56" alt="">
+        </div>
         <div class="footer-inner">
             {% if data.footer %}{% if data.footer.links %}
             <nav class="footer-nav" aria-label="Footer navigation">

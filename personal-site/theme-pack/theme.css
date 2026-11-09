@@ -196,6 +196,8 @@
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0.18) 0 1px, transparent 1px 3px);
   }
+  /* keep the title bar above the scanline overlay so its text keeps >=4.5:1 on the gradient */
+  .scanlines > .window-bar { position: relative; z-index: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
