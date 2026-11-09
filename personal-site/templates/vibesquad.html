@@ -18,7 +18,7 @@
     }
     .js .pitch-a [data-reveal].is-visible { opacity: 1; transform: none; }
 
-    /* Connector lines "draw" in (grow) + glow after the step above appears. */
+    /* Connector lines "draw" in (grow) after the step above appears. */
     .js .pitch-a [data-reveal-line] {
         opacity: 0;
         transform: scaleY(0);
@@ -51,9 +51,9 @@
 
     /* --- Hero art --- */
     .pitch-a .vs-hero { margin: 1rem 0 0; }
-    .pitch-a .vs-hero img { width: 184px; height: 136px; }
+    .pitch-a .vs-hero img { width: 176px; height: 236px; }
     @media (min-width: 420px) {
-        .pitch-a .vs-hero img { width: 368px; height: 272px; }
+        .pitch-a .vs-hero img { width: 352px; height: 472px; }
     }
 
     /* --- Headings --- */
@@ -94,7 +94,7 @@
     .pitch-a .pair { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2rem; }
     .pitch-a .lead { display: flex; justify-content: center; }
     .pitch-a .cast { margin: 0; text-align: center; }
-    .pitch-a .cast img { display: block; margin: 0 auto; width: 84px; height: 84px; }
+    .pitch-a .cast img { display: block; margin: 0 auto; width: 128px; height: 128px; }
     .pitch-a .cast-cap {
         font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .08em;
         color: var(--be-ink-muted); margin-top: .4rem;
@@ -102,7 +102,7 @@
 
     /* Step 2: lead -> three workers branch (org-chart connectors, CSS) */
     .pitch-a .branch { position: relative; width: min(100%, 420px); height: 34px; margin: .25rem auto 0; }
-    .pitch-a .branch-seg { position: absolute; background: var(--be-cel-teal); box-shadow: 0 0 6px var(--be-cel-teal); }
+    .pitch-a .branch-seg { position: absolute; background: var(--be-cel-teal); }
     .pitch-a .branch-seg.seg-down { left: calc(50% - 1px); top: 0; width: 2px; height: 18px; }
     .pitch-a .branch-seg.seg-across { left: 16.666%; top: 18px; width: 66.668%; height: 2px; }
     .pitch-a .branch-seg.seg-drop { top: 18px; width: 2px; height: 16px; }
@@ -119,20 +119,20 @@
         color: var(--be-ink-muted); margin-top: .35rem; line-height: 1.4;
     }
     .pitch-a .sym { display: block; font-size: 1rem; line-height: 1; margin-top: .35rem; }
-    .pitch-a .sym-w1 { color: #ff6e59; text-shadow: 0 0 8px #ff6e59; }
-    .pitch-a .sym-w2 { color: #00f0ff; text-shadow: 0 0 8px #00f0ff; }
-    .pitch-a .sym-w3 { color: #b86bff; text-shadow: 0 0 8px #b86bff; }
+    .pitch-a .sym-w1 { color: #ff6e59; text-shadow: 1px 1px 0 var(--be-shadow-color); }
+    .pitch-a .sym-w2 { color: #00f0ff; text-shadow: 1px 1px 0 var(--be-shadow-color); }
+    .pitch-a .sym-w3 { color: #b86bff; text-shadow: 1px 1px 0 var(--be-shadow-color); }
 
     /* Vertical connectors between steps */
     .pitch-a .flow-link {
         width: 2px; height: 40px; margin: .5rem 0;
-        background: var(--be-cel-teal); box-shadow: 0 0 8px var(--be-cel-teal);
+        background: var(--be-cel-teal);
     }
     /* Loop back up to step 1 */
     .pitch-a .flow-loop { display: flex; flex-direction: column; align-items: center; margin-top: .5rem; }
     .pitch-a .loop-line {
         width: 2px; height: 34px; transform-origin: bottom center;
-        background: var(--be-sunset-pink); box-shadow: 0 0 8px var(--be-sunset-pink);
+        background: var(--be-sunset-pink);
     }
     .pitch-a .loop-caption {
         font-family: var(--font-pixel); font-size: .72rem; letter-spacing: .08em;
@@ -184,11 +184,11 @@
         padding: .15rem .5rem; border: 2px solid var(--be-ink); border-radius: 2px;
     }
     .pitch-a .pill-measured { color: var(--be-on-accent); background: var(--be-cel-teal); }
-    .pitch-a .pill-projected { color: var(--be-on-violet); background: var(--be-sunset-orange); }
+    .pitch-a .pill-projected { color: var(--be-crt); background: var(--be-sunset-orange); }
 
-    /* Sprites at integer scale: x3 desktop, x2 at <=480px */
+    /* Sprites at integer scale: x2 desktop (128px), x1 at <=480px (64px) */
     @media (max-width: 480px) {
-        .pitch-a .cast img { width: 56px; height: 56px; }
+        .pitch-a .cast img { width: 64px; height: 64px; }
         .pitch-a .branch, .pitch-a .workers { width: min(100%, 320px); }
     }
 
@@ -245,9 +245,13 @@
         .pitch-a .beat > .shot:not(.shot-portrait) { max-width: 460px; justify-self: center; width: 100%; }
         .pitch-a .beat > .shot.shot-wide { max-width: 640px; }
         .pitch-a .shot-portrait { max-width: 290px; justify-self: center; }
+        /* Text-only beat (no shot): one centred column instead of half a grid */
+        .pitch-a .beat:not(:has(.shot, .shot-grid)) { grid-template-columns: 1fr; }
+        .pitch-a .beat:not(:has(.shot, .shot-grid)) > .beat-text { grid-column: 1 / -1; max-width: 62ch; justify-self: center; }
 
-        /* What it saved: four cards, 2x2 */
+        /* What it saved: cards 2-up; an odd last card spans the full row */
         .pitch-a .saved-rows { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .pitch-a .saved-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
         .pitch-a .saved-row {
             border: 2px solid var(--be-ink);
             background: var(--be-surface);
@@ -270,8 +274,8 @@
             <p class="vs-beta">In public beta on Windows.</p>
           </div>
           <figure class="vs-hero">
-            <img class="pixelated" src='/static/previews/pitch/hero-diorama.png' width="368" height="272"
-                 alt="Pixel diorama: you and the brainstorm buddy on the top floor, the lead in the middle, three workers below, with neon lines between them">
+            <img class="pixelated" src='/static/previews/pitch/hero-diorama.png' width="352" height="472"
+                 alt="Pixel diorama of the VibeSquad office tower: two sky TVs with RiffBot and the Overlord above the clouds, a floor of desks with workers below, and an elevator shaft on the right">
             <figcaption class="shot-cap">Agent-drawn pixel art</figcaption>
           </figure>
         </header>
@@ -285,11 +289,11 @@
                         <div class="node-figs">
                             <div class="pair">
                                 <figure class="cast">
-                                    <img class="pixelated" src='/static/previews/pitch/cast-you-goofy.png' width="84" height="84" alt="Pixel nerd-face avatar representing you">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-you-goofy.png' width="64" height="64" alt="Pixel nerd-face avatar representing you">
                                     <figcaption class="cast-cap">YOU</figcaption>
                                 </figure>
                                 <figure class="cast">
-                                    <img class="pixelated" src='/static/previews/pitch/cast-brainstorm.png' width="84" height="84" alt="Brainstorm buddy, agent-drawn pixel art">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-brainstorm.png' width="64" height="64" alt="Brainstorm buddy, agent-drawn pixel art">
                                     <figcaption class="cast-cap">BRAINSTORM</figcaption>
                                 </figure>
                             </div>
@@ -305,7 +309,7 @@
                         <div class="node-figs">
                             <div class="lead">
                                 <figure class="cast">
-                                    <img class="pixelated" src='/static/previews/pitch/cast-lead.png' width="84" height="84" alt="Lead agent, agent-drawn pixel art">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-lead.png' width="64" height="64" alt="Lead agent, agent-drawn pixel art">
                                     <figcaption class="cast-cap">LEAD</figcaption>
                                 </figure>
                             </div>
@@ -318,20 +322,20 @@
                             </div>
                             <div class="workers">
                                 <figure class="cast worker">
-                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-1.png' width="84" height="84" alt="Worker agent, Claude, agent-drawn pixel art">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-1.png' width="64" height="64" alt="Worker agent, Claude, agent-drawn pixel art">
                                     <figcaption class="worker-cap"><span class="sym sym-w1" aria-hidden="true">✶</span>CLAUDE</figcaption>
                                 </figure>
                                 <figure class="cast worker">
-                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-2.png' width="84" height="84" alt="Worker agent, Gemini, agent-drawn pixel art">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-2.png' width="64" height="64" alt="Worker agent, Gemini, agent-drawn pixel art">
                                     <figcaption class="worker-cap"><span class="sym sym-w2" aria-hidden="true">◆</span>GEMINI</figcaption>
                                 </figure>
                                 <figure class="cast worker">
-                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-3.png' width="84" height="84" alt="Worker agent, DeepSeek, agent-drawn pixel art">
+                                    <img class="pixelated" src='/static/previews/pitch/cast-worker-3.png' width="64" height="64" alt="Worker agent, DeepSeek, agent-drawn pixel art">
                                     <figcaption class="worker-cap"><span class="sym sym-w3" aria-hidden="true">▲</span>DEEPSEEK</figcaption>
                                 </figure>
                             </div>
                         </div>
-                        <p class="node-copy">The buddy hands the plan to the lead, who splits it up and sends each piece to the cheapest model that can handle it.</p>
+                        <p class="node-copy">The buddy hands the plan to the lead, who splits it into separate git worktrees and sends each piece to the cheapest model that can handle it. Reviews go to a different model family, and each review has to say whether a change fixes the cause or only hides the symptom.</p>
                     </div>
                     <div class="flow-link" data-reveal-line aria-hidden="true"></div>
                 </li>
@@ -509,15 +513,68 @@
                 <li class="beat" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then squads got an overview":</h3>
-                        <p class="beat-line">a card per squad with its team avatars and a Needs-you count, a New squad tile, and a usage panel showing each provider's % used, reset time and burn rate.</p>
+                        <p class="beat-line">a card per squad with a monogram emblem, a Needs-you count, the squad's team avatars and its lead's status.</p>
                     </div>
                     <figure class="shot">
                         <div class="window">
-                            <div class="window-bar"><span>squads &middot; usage</span><span class="controls" aria-hidden="true"></span></div>
-                            <div class="window-body shot-body"><a href='/static/previews/pitch/j9-pinned-teams.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j9-pinned-teams.png' width="642" height="495" loading="lazy" alt="The Squads view: Escape From Idle and VibeSquad squad cards with team avatars and a 7 Need you badge, a New squad tile, and the Usage panel with Gemini and Claude percent used, reset times and burn rates"></a></div>
+                            <div class="window-bar"><span>squads</span><span class="controls" aria-hidden="true"></span></div>
+                            <div class="window-body shot-body"><a href='/static/previews/pitch/j9-pinned-teams.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j9-pinned-teams.png' width="540" height="148" loading="lazy" alt="Two squad cards, Escape From Idle and VibeSquad, each with a monogram emblem, a 0 need you badge, a row of team avatars and a lead status line"></a></div>
                         </div>
-                        <figcaption class="shot-cap">Squads and usage</figcaption>
+                        <figcaption class="shot-cap">Squad cards</figcaption>
                     </figure>
+                </li>
+
+                <li class="beat beat--grid" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then the squad moved into an office tower":</h3>
+                        <p class="beat-line">RiffBot (the squad's brainstorm buddy) and the Overlord (its lead) get a TV each in the sky above the tower. Below, each lane is an office floor with desks, a lead's desk and a shared elevator.</p>
+                    </div>
+                    <div class="shot-grid">
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; sky</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j10a-sky-gods.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j10a-sky-gods.png' width="942" height="244" loading="lazy" alt="Two pixel-art sky TVs side by side: RiffBot's with a glitching brain-and-teeth face, and the Overlord's with a chat box open"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">RiffBot and the Overlord</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; floor</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j10b-squad-floor.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j10b-squad-floor.png' width="351" height="362" loading="lazy" alt="A top-down pixel-art office floor for the VibeSquad lane: workers at rows of desks, a desk in the corner, and an elevator on the right"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">A squad floor</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="beat" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then lanes learned to check their own work":</h3>
+                        <p class="beat-line">each lane keeps a SPEC.md and a TASKS.json. Plans label every block "Root cause" or "Workaround", and a reviewer from a different model family has to answer whether a change fixes the cause or hides the symptom. A timeout bump, retry loop or swallowed error fails unless a follow-up replaces it.</p>
+                    </div>
+                </li>
+
+                <li class="beat beat--grid" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then it started auditing its own usage":</h3>
+                        <p class="beat-line">a usage panel shows each provider's % used, reset time and burn rate, plus a split of tokens by role. On a schedule an Opus and a Gemini review read the numbers side by side and suggest routing changes; the prompt also hands them the previous review's advice to grade against the new numbers. Screens use sample data.</p>
+                    </div>
+                    <div class="shot-grid">
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>usage &middot; limits</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j12a-usage-floor.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j12a-usage-floor.png' width="785" height="305" loading="lazy" alt="Usage panel: Gemini and Claude cards with percent used, reset time and burn rate, and a role split of tokens and cost for Brainstorm, Lead and Worker"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Limits and role split</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>usage &middot; review</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j12b-usage-review.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j12b-usage-review.png' width="940" height="370" loading="lazy" alt="The Usage Review card with an Opus column and a Gemini column of routing and loop suggestions, and a Run now button"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Opus and Gemini review</figcaption>
+                        </figure>
+                    </div>
                 </li>
             </ol>
 
@@ -539,6 +596,10 @@
                     <li class="saved-row">
                         <span class="pill pill-measured">MEASURED</span>
                         <p>A 41-task checklist of everyday jobs in an agent IDE: 21 passed at v0.1.1, 41 passed after two rounds of work.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-measured">MEASURED</span>
+                        <p>Across 426 merged units logged by the usage ledger in its first week (Nov 1-8, 2026), 420 needed one review round or none and 6 needed two or more; 9 (2%) were fixed after merge. One user, one machine, and 394 of the units carry no workflow tag, so this is not a comparison between workflows.</p>
                     </li>
                 </ul>
             </div>

@@ -10,41 +10,64 @@
 :root,
 [data-theme="night"] {
   color-scheme: dark;
-  --be-surface: #12112a;
-  --be-surface-raised: #1e1c40;
-  --be-crt: #2b2862;
-  --be-ink: #f3ecdf;
-  --be-ink-muted: #b8b2d6;
-  --be-sunset-pink: #ff6fa5;
-  --be-sunset-orange: #ffa552;
-  --be-dusk-violet: #9a7bff;
-  --be-cel-teal: #45d6cf;
-  --be-on-accent: #12112a;
-  --be-on-violet: #12112a;
-  --be-phosphor: #7cff9b;
-  --be-gain: #5bd68a;
-  --be-loss: #ff7a7a;
-  --be-crt-gain: #5bd68a;
-  --be-crt-loss: #ff7a7a;
-  --be-shadow-color: #5b3f9e; /* violet: a dark shadow vanishes on navy */
+  /* P0 "Midnight Mall" (art/palette/slots.md). Slot N = same role in the day block below. */
+  --be-surface: #140c26;        /* 00 BG */
+  --be-surface-raised: #21163d; /* 01 PANEL */
+  --be-panel-hi: #33255c;       /* 02 PANEL_HI */
+  --be-line: #54428a;           /* 03 LINE */
+  --be-crt: #07040f;            /* 15 INK: deepest well (terminal/code) */
+  --be-ink: #f7f0ff;            /* 05 TEXT */
+  --be-ink-muted: #b5a5d8;      /* 06 MUTED */
+  --be-sunset-pink: #ff68a8;    /* 09 PINK */
+  --be-sunset-orange: #ffc46c;  /* 11 AMBER */
+  --be-dusk-violet: #9b72e8;    /* 08 VIOLET */
+  --be-cel-teal: #4fd6cf;       /* 07 TEAL */
+  --be-phosphor: #79dfa8;       /* 12 MINT */
+  --be-gain: #79dfa8;           /* 12 MINT */
+  --be-loss: #ff8e78;           /* 10 CORAL */
+  --be-crt-gain: #79dfa8;
+  --be-crt-loss: #ff8e78;
+  --be-on-accent: #07040f;      /* 15 INK: label on pink/teal fills */
+  --be-on-violet: #07040f;      /* 15 INK: label on violet bars */
+  --be-shadow-color: #07040f;
+  /* Hypnospace / VIBE OS chrome (U2): Win95 bevel, pastel title bar, Bayer dither */
+  --bevel-hi: rgba(255, 255, 255, 0.2);
+  --bevel-lo: rgba(7, 4, 15, 0.55);
+  --panel-grad: linear-gradient(180deg, var(--be-surface-raised) 0%, var(--be-panel-hi) 160%);
+  --tb-1: #9b72e8;
+  --tb-2: #ff68a8;
+  --tb-3: #f1c2a2;
+  --on-pastel: #07040f;
+  --bayer: url("/static/ui/bayer-dark.png");
 }
 
 [data-theme="day"] {
   color-scheme: light;
-  --be-surface: #f4eee2;
-  --be-surface-raised: #e8dfcc;
-  --be-crt: #1b1a33;
-  --be-ink: #1b1a33;
-  --be-ink-muted: #4e4a6b;
-  --be-sunset-pink: #e8508a; /* fill only in Day — 3.1:1 as text, fails */
-  --be-sunset-orange: #f28c38;
-  --be-dusk-violet: #5b3f9e;
-  --be-cel-teal: #2fb5b0;
-  --be-on-accent: #1b1a33;
-  --be-on-violet: #f4eee2;
-  --be-gain: #1f7a45;
+  /* P0 "Pastel Morning" (softened non-flashbang surface). Accents are UI fills here; body copy uses ink/muted. */
+  --be-surface: #e0d1dc;
+  --be-surface-raised: #ebe0e8;
+  --be-panel-hi: #d6c2d0;
+  --be-line: #b092a7;
+  --be-crt: #2b1840;           /* 05 TEXT: dark terminal panel in BOTH themes */
+  --be-ink: #2b1840;           /* 05 TEXT */
+  --be-ink-muted: #574268;
+  --be-sunset-pink: #a8236a;   /* 09 PINK */
+  --be-sunset-orange: #f7bf5c; /* 11 AMBER */
+  --be-dusk-violet: #5d40b5;   /* 08 VIOLET */
+  --be-cel-teal: #1d5f61;      /* text-safe teal (fill #3fa3a6) */
+  --be-on-accent: #fffdfa;     /* 04 MARBLE: label on pink/teal fills */
+  --be-on-violet: #fffdfa;
+  --be-gain: #2e9462;          /* 12 MINT */
   --be-loss: #b42e2e;
-  --be-shadow-color: #1b1a33;
+  --be-shadow-color: rgba(43, 24, 64, 0.38);
+  --bevel-hi: rgba(255, 255, 255, 0.75);
+  --bevel-lo: rgba(43, 24, 64, 0.3);
+  --panel-grad: linear-gradient(180deg, var(--be-surface-raised) 0%, var(--be-panel-hi) 160%);
+  --tb-1: #9a7fe0;
+  --tb-2: #ef8fbd;
+  --tb-3: #f6cdb2;
+  --on-pastel: #2b1840;
+  --bayer: url("/static/ui/bayer-light.png");
 }
 
 /* 2. Wipe Tailwind defaults so off-theme classes (bg-blue-500, rounded-xl, shadow-lg, blur) don't exist. */
@@ -57,9 +80,9 @@
 
   --radius-sm: 2px; /* the maximum. Everything else is square. */
 
-  --font-display: "Dela Gothic One", "Arial Black", sans-serif;
-  --font-sans: "M PLUS 1p", system-ui, sans-serif;
-  --font-pixel: "DotGothic16", ui-monospace, monospace;
+  --font-display: "Pixelify Sans", "Silkscreen", monospace;
+  --font-sans: "JetBrains Mono", Consolas, monospace;
+  --font-pixel: "Silkscreen", "Pixelify Sans", monospace;
 }
 
 /* 3. Map tokens to utilities. `inline` makes utilities read the live variable,
@@ -67,10 +90,11 @@
 @theme inline {
   --color-surface: var(--be-surface);
   --color-surface-raised: var(--be-surface-raised);
+  --color-panel-hi: var(--be-panel-hi);
   --color-crt: var(--be-crt);
   --color-ink: var(--be-ink);
   --color-ink-muted: var(--be-ink-muted);
-  --color-line: var(--be-ink);
+  --color-line: var(--be-line);
   --color-sunset-pink: var(--be-sunset-pink);
   --color-sunset-orange: var(--be-sunset-orange);
   --color-dusk-violet: var(--be-dusk-violet);
@@ -102,20 +126,22 @@
 @layer components {
   /* Window: the only container. <section class="window"><div class="window-bar">…</div><div class="window-body">…</div></section> */
   .window {
-    background: var(--be-surface-raised);
+    background: var(--panel-grad);
     border: 2px solid var(--be-ink);
-    box-shadow: var(--shadow-window);
+    box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), var(--shadow-window);
   }
   .window-bar {
     display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
     padding: 0.25rem 0.5rem;
-    background: var(--be-dusk-violet); color: var(--be-on-violet);
+    background: linear-gradient(90deg, var(--tb-1) 0%, var(--tb-2) 62%, var(--tb-3) 100%);
+    color: var(--on-pastel);
     border-bottom: 2px solid var(--be-ink);
+    box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo);
     font-family: var(--font-pixel); font-size: 0.875rem; line-height: 1.125rem; letter-spacing: 0.06em;
   }
   .window-bar .controls { flex-shrink: 0; white-space: nowrap; }
   .window-bar .controls::after { content: "■ □ ×"; letter-spacing: 0.2em; } /* decoration only */
-  .window-body { padding: 1rem; }
+  .window-body { padding: 1rem; background-image: var(--bayer); background-repeat: repeat; image-rendering: pixelated; }
   .window-body img { max-width: 100%; height: auto; }
   .window-crt .window-body {
     background: var(--be-crt); color: var(--be-phosphor);
@@ -132,12 +158,13 @@
     display: inline-flex; align-items: center; gap: 0.5rem;
     padding: 0.5rem 1rem;
     border: 2px solid var(--be-ink);
-    box-shadow: var(--shadow-window);
+    background: var(--panel-grad);
+    box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), var(--shadow-window);
     font-family: var(--font-pixel); font-size: 0.875rem; letter-spacing: 0.06em;
     text-decoration: none; cursor: pointer;
     transition: transform 80ms, box-shadow 80ms;
   }
-  .btn:hover, .btn:active { transform: translate(2px, 2px); box-shadow: var(--shadow-pressed); }
+  .btn:hover, .btn:active { transform: translate(2px, 2px); box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), var(--shadow-pressed); }
   .btn-primary { background: var(--be-sunset-pink); color: var(--be-on-accent); }
   .btn-secondary { background: var(--be-surface-raised); color: var(--be-ink); }
 
@@ -177,7 +204,8 @@
 @media print {
   html, body { background: #fff !important; color: #000 !important; }
   nav, footer, .scanlines::after, .no-print { display: none !important; }
-  .window { box-shadow: none; border: 1px solid #000; }
-  .window-bar { background: #fff; color: #000; }
+  .window { box-shadow: none; border: 1px solid #000; background: #fff !important; }
+  .window-bar { background: #fff; color: #000; box-shadow: none; }
+  .window-body { background: #fff !important; }
   a { color: #000; }
 }
