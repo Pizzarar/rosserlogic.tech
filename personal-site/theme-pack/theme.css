@@ -39,6 +39,7 @@
   --tb-3: #f1c2a2;
   --on-pastel: #07040f;
   --bayer: url("/static/ui/bayer-dark.png");
+  --be-scanline: rgba(7, 4, 15, 0.22);
 }
 
 [data-theme="day"] {
@@ -68,6 +69,7 @@
   --tb-3: #f6cdb2;
   --on-pastel: #2b1840;
   --bayer: url("/static/ui/bayer-light.png");
+  --be-scanline: rgba(43, 24, 64, 0.07); /* light-safe CRT lines on a pastel surface */
 }
 
 /* 2. Wipe Tailwind defaults so off-theme classes (bg-blue-500, rounded-xl, shadow-lg, blur) don't exist. */

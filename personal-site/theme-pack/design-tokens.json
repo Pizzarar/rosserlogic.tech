@@ -1,312 +1,370 @@
 {
- "name": "Bubble Era Anime",
- "version": 1,
- "color": {
-  "themes": [
-   {
-    "id": "night",
-    "name": "Night (hero)"
-   },
-   {
-    "id": "day",
-    "name": "Day (reading)"
-   }
-  ],
-  "tokens": [
-   {
-    "name": "surface",
-    "value": {
-     "night": "#12112a",
-     "day": "#f4eee2"
-    },
-    "usage": "Page background. Night = 1989 Tokyo after dark; Day = cream manual paper."
-   },
-   {
-    "name": "surface-raised",
-    "value": {
-     "night": "#1e1c40",
-     "day": "#e8dfcc"
-    },
-    "usage": "Window/panel bodies, cards, form fields."
-   },
-   {
-    "name": "crt",
-    "value": {
-     "night": "#2b2862",
-     "day": "#1b1a33"
-    },
-    "usage": "Dark terminal panel in BOTH themes: tickers, readouts, code. Only place phosphor text appears."
-   },
-   {
-    "name": "ink",
-    "value": {
-     "night": "#f3ecdf",
-     "day": "#1b1a33"
-    },
-    "usage": "All body text and the 2px window borders. 15.7:1 on surface (Night), 14.6:1 (Day)."
-   },
-   {
-    "name": "ink-muted",
-    "value": {
-     "night": "#b8b2d6",
-     "day": "#4e4a6b"
-    },
-    "usage": "Captions, timestamps, metadata. 9.1:1 Night, 7.2:1 Day."
-   },
-   {
-    "name": "line",
-    "value": {
-     "night": "{ink}",
-     "day": "{ink}"
-    },
-    "usage": "Hard 2px borders on windows, buttons and inputs."
-   },
-   {
-    "name": "sunset-pink",
-    "value": {
-     "night": "#ff6fa5",
-     "day": "#e8508a"
-    },
-    "usage": "Brand. Primary buttons, active states, one call to action per screen. Day: fill only, never text (3.1:1 on surface)."
-   },
-   {
-    "name": "sunset-orange",
-    "value": {
-     "night": "#ffa552",
-     "day": "#f28c38"
-    },
-    "usage": "Warm accent: the sun motif, highlights, hover."
-   },
-   {
-    "name": "dusk-violet",
-    "value": {
-     "night": "#9a7bff",
-     "day": "#5b3f9e"
-    },
-    "usage": "Deep accent: window title bars, section bands, footer."
-   },
-   {
-    "name": "cel-teal",
-    "value": {
-     "night": "#45d6cf",
-     "day": "#2fb5b0"
-    },
-    "usage": "Cool accent: tags, secondary badges, Night links. At most once per section."
-   },
-   {
-    "name": "on-accent",
-    "value": {
-     "night": "#12112a",
-     "day": "#1b1a33"
-    },
-    "usage": "Text on sunset-pink, sunset-orange, cel-teal fills (4.8:1+ in both themes)."
-   },
-   {
-    "name": "on-violet",
-    "value": {
-     "night": "#12112a",
-     "day": "#f4eee2"
-    },
-    "usage": "Text on dusk-violet title bars (5.8:1 Night, 6.9:1 Day)."
-   },
-   {
-    "name": "phosphor",
-    "value": "#7cff9b",
-    "usage": "Green CRT text, only on crt panels."
-   },
-   {
-    "name": "gain",
-    "value": {
-     "night": "#5bd68a",
-     "day": "#1f7a45"
-    },
-    "usage": "Rising numbers. Pair with ▲ so color is not the only signal."
-   },
-   {
-    "name": "loss",
-    "value": {
-     "night": "#ff7a7a",
-     "day": "#b42e2e"
-    },
-    "usage": "Falling numbers. Pair with ▼ so color is not the only signal."
-   },
-   {
-    "name": "crt-gain",
-    "value": "#5bd68a",
-    "usage": "Rising numbers on crt panels in both themes (gain's Day value is too dark there)."
-   },
-   {
-    "name": "crt-loss",
-    "value": "#ff7a7a",
-    "usage": "Falling numbers on crt panels in both themes."
-   }
-  ]
- },
- "type": {
-  "fonts": [],
-  "families": {
-   "display": "\"Dela Gothic One\", \"Arial Black\", sans-serif",
-   "sans": "\"M PLUS 1p\", system-ui, sans-serif",
-   "pixel": "\"DotGothic16\", ui-monospace, monospace"
+  "name": "Hypnospace / VIBE OS",
+  "version": 2,
+  "color": {
+    "themes": [
+      {
+        "id": "night",
+        "name": "Midnight Mall (hero)"
+      },
+      {
+        "id": "day",
+        "name": "Pastel Morning (reading)"
+      }
+    ],
+    "tokens": [
+      {
+        "name": "surface",
+        "value": {
+          "night": "#140c26",
+          "day": "#e0d1dc"
+        },
+        "usage": "Page background. Night = Midnight Mall navy (P0 slot 00); Day = softened Pastel Morning mauve."
+      },
+      {
+        "name": "surface-raised",
+        "value": {
+          "night": "#21163d",
+          "day": "#ebe0e8"
+        },
+        "usage": "Window/panel bodies, cards, form fields (P0 slot 01)."
+      },
+      {
+        "name": "panel-hi",
+        "value": {
+          "night": "#33255c",
+          "day": "#d6c2d0"
+        },
+        "usage": "Raised rows, secondary buttons, and the panel-gradient end (P0 slot 02)."
+      },
+      {
+        "name": "crt",
+        "value": {
+          "night": "#07040f",
+          "day": "#2b1840"
+        },
+        "usage": "Dark terminal panel in BOTH themes: tickers, readouts, code. Only place phosphor text appears. Night uses the deepest well (P0 slot 15)."
+      },
+      {
+        "name": "ink",
+        "value": {
+          "night": "#f7f0ff",
+          "day": "#2b1840"
+        },
+        "usage": "All body text and the 2px window borders (P0 slot 05)."
+      },
+      {
+        "name": "ink-muted",
+        "value": {
+          "night": "#b5a5d8",
+          "day": "#574268"
+        },
+        "usage": "Captions, timestamps, metadata (P0 slot 06)."
+      },
+      {
+        "name": "line",
+        "value": {
+          "night": "#54428a",
+          "day": "#b092a7"
+        },
+        "usage": "Borders and dividers (P0 slot 03). The hard 2px window/button outlines use `ink`, not `line`."
+      },
+      {
+        "name": "sunset-pink",
+        "value": {
+          "night": "#ff68a8",
+          "day": "#a8236a"
+        },
+        "usage": "Brand. Primary buttons, needs-you badges, active states, one call to action per screen (P0 slot 09). Day: fill only, never body text."
+      },
+      {
+        "name": "sunset-orange",
+        "value": {
+          "night": "#ffc46c",
+          "day": "#f7bf5c"
+        },
+        "usage": "Warm amber accent: the sun motif, highlights, waiting state (P0 slot 11)."
+      },
+      {
+        "name": "dusk-violet",
+        "value": {
+          "night": "#9b72e8",
+          "day": "#5d40b5"
+        },
+        "usage": "Deep accent: section bands, footer, and the first stop of the title-bar gradient (P0 slot 08)."
+      },
+      {
+        "name": "cel-teal",
+        "value": {
+          "night": "#4fd6cf",
+          "day": "#1d5f61"
+        },
+        "usage": "Cool accent: tags, secondary badges, Night links (P0 slot 07). Day teal is text-safe on surface/panel; use #3fa3a6 for larger teal fills."
+      },
+      {
+        "name": "on-accent",
+        "value": {
+          "night": "#07040f",
+          "day": "#fffdfa"
+        },
+        "usage": "Text on sunset-pink / cel-teal fills. Night uses ink (slot 15); Day uses marble (slot 04)."
+      },
+      {
+        "name": "on-violet",
+        "value": {
+          "night": "#07040f",
+          "day": "#fffdfa"
+        },
+        "usage": "Text on dusk-violet bars (footer, gallery title bars)."
+      },
+      {
+        "name": "phosphor",
+        "value": "#79dfa8",
+        "usage": "Mint CRT text (P0 slot 12), only on crt panels."
+      },
+      {
+        "name": "gain",
+        "value": {
+          "night": "#79dfa8",
+          "day": "#2e9462"
+        },
+        "usage": "Rising numbers (mint, slot 12). Pair with ▲ so color is not the only signal."
+      },
+      {
+        "name": "loss",
+        "value": {
+          "night": "#ff8e78",
+          "day": "#b42e2e"
+        },
+        "usage": "Falling numbers (coral slot 10 night / red day). Pair with ▼ so color is not the only signal."
+      },
+      {
+        "name": "crt-gain",
+        "value": "#79dfa8",
+        "usage": "Rising numbers on crt panels in both themes (gain's Day value is too dark there)."
+      },
+      {
+        "name": "crt-loss",
+        "value": "#ff8e78",
+        "usage": "Falling numbers on crt panels in both themes."
+      }
+    ]
   },
-  "groups": [
-   {
-    "name": "Display",
-    "family": "display",
-    "styles": [
-     {
-      "name": "title-card",
-      "fontSize": "64px",
-      "lineHeight": 0.95,
-      "fontWeight": 400,
-      "letterSpacing": "0.01em",
-      "sample": "BUBBLE ERA",
-      "usage": "Hero title only, once per page."
-     },
-     {
-      "name": "h1",
-      "fontSize": "40px",
-      "lineHeight": 1.1,
-      "fontWeight": 400,
-      "sample": "Market Open",
-      "usage": "Page titles."
-     },
-     {
-      "name": "h2",
-      "fontSize": "28px",
-      "lineHeight": 1.2,
-      "fontWeight": 400,
-      "sample": "Today's Movers",
-      "usage": "Section titles; minimum size for Dela Gothic One."
-     }
+  "chrome": {
+    "note": "Hypnospace / VIBE OS skin (U2): Win95 bevel, pastel title bar, hard offset shadows, Bayer dither.",
+    "tokens": [
+      {
+        "name": "bevel-hi",
+        "value": {
+          "night": "rgba(255, 255, 255, 0.2)",
+          "day": "rgba(255, 255, 255, 0.75)"
+        },
+        "usage": "Win95 bevel highlight edge (inset 1px 1px 0)."
+      },
+      {
+        "name": "bevel-lo",
+        "value": {
+          "night": "rgba(7, 4, 15, 0.55)",
+          "day": "rgba(43, 24, 64, 0.3)"
+        },
+        "usage": "Win95 bevel shadow edge (inset -1px -1px 0)."
+      },
+      {
+        "name": "titlebar",
+        "value": {
+          "night": "linear-gradient(90deg, #9b72e8 0%, #ff68a8 62%, #f1c2a2 100%)",
+          "day": "linear-gradient(90deg, #9a7fe0 0%, #ef8fbd 62%, #f6cdb2 100%)"
+        },
+        "usage": "Pastel title-bar gradient (violet -> pink -> skin)."
+      },
+      {
+        "name": "on-pastel",
+        "value": {
+          "night": "#07040f",
+          "day": "#2b1840"
+        },
+        "usage": "Label colour on the pastel title bar / pastel fills."
+      },
+      {
+        "name": "panel-grad",
+        "value": "linear-gradient(180deg, var(--be-surface-raised) 0%, var(--be-panel-hi) 160%)",
+        "usage": "Subtle vertical panel gradient behind windows, cards and buttons."
+      },
+      {
+        "name": "bayer",
+        "value": {
+          "night": "url('/static/ui/bayer-dark.png')",
+          "day": "url('/static/ui/bayer-light.png')"
+        },
+        "usage": "Faint 4x4 Bayer dither overlay on window bodies and crt reading surfaces. image-rendering: pixelated."
+      }
     ]
-   },
-   {
-    "name": "Text",
-    "family": "sans",
-    "styles": [
-     {
-      "name": "lead",
-      "fontSize": "20px",
-      "lineHeight": "30px",
-      "fontWeight": 400,
-      "usage": "Intro paragraph under a title."
-     },
-     {
-      "name": "body",
-      "fontSize": "16px",
-      "lineHeight": "26px",
-      "fontWeight": 400,
-      "usage": "All paragraphs."
-     },
-     {
-      "name": "body-strong",
-      "fontSize": "16px",
-      "lineHeight": "26px",
-      "fontWeight": 700,
-      "usage": "Inline emphasis, nav items."
-     },
-     {
-      "name": "small",
-      "fontSize": "14px",
-      "lineHeight": "22px",
-      "fontWeight": 400,
-      "usage": "Captions, footnotes."
-     }
-    ]
-   },
-   {
-    "name": "Data",
-    "family": "pixel",
-    "styles": [
-     {
-      "name": "ticker",
-      "fontSize": "18px",
-      "lineHeight": "24px",
-      "fontWeight": 400,
-      "sample": "NKY 38,915 ▲1.2%",
-      "usage": "Prices, counters, ticker strips."
-     },
-     {
-      "name": "label",
-      "fontSize": "14px",
-      "lineHeight": "18px",
-      "fontWeight": 400,
-      "letterSpacing": "0.06em",
-      "sample": "> SYSTEM READY",
-      "usage": "Buttons, badges, window titles, timestamps."
-     }
-    ]
-   }
-  ]
- },
- "spacing": {
-  "tokens": [
-   {
-    "name": "space-1",
-    "value": "4px",
-    "usage": "Icon gaps, pixel nudges."
-   },
-   {
-    "name": "space-2",
-    "value": "8px",
-    "usage": "Inside badges and title bars; base grid unit."
-   },
-   {
-    "name": "space-3",
-    "value": "16px",
-    "usage": "Window padding, button padding."
-   },
-   {
-    "name": "space-4",
-    "value": "24px",
-    "usage": "Gap between panels."
-   },
-   {
-    "name": "space-5",
-    "value": "40px",
-    "usage": "Between sections inside a page."
-   },
-   {
-    "name": "space-6",
-    "value": "64px",
-    "usage": "Hero padding, major section breaks."
-   }
-  ]
- },
- "radius": {
-  "tokens": [
-   {
-    "name": "radius-none",
-    "value": "0",
-    "usage": "Default for everything: windows, buttons, images, inputs."
-   },
-   {
-    "name": "radius-sm",
-    "value": "2px",
-    "usage": "Maximum, for tiny chips only. Never round past this."
-   }
-  ]
- },
- "shadow": {
-  "note": "Hard offset shadows only. No blur, ever. Night uses a violet shadow because a dark one vanishes on the navy surface.",
-  "tokens": [
-   {
-    "name": "shadow-window",
-    "value": {
-     "night": "4px 4px 0 0 #5b3f9e",
-     "day": "4px 4px 0 0 #1b1a33"
+  },
+  "type": {
+    "fonts": [],
+    "families": {
+      "display": "\"Pixelify Sans\", \"Silkscreen\", monospace",
+      "sans": "\"JetBrains Mono\", Consolas, monospace",
+      "pixel": "\"Silkscreen\", \"Pixelify Sans\", monospace"
     },
-    "usage": "Windows, cards, primary buttons."
-   },
-   {
-    "name": "shadow-pressed",
-    "value": {
-     "night": "2px 2px 0 0 #5b3f9e",
-     "day": "2px 2px 0 0 #1b1a33"
-    },
-    "usage": "Button hover/pressed (move element +2px,+2px)."
-   }
-  ]
- }
+    "groups": [
+      {
+        "name": "Display",
+        "family": "display",
+        "styles": [
+          {
+            "name": "title-card",
+            "fontSize": "64px",
+            "lineHeight": 0.95,
+            "fontWeight": 500,
+            "letterSpacing": "0.01em",
+            "sample": "VIBESQUAD",
+            "usage": "Hero title only, once per page."
+          },
+          {
+            "name": "h1",
+            "fontSize": "40px",
+            "lineHeight": 1.1,
+            "fontWeight": 500,
+            "sample": "Market Open",
+            "usage": "Page titles."
+          },
+          {
+            "name": "h2",
+            "fontSize": "28px",
+            "lineHeight": 1.2,
+            "fontWeight": 500,
+            "sample": "Today's Movers",
+            "usage": "Section titles; Pixelify Sans has 500 and 700 cuts."
+          }
+        ]
+      },
+      {
+        "name": "Text",
+        "family": "sans",
+        "styles": [
+          {
+            "name": "lead",
+            "fontSize": "20px",
+            "lineHeight": "30px",
+            "fontWeight": 400,
+            "usage": "Intro paragraph under a title."
+          },
+          {
+            "name": "body",
+            "fontSize": "16px",
+            "lineHeight": "26px",
+            "fontWeight": 400,
+            "usage": "All paragraphs."
+          },
+          {
+            "name": "body-strong",
+            "fontSize": "16px",
+            "lineHeight": "26px",
+            "fontWeight": 700,
+            "usage": "Inline emphasis, nav items."
+          },
+          {
+            "name": "small",
+            "fontSize": "14px",
+            "lineHeight": "22px",
+            "fontWeight": 400,
+            "usage": "Captions, footnotes."
+          }
+        ]
+      },
+      {
+        "name": "Data",
+        "family": "pixel",
+        "styles": [
+          {
+            "name": "ticker",
+            "fontSize": "18px",
+            "lineHeight": "24px",
+            "fontWeight": 400,
+            "sample": "NKY 38,915 ▲1.2%",
+            "usage": "Prices, counters, ticker strips."
+          },
+          {
+            "name": "label",
+            "fontSize": "14px",
+            "lineHeight": "18px",
+            "fontWeight": 400,
+            "letterSpacing": "0.06em",
+            "sample": "> SYSTEM READY",
+            "usage": "Buttons, badges, window titles, timestamps."
+          }
+        ]
+      }
+    ]
+  },
+  "spacing": {
+    "tokens": [
+      {
+        "name": "space-1",
+        "value": "4px",
+        "usage": "Icon gaps, pixel nudges."
+      },
+      {
+        "name": "space-2",
+        "value": "8px",
+        "usage": "Inside badges and title bars; base grid unit."
+      },
+      {
+        "name": "space-3",
+        "value": "16px",
+        "usage": "Window padding, button padding."
+      },
+      {
+        "name": "space-4",
+        "value": "24px",
+        "usage": "Gap between panels."
+      },
+      {
+        "name": "space-5",
+        "value": "40px",
+        "usage": "Between sections inside a page."
+      },
+      {
+        "name": "space-6",
+        "value": "64px",
+        "usage": "Hero padding, major section breaks."
+      }
+    ]
+  },
+  "radius": {
+    "tokens": [
+      {
+        "name": "radius-none",
+        "value": "0",
+        "usage": "Default for everything: windows, buttons, images, inputs."
+      },
+      {
+        "name": "radius-sm",
+        "value": "2px",
+        "usage": "Maximum, for tiny chips only. Never round past this."
+      }
+    ]
+  },
+  "shadow": {
+    "note": "Hard offset shadows only, no blur. Windows/cards/buttons add a 1px Win95 bevel (inset highlight + shadow) on top of the hard offset. Night shadow is ink (#07040f); Day is rgba(43,24,64,0.38).",
+    "tokens": [
+      {
+        "name": "shadow-window",
+        "value": {
+          "night": "4px 4px 0 0 #07040f",
+          "day": "4px 4px 0 0 rgba(43, 24, 64, 0.38)"
+        },
+        "usage": "Windows, cards, primary buttons."
+      },
+      {
+        "name": "shadow-pressed",
+        "value": {
+          "night": "2px 2px 0 0 #07040f",
+          "day": "2px 2px 0 0 rgba(43, 24, 64, 0.38)"
+        },
+        "usage": "Button hover/pressed (move element +2px,+2px)."
+      }
+    ]
+  }
 }

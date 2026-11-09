@@ -2,14 +2,14 @@
 trigger: always_on
 ---
 
-# Design system: Bubble Era Anime
+# Design system: Hypnospace / VIBE OS
 
-Full rationale: `docs/STYLE_GUIDE.md`. Values: `docs/design-tokens.json` (mirrored in `src/theme.css`). This file holds what you need while writing markup.
+Full rationale: `docs/STYLE_GUIDE.md`. Values: `docs/design-tokens.json` (mirrored in `src/theme.css` and `personal-site/theme-pack/theme.css`). This file holds what you need while writing markup.
 
 ## Themes
 
-- **Night** (default, `data-theme="night"`): hero theme for most pages.
-- **Day** (`data-theme="day"`): cream paper, for long reading and the résumé. Can go on `<html>` or on a single `<section>`; utilities recolor automatically.
+- **Night** (default, `data-theme="night"`): "Midnight Mall" hero theme for most pages.
+- **Day** (`data-theme="day"`): "Pastel Morning", for long reading and the résumé. Can go on `<html>` or on a single `<section>`; utilities recolor automatically.
 - Never use Tailwind's `dark:` variant. Theming is `data-theme` only.
 
 ## Color utilities (the ONLY colors that exist)
@@ -20,16 +20,18 @@ Full rationale: `docs/STYLE_GUIDE.md`. Values: `docs/design-tokens.json` (mirror
 |---|---|
 | `surface` | Page background |
 | `surface-raised` | Window bodies, cards, inputs |
+| `panel-hi` | Raised rows, secondary buttons, panel-gradient end |
 | `crt` | Dark terminal panel (both themes). Only place `phosphor` text appears. |
-| `ink` / `line` | Body text / 2px borders |
+| `ink` | Body text / 2px borders |
 | `ink-muted` | Captions, dates, metadata |
-| `sunset-pink` | Brand: primary button, active nav, ONE call to action per screen. In Day: fills only, never text. |
-| `sunset-orange` | Warm accent: highlights, sun motif, hover |
-| `dusk-violet` | Title bars, section bands, footer |
+| `line` | Dividers, secondary borders (P0 slot 03) |
+| `sunset-pink` | Brand: primary button, needs-you badge, ONE call to action per screen. In Day: fills only, never text. |
+| `sunset-orange` | Warm amber accent: sun motif, highlights, waiting |
+| `dusk-violet` | Section bands, footer, first stop of the title-bar gradient |
 | `cel-teal` | Tags, secondary badges, Night links. Max once per section. |
-| `on-accent` | Text on pink / orange / teal fills |
-| `on-violet` | Text on dusk-violet |
-| `phosphor` | Green CRT text, on `crt` only |
+| `on-accent` | Text on pink / teal fills |
+| `on-violet` | Text on dusk-violet bars |
+| `phosphor` | Mint CRT text, on `crt` only |
 | `gain` / `loss` | Up / down numbers, always with ▲ / ▼ |
 | `crt-gain` / `crt-loss` | Same, on `crt` panels |
 
@@ -37,25 +39,30 @@ Tailwind's default palette is removed. `bg-blue-500`, `text-slate-300`, `bg-whit
 
 Ratio per screen: ~70% surfaces, ~20% ink, ~10% accents. Max two accent colors in one section.
 
+## Chrome (Hypnospace / VIBE OS)
+
+- **Win95 bevel:** windows, cards and buttons carry a 1px inset bevel — `inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo)` — plus a hard offset shadow (`shadow-window` / `shadow-pressed`).
+- **Title bar:** `.window-bar` is a pastel gradient `linear-gradient(90deg, var(--tb-1), var(--tb-2) 62%, var(--tb-3))` with `--on-pastel` text.
+- **Panels:** `.window`, `.card`, `.btn` use `var(--panel-grad)` (subtle vertical panel gradient).
+- **Bayer dither:** `.window-body` / `.body-crt` get a faint `var(--bayer)` overlay (`image-rendering: pixelated`). Never dither over body copy.
+
 ## Type
 
 | Class | Font | Use |
 |---|---|---|
-| `font-display` | Dela Gothic One | h1/h2, title cards. 28px (`text-[28px]`/`text-3xl`) minimum. |
-| `font-sans` | M PLUS 1p | Default. All paragraphs and UI. |
-| `font-pixel` | DotGothic16 | Numbers, prices, dates, labels, buttons, badges, window titles. Never paragraphs. |
+| `font-display` | Pixelify Sans (500, 700) | h1/h2, title cards. 28px minimum. |
+| `font-sans` | JetBrains Mono (400, 700) | Default. All paragraphs and UI. |
+| `font-pixel` | Silkscreen (400) | Numbers, prices, dates, labels, buttons, badges, window titles. Never paragraphs. |
 
 Scale: title-card 64px/0.95 · h1 40px · h2 28px · lead 20px/30px · body 16px/26px · small 14px/22px · ticker 18px · label 14px +0.06em tracking.
-
-Optional small Japanese subtitle under major headings **only** if the translation is supplied in `docs/CONTENT_FACTS.md`. Never machine-guess Japanese.
 
 ## Shape, spacing, depth
 
 - Square corners. `rounded-sm` (2px) is the max and only for tiny chips. No `rounded-full` except circular avatars.
 - Spacing on the 8px grid: prefer `1 2 4 6 10 16` (4/8/16/24/40/64px).
-- Depth = `shadow-window` (hard offset, no blur). Hover/press = `shadow-pressed` + translate 2px.
-- **Banned:** `blur-*`, `backdrop-blur`, glow shadows, glassmorphism, gradients (except inside sunset artwork), `opacity` fades used for decoration, parallax, cursor effects, page-load animations.
-- One texture per page max: `.scanlines` OR a dither band OR the sunset disc.
+- Depth = hard offset shadow + Win95 bevel. Hover/press = `shadow-pressed` + translate 2px.
+- **Banned:** `blur-*`, `backdrop-blur`, glow shadows (`box-shadow: 0 0 …`, `text-shadow: 0 0 …`), glassmorphism, gradients (except inside sunset artwork and the title-bar gradient), `opacity` fades used for decoration, parallax, cursor effects, page-load animations.
+- One texture per page max: the Bayer dither, `.scanlines`, or the sunset disc.
 
 ## Components (use these classes; don't rebuild them from utilities)
 
@@ -74,7 +81,7 @@ Variant `window window-crt` = terminal readout (phosphor text on crt). Don't nes
 
 **Tag**: `<span class="tag">SERVICENOW</span>`.
 
-**Nav**: `surface-raised` bar, 2px `line` bottom border, `font-pixel` links, active page gets `bg-sunset-pink text-on-accent`. Mobile: simple toggle, no slide-out drawers with blur.
+**Nav**: `surface-raised` bar, 2px `ink` bottom border, `font-pixel` links, active page gets `bg-sunset-pink text-on-accent`. Mobile: simple toggle, no slide-out drawers with blur.
 
 **Footer**: `bg-dusk-violet text-on-violet`, `font-pixel` small text.
 
@@ -85,4 +92,4 @@ Avoid meme speak ("stonks", "to the moon"), full-width ａｅｓｔｈｅｔｉ�
 
 ## Imagery
 
-Original flat cel-shaded 90s anime illustration or 16-color dithered pixel art. Never use STONKS-9800 assets, real anime screenshots, or copyrighted characters. Until art exists, use placeholders per `assets.md`.
+Original flat PC-98 pixel art or dithered illustration. Never use Hypnospace Outlaw assets, real game screenshots, or copyrighted characters. Until art exists, use placeholders per `assets.md`.
