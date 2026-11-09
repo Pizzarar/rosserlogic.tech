@@ -338,9 +338,27 @@
             .search-form { flex-basis: 9rem; }
         }
         /* Gate 20: site-wide PC-98 masthead strip under the header + sticker bumper dock in the footer (both decorative). */
-        .pc98-masthead { max-width: 72rem; margin: .75rem auto 0; overflow: hidden; display: flex; justify-content: center; background: var(--be-crt); border: 2px solid var(--be-ink); box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), 3px 3px 0 0 var(--be-shadow-color); }
+        /* Gate 21: full-bleed masthead; the 2560px source overflows equally both sides so its middle 1152px sits over the center column. */
+        .pc98-masthead { width: 100%; max-width: none; margin: 0; overflow: hidden; display: flex; justify-content: center; background: var(--be-crt); border-inline: 0; border-top: 0; border-bottom: 2px solid var(--be-ink); }
+        .pc98-masthead picture { display: flex; flex: none; }
         .pc98-masthead img { display: block; flex: none; max-width: none; width: auto; height: 56px; image-rendering: pixelated; }
-        @media (max-width: 1199px) { .pc98-masthead { margin-inline: .5rem; } }
+        .site-header, .pc98-masthead, main#main, .site-footer { position: relative; z-index: 1; }
+        /* Gate 21: PC-98 pillarbox wing murals (decorative, >=1280px only). Day art follows html[data-theme]. */
+        .pc98-wings { display: none; }
+        @media (min-width: 1280px) {
+            .pc98-wings { display: block; position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+            /* Each wing is a full-height column filled with the art's top-row color (Night #140c26, Day #f7f0ff); the img is pinned to its bottom so taller viewports show no seam. */
+            .pc98-wings .wing { position: absolute; top: 0; bottom: 0; width: 704px; background-color: #140c26; }
+            .pc98-wings .wing-day { background-color: #f7f0ff; }
+            .pc98-wings .wing img { position: absolute; bottom: 0; left: 0; display: block; width: 704px; height: 900px; max-width: none; image-rendering: pixelated; }
+            .pc98-wings .wing-left { right: calc(50% + 36rem); }
+            .pc98-wings .wing-right { left: calc(50% + 36rem); }
+            .pc98-wings .wing-day { display: none; }
+            [data-theme="day"] .pc98-wings .wing-day { display: block; }
+            [data-theme="day"] .pc98-wings .wing-night { display: none; }
+            .site-footer { margin-top: 0; }
+            main#main { max-width: 72rem; margin-inline: auto; background: linear-gradient(180deg, var(--be-surface) 0%, var(--be-surface-raised) 55%, var(--be-panel-hi) 100%); border-inline: 2px solid var(--be-ink); box-shadow: inset 1px 0 0 var(--bevel-hi), inset -1px 0 0 var(--bevel-lo), 0 0 0 2px var(--be-shadow-color); }
+        }
         .footer-stickers { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .75rem 1.5rem; padding: 1rem; border-bottom: 2px solid var(--be-ink); background: var(--be-dusk-violet); }
         .footer-stickers img { display: block; image-rendering: pixelated; }
         @media (max-width: 640px) {
@@ -352,7 +370,7 @@
             html { color-scheme: light !important; }
             body, body.reading, .window-body.body-crt, .window-body.body-paper { background: #fff !important; background-image: none !important; color: #000 !important; padding: 0 !important; }
             body.reading { display: block; min-height: 0; }
-            .pc98-masthead, .footer-stickers, .page-banner, .site-header, .body-paper::before, .body-paper::after, .body-crt h2::before, .body-paper h2::before { display: none !important; }
+            .pc98-wings, .pc98-masthead, .footer-stickers, .page-banner, .site-header, .body-paper::before, .body-paper::after, .body-crt h2::before, .body-paper h2::before { display: none !important; }
             .reading .window { border: 0; box-shadow: none; background: #fff; }
             .reading .window-bar { display: none; }
             .reading main#main { padding: 0; }
@@ -370,6 +388,12 @@
 </head>
 <body{% if page.extra.body_style %} class="reading"{% endif %}>
     <a href="#main" class="skip-link">{{ t.skip_to_content }}</a>
+    <div class="pc98-wings" aria-hidden="true">
+        <div class="wing wing-left wing-night"><img class="pixelated" src='/static/sprites/wing-left.png' width="704" height="900" alt=""></div>
+        <div class="wing wing-left wing-day"><img class="pixelated" src='/static/sprites/wing-left-day.png' width="704" height="900" alt=""></div>
+        <div class="wing wing-right wing-night"><img class="pixelated" src='/static/sprites/wing-right.png' width="704" height="900" alt=""></div>
+        <div class="wing wing-right wing-day"><img class="pixelated" src='/static/sprites/wing-right-day.png' width="704" height="900" alt=""></div>
+    </div>
     <header class="site-header">
     {% block header %}
         <div class="nav-inner">
@@ -391,7 +415,7 @@
     {% endblock %}
     </header>
     <div class="pc98-masthead" aria-hidden="true"><picture>
-        <source media="(min-width: 1200px)" srcset="/static/sprites/banner-masthead.png" width="1152" height="56">
+        <source media="(min-width: 1200px)" srcset="/static/sprites/banner-masthead.png" width="2560" height="56">
         <img class="pixelated" src='/static/sprites/banner-masthead-narrow.png' width="1200" height="56" alt="">
     </picture></div>
     <main id="main">
