@@ -139,6 +139,8 @@
         color: var(--be-sunset-pink); margin-top: .4rem;
     }
 
+    [data-theme="day"] .pitch-a .loop-caption { color: var(--be-ink); }
+
     .pitch-a .chart-label {
         max-width: 620px; margin: 1rem auto 0;
         font-family: var(--font-pixel); font-size: .7rem; letter-spacing: .06em;
@@ -275,7 +277,7 @@
             <span class="card-label vs-tag">AGENTIC DEVELOPMENT ENVIRONMENT</span>
             <h1 class="page-title">{{ page.title }}</h1>
             <p class="vs-lede">An app for running a squad of AI coding agents. You bring the ideas; it keeps them sorted, keeps each agent in its own lane, sends work to the right model, and checks the work before it gets to you.</p>
-            <p class="vs-beta">In public beta on Windows.</p>
+            <p class="vs-beta">In public beta on Windows, as a desktop app and a web UI, with an Android phone app. Version 0.3 is feature-frozen: fixes only.</p>
           </div>
           <figure class="vs-hero">
             <img class="pixelated" src='/static/previews/pitch/hero-diorama.png' width="352" height="472"
@@ -339,7 +341,7 @@
                                 </figure>
                             </div>
                         </div>
-                        <p class="node-copy">The buddy hands the plan to the lead, who splits it into separate git worktrees and sends each piece to the cheapest model that can handle it. Reviews go to a different model family, and each review has to say whether a change fixes the cause or only hides the symptom.</p>
+                        <p class="node-copy">The buddy hands the plan to the lead, who splits it into separate git worktrees and routes each piece by stakes: top models at high effort for security and core-invariant work, smaller models for mechanical work. When a provider passes 95% of its quota, a counterpart profile on another provider takes over. Reviews go to a different model family, and each review has to say whether a change fixes the cause or only hides the symptom.</p>
                     </div>
                     <div class="flow-link" data-reveal-line aria-hidden="true"></div>
                 </li>
@@ -554,14 +556,14 @@
                 <li class="beat" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then lanes learned to check their own work":</h3>
-                        <p class="beat-line">each lane keeps a SPEC.md and a TASKS.json. Plans label every block "Root cause" or "Workaround", and a reviewer from a different model family has to answer whether a change fixes the cause or hides the symptom. A timeout bump, retry loop or swallowed error fails unless a follow-up replaces it.</p>
+                        <p class="beat-line">each lane keeps a SPEC.md and a TASKS.json. Plans label every block "Root cause" or "Workaround", and a reviewer from a different model family has to answer whether a change fixes the cause or hides the symptom. A timeout bump, retry loop or swallowed error fails unless a follow-up replaces it. Each spawn also carries a stakes tier (tierA-security, tierA-invariant, normal or mechanical) that picks the model and effort. Every project gets a Bugs quick-chip for reporting a bug, and merges carry a Live-Needs: trailer that declares what the change needs live to take effect.</p>
                     </div>
                 </li>
 
                 <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
-                        <h3 class="beat-quote">"Then it started auditing its own usage":</h3>
-                        <p class="beat-line">a usage panel shows each provider's % used, reset time and burn rate, plus a split of tokens by role. On a schedule an Opus and a Gemini review read the numbers side by side and suggest routing changes; the prompt also hands them the previous review's advice to grade against the new numbers. Screens use sample data.</p>
+                        <h3 class="beat-quote">"Then it started auditing its own usage, and judging its own workflows":</h3>
+                        <p class="beat-line">a usage panel shows each provider's % used, reset time and burn rate, plus a split of tokens by role. On a schedule an Opus and a Gemini review read the numbers side by side and suggest routing changes; the prompt also hands them the previous review's advice to grade against the new numbers. The work is split in three: Usage measures, a Workflows lane (@perfection) judges, and the Bugs lane fixes. Workflows turns a doubt into an A/B routing or boot experiment and logs a keep, change or ruled-out verdict, shipped as config or code rather than another prompt rule. In the Psycho layout a CRT-style Perfection panel sits above the Usage panel. Screens use sample data.</p>
                     </div>
                     <div class="shot-grid">
                         <figure class="shot">
@@ -577,6 +579,52 @@
                                 <div class="window-body shot-body"><a href='/static/previews/pitch/j12b-usage-review.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j12b-usage-review.png' width="940" height="370" loading="lazy" alt="The Usage Review card with an Opus column and a Gemini column of routing and loop suggestions, and a Run now button"></a></div>
                             </div>
                             <figcaption class="shot-cap">Opus and Gemini review</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="beat beat--grid" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then it got a Normal mode alongside Psycho":</h3>
+                        <p class="beat-line">a first-launch layout picker, and a one-click toggle in the toolbar or sidebar, swaps the whole app between Psycho (the pixel-art office tower with sky TVs and animated sprites) and Normal (a plain layout with a project and conversation sidebar, a centered chat, and card-grid dashboards) without losing your place. (On the phone the same toggle is labelled Corpo.)</p>
+                    </div>
+                    <div class="shot-grid">
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; modes</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j13a-layout-picker.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j13a-layout-picker.png' width="870" height="576" loading="lazy" alt="The Choose your layout dialog offering two cards, Normal and Psycho"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Choose your layout</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; normal</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j13b-normal-mode.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j13b-normal-mode.png' width="1280" height="806" loading="lazy" alt="Normal mode: a Project Overview card grid for Escape From Idle with Overlord, RiffBot and Bugs cards plus team cards, beside a sidebar with a New Conversation button, a project picker and team rows"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Normal mode, sample data</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="beat beat--grid" data-reveal>
+                    <div class="beat-text">
+                        <h3 class="beat-quote">"Then 0.3 froze features to harden the runner and phone cockpit":</h3>
+                        <p class="beat-line">for 0.3, new features stopped so every lane only chased bugs, security and stability. VibeSquad's own agent runner replaced the old third-party daemon completely. <code>vs restart</code> waits for active turns, restarts the runner and server, and resumes agents that were cut off mid-turn. Each agent gets its own memory-only token, and cookie writes need a same-origin proof. The phone got a dedicated cockpit with Overlord, RiffBot and Buddy tabs, a quick bug sheet and a one-tap Claude/Gemini switch. Pairing is by QR code or 6-digit code over LAN or a VPN mesh, checked against the host's CA fingerprint, and a paired device can be revoked at once. An end-to-end-encrypted relay (X25519 key agreement, AES-256-GCM) is designed and wired on the host side, off by default, with no hosted relay. The pairing screen here is a mock-up with placeholder values, not a real session.</p>
+                    </div>
+                    <div class="shot-grid shot-grid--narrow-first">
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; cockpit</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j14a-phone-cockpit.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j14a-phone-cockpit.png' width="412" height="915" loading="lazy" alt="The phone cockpit on a narrow screen with its More drawer open: a Psycho/Corpo layout toggle, a Claude/Gemini provider switch, Restart Runner and Pair another device, with the host shown as reconnecting"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Phone cockpit, More drawer</figcaption>
+                        </figure>
+                        <figure class="shot">
+                            <div class="window">
+                                <div class="window-bar"><span>vibesquad &middot; pair</span><span class="controls" aria-hidden="true"></span></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j14b-pair-device.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j14b-pair-device.png' width="1000" height="1064" loading="lazy" alt="Mock-up of the Pair a Device dialog with placeholder demo values (example IP, demo-host, code 123456, dummy fingerprint): a QR code and 6-digit code, a CA fingerprint to check, and paired devices with Revoke buttons"></a></div>
+                            </div>
+                            <figcaption class="shot-cap">Pair a device (mock-up, demo values)</figcaption>
                         </figure>
                     </div>
                 </li>
@@ -604,6 +652,10 @@
                     <li class="saved-row">
                         <span class="pill pill-measured">MEASURED</span>
                         <p>Across 426 merged units logged by the usage ledger in its first week (Nov 1-8, 2026), 420 needed one review round or none and 6 needed two or more; 9 (2%) were fixed after merge. One user, one machine, and 394 of the units carry no workflow tag, so this is not a comparison between workflows.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-measured">MEASURED</span>
+                        <p>Two runner fixes for desktop disconnects: the worst cold status-scan stall dropped from 4,101 ms to 29 ms (the scan now yields between slices), and runner boot dropped from about 2.25 s to about 1.3 s on a 199 MB agent directory (each log is parsed once). Over the 10 days to the 0.3 freeze (Nov 1&ndash;10, 2026) the repo reached 1,898 commits, about 90,000 lines of application code and about 61,700 lines of tests in 316 test files. The latest full-suite run was 3,245 tests with 3,231 passing; the rest are known failures queued as bugs. Raw line counts include blanks and comments, and most commits are agents committing often, so this is throughput, not hand-typed work.</p>
                     </li>
                 </ul>
             </div>
