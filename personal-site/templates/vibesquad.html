@@ -186,6 +186,7 @@
         padding: .15rem .5rem; border: 2px solid var(--be-ink); border-radius: 2px;
     }
     .pitch-a .pill-measured { color: var(--be-on-accent); background: var(--be-cel-teal); }
+    .pitch-a .pill-fact { color: var(--be-ink); background: var(--be-surface); }
     .pitch-a .pill-projected { color: var(--be-crt); background: var(--be-sunset-orange); }
 
     /* Sprites at integer scale: x2 desktop (128px), x1 at <=480px (64px) */
@@ -285,6 +286,58 @@
             <figcaption class="shot-cap">Agent-drawn pixel art</figcaption>
           </figure>
         </header>
+
+        <section class="pitch-section" aria-labelledby="pitch-made">
+            <h2 id="pitch-made" class="pitch-h2">Who made it</h2>
+            <div class="saved">
+                <ul class="saved-rows">
+                    <li class="saved-row">
+                        <span class="pill pill-fact">ROLE</span>
+                        <p>Aub designed and directed VibeSquad: set the goals, made the product and design calls, chose the architecture direction and reviewed the results. AI agents were the workforce and wrote most of the code. Running them well is the hard part: splitting work across agents, keeping them from colliding, routing models by risk and cost, verifying output, and recovering from failures, quota limits and full context windows.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-fact">SCALE</span>
+                        <p>About 1,900 commits and about 90,000 lines of application code (raw line counts, blanks and comments included) landed between 2026-11-01 and 2026-11-10. The commit count measures how much the agent workforce got through, not hand-typed work.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-fact">STATUS</span>
+                        <p>Pre-1.0 (v0.2.7), used by its designer and still being tested live. It is not a commercial product: no customers, no user count.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="pitch-section" aria-labelledby="pitch-inside">
+            <h2 id="pitch-inside" class="pitch-h2">What is inside</h2>
+            <div class="saved">
+                <ul class="saved-rows">
+                    <li class="saved-row">
+                        <span class="pill pill-fact">TEAMS</span>
+                        <p>Squads hold feature lanes. Each lane has one brainstorm Buddy, one Lead and short-lived Workers in their own git worktrees. A shared team log and an idea inbox keep lanes in sync. Identity comes from labels, never from agent titles.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-fact">ROUTING</span>
+                        <p>Each task carries a stakes label, and the stakes pick the model and effort: top model for security work, small model for mechanical work. When a provider's quota passes 95%, a counterpart profile on another provider takes over.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-fact">REVIEW</span>
+                        <p>Work is reviewed by a different model family than wrote it. Security and invariant-critical changes get a stricter review. Worker reports are structured: PASS or FAIL, what changed, commit hash, evidence.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-fact">SELF-HEALING</span>
+                        <p>Agents resume safely after a server restart, leads hand off automatically before their context runs out, and stall watches catch agents that stop. VibeSquad runs on its own agent runner, which fully replaced the third-party daemon it started on.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-fact">WHERE IT RUNS</span>
+                        <p>Web app, Windows desktop app (Tauri), and an Android app plus phone PWA that pair by QR code over LAN or a VPN mesh. Loopback-only by default, with no outbound telemetry. An end-to-end-encrypted relay is designed and written host-side, but not wired in yet.</p>
+                    </li>
+                    <li class="saved-row">
+                        <span class="pill pill-fact">TWO MODES</span>
+                        <p>Normal is a plain ADE layout: a Projects and Conversations sidebar, card dashboards, a compact header. Psycho is the playful mode: a pixel-art office where the agents appear as sprite characters. Both have light and dark themes.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
         <section class="pitch-section" aria-labelledby="pitch-how">
             <h2 id="pitch-how" class="pitch-h2">How it works</h2>
@@ -468,7 +521,7 @@
                 <li class="beat" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then I wanted it on my phone":</h3>
-                        <p class="beat-line">phone app (PWA) and a desktop app.</p>
+                        <p class="beat-line">a phone PWA, an Android app and a Windows desktop app, paired by QR code.</p>
                     </div>
                     <figure class="shot shot-phone shot-portrait">
                         <div class="window">
@@ -482,7 +535,7 @@
                 <li class="beat" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then it needed to install like a real app":</h3>
-                        <p class="beat-line">a one-step Windows installer with its runtime bundled, a first-run checklist, and signed auto-updates on a stable or beta channel.</p>
+                        <p class="beat-line">a one-step Windows installer with its runtime bundled, a first-run checklist, and a GitHub-based updater.</p>
                     </div>
                     <figure class="shot">
                         <div class="window">
@@ -532,8 +585,8 @@
 
                 <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
-                        <h3 class="beat-quote">"Then the squad moved into an office tower":</h3>
-                        <p class="beat-line">RiffBot (the squad's brainstorm buddy) and the Overlord (its lead) get a TV each in the sky above the tower. Below, each lane is an office floor with desks, a lead's desk and a shared elevator.</p>
+                        <h3 class="beat-quote">"Then the squad moved into an office tower" (Psycho mode):</h3>
+                        <p class="beat-line">This is the playful Psycho mode; Normal mode is the plain layout. RiffBot (the squad's brainstorm buddy) and the Overlord (its lead) get a TV each in the sky above the tower. Below, each lane is an office floor with desks, a lead's desk and a shared elevator.</p>
                     </div>
                     <div class="shot-grid">
                         <figure class="shot">
