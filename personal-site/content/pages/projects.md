@@ -10,7 +10,7 @@ extra:
 <section aria-labelledby="featured-title" id="featured">
 <h2 id="featured-title">Featured</h2>
 <div class="card-grid">
-  <a class="card" href="/vibesquad"><span class="card-label">DESKTOP APP</span><h3>VibeSquad</h3><p>A local-first app that runs a squad of Claude, Gemini and DeepSeek coding agents, with review gates and model routing by risk. Designed and directed with AI agents as the workforce. Pre-1.0.</p><div class="tag-row"><span class="tag">Squads</span><span class="tag">Normal + Psycho</span><span class="tag">Desktop + Android</span></div></a>
+  <a class="card" href="/vibesquad"><span class="card-label">DESKTOP APP</span><h3>VibeSquad</h3><p>Run coding agents as Squads: you talk ideas through with a brainstorm buddy, and a lead splits the plan up and sends each piece to the cheapest model that can handle it.</p><div class="tag-row"><span class="tag">Squads</span><span class="tag">Buddy + Lead</span><span class="tag">Desktop App</span></div></a>
   <a class="card" href="/escape-from-idle"><span class="card-label">IN DEVELOPMENT</span><h3>Escape From Idle</h3><p>A post-apocalyptic idle game with Tarkov-style extraction raids and a Melvor-style ladder from manual play to full automation.</p><div class="tag-row"><span class="tag">Idle</span><span class="tag">Extraction Raids</span><span class="tag">Automation Ladder</span></div></a>
 </div>
 </section>

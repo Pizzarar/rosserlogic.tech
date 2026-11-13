@@ -161,7 +161,7 @@
     /* Portrait shots: cap the figure and centre it in the column */
     .pitch-a .shot-portrait { max-width: 390px; margin-inline: auto; }
     .pitch-a .shot-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    @media (min-width: 900px) { .pitch-a .shot-grid { grid-template-columns: 1fr 1fr; } .pitch-a .shot-grid--narrow-first { grid-template-columns: 1fr 2fr; align-items: start; } }
+    @media (min-width: 900px) { .pitch-a .shot-grid { grid-template-columns: 1fr 1fr; } .pitch-a .shot-grid.shot-grid--stack { grid-template-columns: 1fr; } .pitch-a .shot-grid--narrow-first { grid-template-columns: 1fr 2fr; align-items: start; } }
     .pitch-a .shot-body { padding: .5rem; }
     .pitch-a .shot-body img { display: block; width: 100%; height: auto; background: var(--be-surface); }
     .pitch-a .shot-phone .shot-body { display: flex; justify-content: center; padding: .75rem; }
@@ -186,8 +186,48 @@
         padding: .15rem .5rem; border: 2px solid var(--be-ink); border-radius: 2px;
     }
     .pitch-a .pill-measured { color: var(--be-on-accent); background: var(--be-cel-teal); }
-    .pitch-a .pill-fact { color: var(--be-ink); background: var(--be-surface); }
     .pitch-a .pill-projected { color: var(--be-crt); background: var(--be-sunset-orange); }
+
+    /* --- Under the hood (How it works, part 2) --- */
+    .pitch-a .how-deep { margin: 2.5rem auto 0; max-width: 980px; }
+    .pitch-a .how-h3 {
+        font-family: var(--font-display); font-weight: 400;
+        font-size: clamp(1.25rem, 3.4vw, 1.6rem); line-height: 1.2;
+        color: var(--be-ink); margin: 0 0 .75rem;
+    }
+    .pitch-a .how-intro { margin: 0 0 1.25rem; color: var(--be-ink); line-height: 1.6; max-width: 70ch; }
+    .pitch-a .how-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 900px) {
+        .pitch-a .how-grid { grid-template-columns: 1fr 1fr; }
+        .pitch-a .how-card--wide { grid-column: 1 / -1; }
+    }
+    .pitch-a .how-card {
+        border: 2px solid var(--be-ink); background: var(--be-surface);
+        box-shadow: var(--shadow-window); padding: 1rem 1rem 1.1rem; min-width: 0;
+    }
+    .pitch-a .how-card-title {
+        font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; line-height: 1.25;
+        color: var(--be-ink); margin: 0 0 .6rem;
+    }
+    .pitch-a .how-card p { margin: 0 0 .65rem; color: var(--be-ink); line-height: 1.6; overflow-wrap: anywhere; }
+    .pitch-a .how-card p:last-child { margin-bottom: 0; }
+    .pitch-a .how-card code { font-size: 1em; color: var(--be-ink); overflow-wrap: anywhere; }
+    .pitch-a .how-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .85rem; }
+    .pitch-a .how-step { display: flex; flex-direction: column; gap: .3rem; align-items: flex-start; min-width: 0; }
+    .pitch-a .how-step p { margin: 0; }
+    .pitch-a .how-step-name { font-weight: 700; }
+    .pitch-a .how-badge {
+        display: inline-block;
+        font-family: var(--font-pixel); font-size: .65rem; letter-spacing: .08em; line-height: 1.4;
+        padding: .15rem .5rem; border-radius: 2px; white-space: nowrap;
+    }
+    /* Two shapes as well as two colours: dashed outline = agents are told to, solid fill = code refuses. */
+    .pitch-a .how-badge--prompt { color: var(--be-ink); background: transparent; border: 2px dashed var(--be-ink); }
+    .pitch-a .how-badge--server { color: var(--be-on-accent); background: var(--be-cel-teal); border: 2px solid var(--be-ink); }
+    @media (min-width: 560px) {
+        .pitch-a .how-step { flex-direction: row; gap: .75rem; }
+        .pitch-a .how-step .how-badge { flex: 0 0 8.5rem; text-align: center; }
+    }
 
     /* Sprites at integer scale: x2 desktop (128px), x1 at <=480px (64px) */
     @media (max-width: 480px) {
@@ -278,7 +318,7 @@
             <span class="card-label vs-tag">AGENTIC DEVELOPMENT ENVIRONMENT</span>
             <h1 class="page-title">{{ page.title }}</h1>
             <p class="vs-lede">An app for running a squad of AI coding agents. You bring the ideas; it keeps them sorted, keeps each agent in its own lane, sends work to the right model, and checks the work before it gets to you.</p>
-            <p class="vs-beta">In public beta on Windows, as a desktop app and a web UI, with an Android phone app. Version 0.3 is feature-frozen: fixes only.</p>
+            <p class="vs-beta">Version 0.3.0 is on the stable channel (released Nov 12, 2026), for Windows: a desktop app and a local web UI, with a phone cockpit you can pair over your LAN or a VPN mesh. The Android app is not part of that release. Read the <a href="https://pizzarar.github.io/VibeSquad/how-it-works.html" target="_blank" rel="noopener noreferrer">interactive tour of how it works</a> or the <a href="https://github.com/Pizzarar/VibeSquad/releases/tag/v0.3.0" target="_blank" rel="noopener noreferrer">v0.3.0 release</a>.</p>
           </div>
           <figure class="vs-hero">
             <img class="pixelated" src='/static/previews/pitch/hero-diorama.png' width="352" height="472"
@@ -286,58 +326,6 @@
             <figcaption class="shot-cap">Agent-drawn pixel art</figcaption>
           </figure>
         </header>
-
-        <section class="pitch-section" aria-labelledby="pitch-made">
-            <h2 id="pitch-made" class="pitch-h2">Who made it</h2>
-            <div class="saved">
-                <ul class="saved-rows">
-                    <li class="saved-row">
-                        <span class="pill pill-fact">ROLE</span>
-                        <p>Aub designed and directed VibeSquad: set the goals, made the product and design calls, chose the architecture direction and reviewed the results. AI agents were the workforce and wrote most of the code. Running them well is the hard part: splitting work across agents, keeping them from colliding, routing models by risk and cost, verifying output, and recovering from failures, quota limits and full context windows.</p>
-                    </li>
-                    <li class="saved-row">
-                        <span class="pill pill-fact">SCALE</span>
-                        <p>About 1,900 commits and about 90,000 lines of application code (raw line counts, blanks and comments included) landed between 2026-11-01 and 2026-11-10. The commit count measures how much the agent workforce got through, not hand-typed work.</p>
-                    </li>
-                    <li class="saved-row">
-                        <span class="pill pill-fact">STATUS</span>
-                        <p>Pre-1.0 (v0.2.7), used by its designer and still being tested live. It is not a commercial product: no customers, no user count.</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="pitch-section" aria-labelledby="pitch-inside">
-            <h2 id="pitch-inside" class="pitch-h2">What is inside</h2>
-            <div class="saved">
-                <ul class="saved-rows">
-                    <li class="saved-row">
-                        <span class="pill pill-fact">TEAMS</span>
-                        <p>Squads hold feature lanes. Each lane has one brainstorm Buddy, one Lead and short-lived Workers in their own git worktrees. A shared team log and an idea inbox keep lanes in sync. Identity comes from labels, never from agent titles.</p>
-                    </li>
-                    <li class="saved-row">
-                        <span class="pill pill-fact">ROUTING</span>
-                        <p>Each task carries a stakes label, and the stakes pick the model and effort: top model for security work, small model for mechanical work. When a provider's quota passes 95%, a counterpart profile on another provider takes over.</p>
-                    </li>
-                    <li class="saved-row">
-                        <span class="pill pill-fact">REVIEW</span>
-                        <p>Work is reviewed by a different model family than wrote it. Security and invariant-critical changes get a stricter review. Worker reports are structured: PASS or FAIL, what changed, commit hash, evidence.</p>
-                    </li>
-                    <li class="saved-row">
-                        <span class="pill pill-fact">SELF-HEALING</span>
-                        <p>Agents resume safely after a server restart, leads hand off automatically before their context runs out, and stall watches catch agents that stop. VibeSquad runs on its own agent runner, which fully replaced the third-party daemon it started on.</p>
-                    </li>
-                    <li class="saved-row">
-                        <span class="pill pill-fact">WHERE IT RUNS</span>
-                        <p>Web app, Windows desktop app (Tauri), and an Android app plus phone PWA that pair by QR code over LAN or a VPN mesh. Loopback-only by default, with no outbound telemetry. An end-to-end-encrypted relay is designed and written host-side, but not wired in yet.</p>
-                    </li>
-                    <li class="saved-row">
-                        <span class="pill pill-fact">TWO MODES</span>
-                        <p>Normal is a plain ADE layout: a Projects and Conversations sidebar, card dashboards, a compact header. Psycho is the playful mode: a pixel-art office where the agents appear as sprite characters. Both have light and dark themes.</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
 
         <section class="pitch-section" aria-labelledby="pitch-how">
             <h2 id="pitch-how" class="pitch-h2">How it works</h2>
@@ -411,6 +399,42 @@
                 </li>
             </ol>
             <p class="chart-label">Portraits: agent-drawn pixel art from VibeSquad's sprite generator.</p>
+
+            <div class="how-deep">
+                <h3 class="how-h3">Under the hood: how the program actually works</h3>
+                <p class="how-intro">The three steps above are the short version. Underneath, VibeSquad is a process runner, a local server and a command-line tool, and its agents pass files to each other instead of chat history. Rules below are tagged: a <strong>PROMPT RULE</strong> is something agents are told to do; a <strong>SERVER CHECK</strong> is code that refuses the action.</p>
+                <div class="how-grid">
+                    <section class="how-card" aria-labelledby="how-c1">
+                        <h4 id="how-c1" class="how-card-title">1. Runtime, adapters and local server</h4>
+                        <p>The <code>runner/</code> process starts the coding CLIs you already have signed in (Claude Code, Gemini / Antigravity, OpenCode and Codex) as child sessions, through one adapter per provider; several are driven over the Agent Client Protocol. The <code>server/</code> process serves the web UI and an HTTP API on port 4180 by default, and routes messages between agents.</p>
+                        <p>The <code>vs</code> command-line tool, and the same actions as MCP tools, are how an agent logs to the team, messages another agent, makes a worktree or waits on other agents. The server listens on 127.0.0.1 only until you turn on LAN or VPN-mesh access.</p>
+                    </section>
+                    <section class="how-card" aria-labelledby="how-c2">
+                        <h4 id="how-c2" class="how-card-title">2. Squads, lanes and file-based handoffs</h4>
+                        <p>A Squad is one project. Its hub Lead, the Overlord, looks after the whole Squad, which is split into lanes such as bugs or usage. A lane has a Buddy you talk to, a Lead, and short-lived Workers that each do one block in their own git worktree.</p>
+                        <p>Agents don't inherit each other's chats. What travels is files: each lane keeps a SPEC.md and a TASKS.json, and a restarted Buddy reads a brief of about 5k tokens instead of a chat of about 150k. A Lead is flagged at 150k tokens of context, compacted in place if idle, and handed to a successor at 250k (hard cap 300k). The successor reads a handoff packet, including a Judgment section that the old Lead writes; messages sent to the old Lead are redirected to it.</p>
+                    </section>
+                    <section class="how-card how-card--wide" aria-labelledby="how-c3">
+                        <h4 id="how-c3" class="how-card-title">3. The seven steps of one unit of work</h4>
+                        <ol class="how-steps">
+                            <li class="how-step"><span class="how-badge how-badge--prompt">PROMPT RULE</span><p><span class="how-step-name">Talk to the Buddy.</span> It reads the lane brief and checks what already exists (the workflow index, <code>vs --help</code>) before proposing anything new. Off-topic ideas go to an idea inbox.</p></li>
+                            <li class="how-step"><span class="how-badge how-badge--prompt">PROMPT RULE</span><p><span class="how-step-name">Write the plan.</span> A table of blocks: what each touches and which ones clash. Each block is marked Root cause or Workaround, and a workaround has to name the follow-up that replaces it.</p></li>
+                            <li class="how-step"><span class="how-badge how-badge--server">SERVER CHECK</span><p><span class="how-step-name">Start a Lead.</span> Refused unless the caller is that lane's Buddy or the Squad's Overlord, the lane exists in the team registry, the profile is a Lead profile and the lane has no live Lead. Role and handoff labels supplied by the caller are stripped.</p></li>
+                            <li class="how-step"><span class="how-badge how-badge--prompt">PROMPT RULE</span><p><span class="how-step-name">Workers in worktrees.</span> The Lead is told to give each Worker its own git worktree (<code>vs worktree create</code>). Separately, in code, a spawn's stakes tier picks the model and effort, and a provider past 95% of its quota hands over to a counterpart profile on another provider.</p></li>
+                            <li class="how-step"><span class="how-badge how-badge--prompt">PROMPT RULE</span><p><span class="how-step-name">Review.</span> A different agent reviews the diff, normally from another model family, and answers whether the change fixes the cause or hides the symptom. Its first line is PASS or FAIL, three counts and the commit it reviewed. Nothing in code forces which reviewer is used.</p></li>
+                            <li class="how-step"><span class="how-badge how-badge--prompt">PROMPT RULE</span><p><span class="how-step-name">Merge.</span> Before merging, the Lead is told to run <code>vs verdict</code> (added after 0.3.0, so not in the 0.3.0 installer). That command is code: it exits 0 only if the reviewer's own first line is a PASS for the exact commit at the branch tip. But nothing stops a merge that skips it. Each merge also carries a trailer saying what the change needs live to take effect (a rebuild, a reload, a runner or server restart).</p></li>
+                            <li class="how-step"><span class="how-badge how-badge--prompt">PROMPT RULE</span><p><span class="how-step-name">Release.</span> Agents are told never to run release, publish, tag or signing scripts. They send a request to the Release Desk lane, and you give the final go.</p></li>
+                        </ol>
+                    </section>
+                    <section class="how-card how-card--wide" aria-labelledby="how-c4">
+                        <h4 id="how-c4" class="how-card-title">4. Per-agent identity, loopback proofs and pairing</h4>
+                        <p><span class="how-badge how-badge--server">SERVER CHECK</span></p>
+                        <p>When the runner starts an agent it makes a random 32-byte token for it and hands it over only as an environment variable of that agent's process. It stays in memory: never in a command line, a log or a saved file. Every <code>vs</code> or MCP write from an agent carries the token and the server compares it in constant time. A request that names an agent but has a missing or wrong token is refused with a 403 before anything is sent, and is never treated as the owner. A Worker may write only metric entries and its own done or blocker entries to the team log. This was a breaking change in 0.3.0: a script that calls <code>vs</code> with an agent id but no token now gets a 403.</p>
+                        <p>Before any client sends a token, the <code>vs</code> tool, the MCP server and the desktop proxy ask the local server for a signed proof (an HMAC over a fresh nonce and the port) over the same connection, so a different program listening on that port never receives it. Browser writes that rely on a cookie need a same-origin proof.</p>
+                        <p>To pair a phone you scan a QR code or type a one-time 6-digit code, compare the CA fingerprint, and can revoke any paired device at once. The end-to-end-encrypted relay is wired in on the host side but off by default; it only starts if you hand-edit a <code>wss://</code> endpoint into your settings, and no hosted relay ships. Agents run as your own OS user, so this separates agents' identities from each other, not from your files.</p>
+                    </section>
+                </div>
+            </div>
         </section>
 
         <section class="pitch-section" aria-labelledby="pitch-got-here">
@@ -521,7 +545,7 @@
                 <li class="beat" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then I wanted it on my phone":</h3>
-                        <p class="beat-line">a phone PWA, an Android app and a Windows desktop app, paired by QR code.</p>
+                        <p class="beat-line">phone app (PWA) and a desktop app.</p>
                     </div>
                     <figure class="shot shot-phone shot-portrait">
                         <div class="window">
@@ -535,7 +559,7 @@
                 <li class="beat" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then it needed to install like a real app":</h3>
-                        <p class="beat-line">a one-step Windows installer with its runtime bundled, a first-run checklist, and a GitHub-based updater.</p>
+                        <p class="beat-line">a one-step Windows installer with its runtime bundled, a first-run checklist, and signed auto-updates on a stable or beta channel.</p>
                     </div>
                     <figure class="shot">
                         <div class="window">
@@ -555,14 +579,14 @@
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>vibesquad &middot; files</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8a-files-panel.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8a-files-panel.png' width="320" height="539" loading="lazy" alt="The Files panel in the side dock, listing the VibeSquad repo's folders and files, next to the Changes, Terminal and Scripts tabs"></a></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8a-files-panel.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8a-files-panel.png' width="320" height="376" loading="lazy" alt="The Files panel in the side dock, listing a project's folders and files, next to the Changes, Terminal and Scripts tabs"></a></div>
                             </div>
                             <figcaption class="shot-cap">Files panel</figcaption>
                         </figure>
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>vibesquad &middot; ctrl+k</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8b-command-palette.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8b-command-palette.png' width="640" height="426" loading="lazy" alt="The command palette listing actions such as New Agent and Search All Transcripts, then the teams"></a></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j8b-command-palette.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j8b-command-palette.png' width="640" height="385" loading="lazy" alt="The command palette opened over the app, listing actions such as New Agent and Search All Transcripts, then the squads"></a></div>
                             </div>
                             <figcaption class="shot-cap">Command palette</figcaption>
                         </figure>
@@ -585,8 +609,8 @@
 
                 <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
-                        <h3 class="beat-quote">"Then the squad moved into an office tower" (Psycho mode):</h3>
-                        <p class="beat-line">This is the playful Psycho mode; Normal mode is the plain layout. RiffBot (the squad's brainstorm buddy) and the Overlord (its lead) get a TV each in the sky above the tower. Below, each lane is an office floor with desks, a lead's desk and a shared elevator.</p>
+                        <h3 class="beat-quote">"Then the squad moved into an office tower":</h3>
+                        <p class="beat-line">RiffBot (the squad's brainstorm buddy) and the Overlord (its lead) get a TV each in the sky above the tower. Below, each lane is an office floor with desks, a lead's desk and a shared elevator.</p>
                     </div>
                     <div class="shot-grid">
                         <figure class="shot">
@@ -616,22 +640,22 @@
                 <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then it started auditing its own usage, and judging its own workflows":</h3>
-                        <p class="beat-line">a usage panel shows each provider's % used, reset time and burn rate, plus a split of tokens by role. On a schedule an Opus and a Gemini review read the numbers side by side and suggest routing changes; the prompt also hands them the previous review's advice to grade against the new numbers. The work is split in three: Usage measures, a Workflows lane (@perfection) judges, and the Bugs lane fixes. Workflows turns a doubt into an A/B routing or boot experiment and logs a keep, change or ruled-out verdict, shipped as config or code rather than another prompt rule. In the Psycho layout a CRT-style Perfection panel sits above the Usage panel. Screens use sample data.</p>
+                        <p class="beat-line">a usage panel shows each provider's % left, reset time and burn rate and a split of tokens by role, and later gained a Squad filter. On a schedule (off, or every 6 hours up to every 2 weeks, or on demand) an Opus review and a Gemini review read the numbers and suggest routing changes; the prompt also hands them the previous review's advice to grade against the new numbers. Their suggestions, and bug reports, land in a mail-style triage inbox in a CRT-style Perfection panel at the top, where you accept or reject each one. Below it, a trend view splits clean shipping from rework, loops and restarts. Three additions landed after 0.3.0 and are not in the 0.3.0 installer: a scorecard of how autonomous the squads are (units per owner touch, the streak of merges with no help, needs-you pings per unit, stalls), a gauge comparing the runner's spawn-to-ready time with the old third-party daemon's, and last-10-versus-prior-10 cohort trends. The work is split in three: Usage measures, a Workflows lane judges, and the Bugs lane fixes. Workflows turns a doubt into an A/B routing or boot experiment and logs a keep, change or ruled-out verdict, shipped as config or code rather than another prompt rule. Screens use sample data.</p>
                     </div>
-                    <div class="shot-grid">
+                    <div class="shot-grid shot-grid--stack">
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>usage &middot; limits</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><a href='/static/previews/pitch/j12a-usage-floor.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j12a-usage-floor.png' width="785" height="305" loading="lazy" alt="Usage panel: Gemini and Claude cards with percent used, reset time and burn rate, and a role split of tokens and cost for Brainstorm, Lead and Worker"></a></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j12a-usage-floor.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j12a-usage-floor.png' width="992" height="789" loading="lazy" alt="The top of the Usage panel with sample data: a pixel-art angel banner and a CRT-style Perfection panel with a mail-style triage inbox of bug and review suggestions, each with Accept and Reject buttons, then a Squad filter and provider limit cards showing percent left and percent used"></a></div>
                             </div>
-                            <figcaption class="shot-cap">Limits and role split</figcaption>
+                            <figcaption class="shot-cap">Triage inbox, Squad filter and limits (sample data)</figcaption>
                         </figure>
                         <figure class="shot">
                             <div class="window">
                                 <div class="window-bar"><span>usage &middot; review</span><span class="controls" aria-hidden="true"></span></div>
-                                <div class="window-body shot-body"><a href='/static/previews/pitch/j12b-usage-review.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j12b-usage-review.png' width="940" height="370" loading="lazy" alt="The Usage Review card with an Opus column and a Gemini column of routing and loop suggestions, and a Run now button"></a></div>
+                                <div class="window-body shot-body"><a href='/static/previews/pitch/j12b-usage-review.png' target="_blank" rel="noopener noreferrer" aria-label="Open full-size screenshot"><img src='/static/previews/pitch/j12b-usage-review.png' width="992" height="889" loading="lazy" alt="Expanded Usage sections with sample data: an autonomy scorecard with units per owner touch and a per-squad table, a ready-time gauge comparing runner spawn time with the old daemon, and a trend view of clean shipping against rework"></a></div>
                             </div>
-                            <figcaption class="shot-cap">Opus and Gemini review</figcaption>
+                            <figcaption class="shot-cap">Autonomy scorecard, ready-time gauge and trend (sample data)</figcaption>
                         </figure>
                     </div>
                 </li>
@@ -662,7 +686,7 @@
                 <li class="beat beat--grid" data-reveal>
                     <div class="beat-text">
                         <h3 class="beat-quote">"Then 0.3 froze features to harden the runner and phone cockpit":</h3>
-                        <p class="beat-line">for 0.3, new features stopped so every lane only chased bugs, security and stability. VibeSquad's own agent runner replaced the old third-party daemon completely. <code>vs restart</code> waits for active turns, restarts the runner and server, and resumes agents that were cut off mid-turn. Each agent gets its own memory-only token, and cookie writes need a same-origin proof. The phone got a dedicated cockpit with Overlord, RiffBot and Buddy tabs, a quick bug sheet and a one-tap Claude/Gemini switch. Pairing is by QR code or 6-digit code over LAN or a VPN mesh, checked against the host's CA fingerprint, and a paired device can be revoked at once. An end-to-end-encrypted relay (X25519 key agreement, AES-256-GCM) is designed and wired on the host side, off by default, with no hosted relay. The pairing screen here is a mock-up with placeholder values, not a real session.</p>
+                        <p class="beat-line">for 0.3, new features stopped so every lane only chased bugs, security and stability, and 0.3.0 shipped on the stable channel on Nov 12, 2026. VibeSquad's own agent runner replaced the old third-party daemon completely. <code>vs restart</code> waits for active turns, restarts the runner and server, and resumes agents that were cut off mid-turn. Each agent gets its own memory-only token, and cookie writes need a same-origin proof. The phone got a dedicated cockpit with Overlord, RiffBot and Buddy tabs, a quick bug sheet and a one-tap Claude/Gemini switch. Pairing is by QR code or 6-digit code over LAN or a VPN mesh, checked against the host's CA fingerprint, and a paired device can be revoked at once. An end-to-end-encrypted relay (X25519 key agreement, AES-256-GCM) is designed and wired on the host side, off by default, with no hosted relay. The pairing screen here is a mock-up with placeholder values, not a real session.</p>
                     </div>
                     <div class="shot-grid shot-grid--narrow-first">
                         <figure class="shot">
@@ -708,7 +732,7 @@
                     </li>
                     <li class="saved-row">
                         <span class="pill pill-measured">MEASURED</span>
-                        <p>Two runner fixes for desktop disconnects: the worst cold status-scan stall dropped from 4,101 ms to 29 ms (the scan now yields between slices), and runner boot dropped from about 2.25 s to about 1.3 s on a 199 MB agent directory (each log is parsed once). Over the 10 days to the 0.3 freeze (Nov 1&ndash;10, 2026) the repo reached 1,898 commits, about 90,000 lines of application code and about 61,700 lines of tests in 316 test files. The latest full-suite run was 3,245 tests with 3,231 passing; the rest are known failures queued as bugs. Raw line counts include blanks and comments, and most commits are agents committing often, so this is throughput, not hand-typed work.</p>
+                        <p>Two runner fixes for desktop disconnects: the worst cold status-scan stall dropped from 4,101 ms to 29 ms (the scan now yields between slices), and runner boot dropped from about 2.25 s to about 1.3 s on a 199 MB agent directory (each log is parsed once). Over the 10 days to the 0.3 freeze (Nov 1&ndash;10, 2026) the repo reached 1,898 commits, about 90,000 lines of application code and about 61,700 lines of tests in 316 test files. The full suite at the v0.3.0 build was 3,477 tests in 220 suites: 3,466 passing, 0 failing, 11 skipped. The release covers 242 commits since 0.2.9. After 0.3.0, the Usage panel's ready-time gauge was added; it uses reference figures of about 0.45 s for a runner spawn against about 165 s for the old third-party daemon (about 367 times faster; the gauge states it as a fixed baseline, not a per-run measurement). Raw line counts include blanks and comments, and most commits are agents committing often, so this is throughput, not hand-typed work.</p>
                     </li>
                 </ul>
             </div>
