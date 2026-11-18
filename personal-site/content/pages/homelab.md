@@ -15,10 +15,10 @@ extra:
 ## Instances
 
 <div class="lab-grid">
-  <article class="lab-card" aria-labelledby="lab-bigpp">
-    <img class="pixelated" src='/static/sprites/homelab-bigpp.png' width="256" height="256" alt="Pixel-art workstation desk with two monitors and a desk lamp">
+  <article class="lab-card" aria-labelledby="lab-workstation">
+    <img class="pixelated" src='/static/sprites/homelab-workstation.png' width="256" height="256" alt="Pixel-art workstation desk with two monitors and a desk lamp">
     <div class="lab-card-body">
-      <h3 id="lab-bigpp">bigpp</h3>
+      <h3 id="lab-workstation">Workstation</h3>
       <p class="lab-role">Primary workstation</p>
       <span class="lab-status lab-online"><span aria-hidden="true">&#9679;</span> ONLINE</span>
       <ul>
@@ -27,10 +27,10 @@ extra:
       </ul>
     </div>
   </article>
-  <article class="lab-card" aria-labelledby="lab-devpp">
-    <img class="pixelated" src='/static/sprites/homelab-devpp.png' width="256" height="256" alt="Pixel-art headless machine on a shelf with several terminal panes">
+  <article class="lab-card" aria-labelledby="lab-dev">
+    <img class="pixelated" src='/static/sprites/homelab-dev.png' width="256" height="256" alt="Pixel-art headless machine on a shelf with several terminal panes">
     <div class="lab-card-body">
-      <h3 id="lab-devpp">devpp</h3>
+      <h3 id="lab-dev">Dev Node</h3>
       <p class="lab-role">Development instance</p>
       <span class="lab-status lab-online"><span aria-hidden="true">&#9679;</span> ONLINE</span>
       <ul>
@@ -39,10 +39,10 @@ extra:
       </ul>
     </div>
   </article>
-  <article class="lab-card" aria-labelledby="lab-grindpp">
-    <img class="pixelated" src='/static/sprites/homelab-grindpp.png' width="256" height="256" alt="Pixel-art headless tower with an amber beacon, a build progress readout and a sprite grid">
+  <article class="lab-card" aria-labelledby="lab-build">
+    <img class="pixelated" src='/static/sprites/homelab-build.png' width="256" height="256" alt="Pixel-art headless tower with an amber beacon, a build progress readout and a sprite grid">
     <div class="lab-card-body">
-      <h3 id="lab-grindpp">grindpp</h3>
+      <h3 id="lab-build">Build Node</h3>
       <p class="lab-role">Build &amp; generation instance</p>
       <span class="lab-status lab-prov"><span aria-hidden="true">&#9680;</span> PROVISIONING</span>
       <ul>
@@ -52,10 +52,10 @@ extra:
       </ul>
     </div>
   </article>
-  <article class="lab-card" aria-labelledby="lab-smallpp">
-    <img class="pixelated" src='/static/sprites/homelab-smallpp.png' width="256" height="256" alt="Pixel-art small machine with an audiobook cassette and headphones">
+  <article class="lab-card" aria-labelledby="lab-media">
+    <img class="pixelated" src='/static/sprites/homelab-media.png' width="256" height="256" alt="Pixel-art small machine with an audiobook cassette and headphones">
     <div class="lab-card-body">
-      <h3 id="lab-smallpp">smallpp</h3>
+      <h3 id="lab-media">Media Node</h3>
       <p class="lab-role">Media instance</p>
       <span class="lab-status lab-online"><span aria-hidden="true">&#9679;</span> ONLINE</span>
       <ul>
@@ -64,10 +64,10 @@ extra:
       </ul>
     </div>
   </article>
-  <article class="lab-card" aria-labelledby="lab-nas">
-    <img class="pixelated" src='/static/sprites/homelab-nas.png' width="256" height="256" alt="Pixel-art multi-bay drive enclosure with activity lights">
+  <article class="lab-card" aria-labelledby="lab-storage">
+    <img class="pixelated" src='/static/sprites/homelab-storage.png' width="256" height="256" alt="Pixel-art multi-bay drive enclosure with activity lights">
     <div class="lab-card-body">
-      <h3 id="lab-nas">NAS</h3>
+      <h3 id="lab-storage">Storage Node</h3>
       <p class="lab-role">Storage &amp; backup instance</p>
       <span class="lab-status lab-online"><span aria-hidden="true">&#9679;</span> ONLINE</span>
       <ul>
@@ -111,14 +111,14 @@ extra:
     <rect x="316" y="238" width="232" height="84"/>
   </g>
   <g font-family="var(--font-pixel)" text-anchor="middle" fill="var(--be-phosphor)" font-size="18">
-    <text x="134" y="104">bigpp</text>
-    <text x="432" y="104">devpp</text>
-    <text x="730" y="104">grindpp</text>
-    <text x="730" y="274">NAS</text>
-    <text x="432" y="274">smallpp</text>
+    <text x="134" y="104">Workstation</text>
+    <text x="432" y="104">Dev Node</text>
+    <text x="730" y="104">Build Node</text>
+    <text x="730" y="274">Storage Node</text>
+    <text x="432" y="274">Media Node</text>
   </g>
   <g font-family="var(--font-pixel)" class="lab-sub" text-anchor="middle" fill="var(--be-phosphor)" font-size="13">
-    <text x="134" y="130">Workstation</text>
+    <text x="134" y="130">Primary workstation</text>
     <text x="432" y="130">Development instance</text>
     <text x="730" y="130">CI / build instance</text>
     <text x="730" y="300">Storage &amp; backups</text>
