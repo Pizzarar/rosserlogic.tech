@@ -20,6 +20,7 @@ extra:
 <div class="card-grid">
   <a class="card" href="/projects/pssst"><span class="card-label">CASE STUDY</span><h3>Pssst: OSRS Companion</h3><p>Farming patches, birdhouses, and GE offers on your phone, over your own home LAN, with no open ports and no third-party server in the middle.</p><div class="tag-row"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Java 11</span><span class="tag">RuneLite API</span><span class="tag">Room</span></div></a>
   <a class="card" href="/projects/sportsballbattles"><span class="card-label">CASE STUDY</span><h3>SportsBallBattles</h3><p>An arcade football auto-battler. Draft and upgrade a roster between matches, then watch 3D active-ragdoll chaos unfold on Game Day.</p><div class="tag-row"><span class="tag">Godot 4.7.2</span><span class="tag">Jolt Physics 3D</span><span class="tag">Deterministic Sim</span><span class="tag">Active Ragdoll</span></div></a>
+  <a class="card" href="/homelab"><span class="card-label">SELF-HOSTED</span><h3>Homelab</h3><p>Five self-hosted instances on a private mesh network: CI on every push, sprite generation, central storage and backups.</p><div class="tag-row"><span class="tag">CI Runners</span><span class="tag">Self-Hosted</span><span class="tag">Backups</span></div></a>
 </div>
 </section>
 
@@ -30,6 +31,6 @@ extra:
   <li><strong>ServiceNow Endpoint Refresh Workflow, CMDB Normalization (800+ Models) &amp; Management Dashboards</strong>: I designed the endpoint refresh workflow to replace manual coordination, normalized 800+ inconsistent CMDB hardware-model entries, and built the Director and technician dashboards that provide self-service visibility.</li>
   <li><strong>ServiceNow Onboarding &amp; Platform Knowledge Base (Obsidian)</strong>: I authored a ServiceNow knowledge base in Obsidian that is the platform onboarding standard for new hires and merger/acquisition employees, and an advanced-functionality reference for current staff.</li>
   <li><strong>PowerShell TKO OCX Self-Service Remediation &amp; WinRE Offline Account-Recovery Toolkit</strong>: a failing OCX component was averaging 3+ tickets a day. I automated the fix into a self-service tool and co-developed a Windows Recovery Environment toolkit with an offline account-recovery module.</li>
-  <li><strong>Home Server &amp; Self-Hosted Lab Environment</strong>: a home server running self-hosted media, audiobook, and game server services, with a 3-node OptiPlex cluster planned.</li>
+  <li><a href="/homelab"><strong>Home Server &amp; Self-Hosted Lab Environment</strong></a>: a self-hosted lab running media, audiobook, and game server services, plus CI runners and a sprite-generation pipeline. See the <a href="/homelab">Homelab page</a>.</li>
 </ul>
 </section>

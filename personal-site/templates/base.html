@@ -332,12 +332,40 @@
             main#main { padding-top: 1rem; }
         }
         /* Gate 19: six tabs (VibeSquad added) + brand + search + [ OK ] overflow 5px at 900px, so 900-1099px drops the badge and tightens tab padding; search keeps shrinking via min-width:0. */
-        @media (min-width: 900px) and (max-width: 1099px) {
+        @media (min-width: 900px) and (max-width: 1219px) {
             .nav-status { display: none; }
-            .nav-links a { padding: .25rem .375rem; font-size: .8125rem; letter-spacing: .04em; }
-            .nav-brand { padding-right: .5rem; }
+        }
+        /* Gate 24: seven tabs (Homelab added). Tighter tabs at 900-1099px keep the search box usable (>=100px) instead of collapsing. */
+        @media (min-width: 900px) and (max-width: 1099px) {
+            .nav-links { gap: .125rem; margin-left: 0; }
+            .nav-links a { padding: .25rem .25rem; font-size: .75rem; letter-spacing: .02em; }
+            .nav-brand { padding: .3rem .5rem .3rem .4rem; letter-spacing: .02em; }
             .search-form { flex-basis: 9rem; }
         }
+        @media (min-width: 1100px) and (max-width: 1219px) {
+            .nav-links a { padding: .25rem .375rem; }
+        }
+        /* Gate 24: /homelab page (instance cards, static status badges, inline SVG topology). */
+        .lab-banner img { width: 100%; height: auto; max-width: 100%; display: block; }
+        .lab-note { color: var(--be-ink-muted); font-size: .9rem; margin: 0 0 1rem; }
+        .lab-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        @media (min-width: 640px) { .lab-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 640px) { .lab-grid > .lab-card:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .5rem); } }
+        .lab-card { display: flex; gap: .875rem; align-items: flex-start; border: 2px solid var(--be-ink); background: var(--panel-grad); padding: 1rem; box-shadow: inset 1px 1px 0 var(--bevel-hi), inset -1px -1px 0 var(--bevel-lo), var(--shadow-window); min-width: 0; }
+        .content .lab-card img { flex: none; width: 96px; height: 96px; max-width: none; }
+        .lab-card-body { min-width: 0; flex: 1; }
+        .lab-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; line-height: 1.2; margin: 0 0 .125rem; color: var(--be-ink); }
+        .lab-role { font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; color: var(--be-ink-muted); margin: 0 0 .5rem; }
+        .lab-card ul { margin: .5rem 0 0; padding-left: 1.1rem; font-size: .9rem; line-height: 1.5; color: var(--be-ink); }
+        .lab-status { display: inline-block; font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .08em; padding: .125rem .5rem; background: var(--be-crt); border: 2px solid var(--be-ink); }
+        .lab-online { color: var(--be-phosphor); }
+        .lab-prov { color: var(--be-sunset-orange); }
+        .lab-topo .lab-sub text { fill: var(--be-phosphor); }
+        .lab-topo { margin: 1rem 0; padding: 0; }
+        .content .lab-topo svg { display: block; width: 100%; height: auto; max-width: 100%; border: 2px solid var(--be-ink); }
+        @media (max-width: 479px) { .lab-card { flex-direction: column; } }
+        .lab-does { padding-left: 1.25rem; }
+        .lab-does li + li { margin-top: .5rem; }
         /* Gate 20: site-wide PC-98 masthead strip under the header + sticker bumper dock in the footer (both decorative). */
         /* Gate 21: full-bleed masthead; the 2560px source overflows equally both sides so its middle 1152px sits over the center column. */
         .pc98-masthead { width: 100%; max-width: none; margin: 0; overflow: hidden; display: flex; justify-content: center; background: var(--be-crt); border-inline: 0; border-top: 0; border-bottom: 2px solid var(--be-ink); }
