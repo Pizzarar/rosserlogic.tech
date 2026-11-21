@@ -171,6 +171,22 @@
         color: var(--be-ink-muted); margin: .5rem 0 0;
     }
 
+    /* --- Release download + changelog --- */
+    .pitch-a .rel-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .pitch-a .rel-box { border: 2px solid var(--be-ink); box-shadow: var(--shadow-window); background: var(--be-surface-raised); padding: 1rem; min-width: 0; }
+    .pitch-a .rel-h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--be-ink); margin: 0 0 .75rem; }
+    .pitch-a .rel-box p, .pitch-a .rel-list li { margin: 0 0 .65rem; color: var(--be-ink); line-height: 1.6; overflow-wrap: anywhere; }
+    .pitch-a .rel-box a { color: var(--be-ink); text-decoration: underline; }
+    .pitch-a .rel-hash, .pitch-a .rel-cmd, .pitch-a .rel-list code {
+        font-family: var(--font-mono, monospace); color: var(--be-ink); background: var(--be-surface);
+        border: 1px solid var(--be-ink); padding: .1rem .35rem; overflow-wrap: anywhere;
+    }
+    .pitch-a .rel-nb { white-space: nowrap; }
+    .pitch-a .rel-hash { word-break: break-all; display: block; margin: 0 0 .75rem; font-size: .9rem; }
+    .pitch-a .rel-list { margin: 0 0 .75rem; padding-left: 1.2rem; }
+    .pitch-a .rel-box .rel-credit { color: var(--be-ink-muted); font-size: .9rem; }
+    @media (min-width: 860px) { .pitch-a .rel-grid { grid-template-columns: 1fr 1fr; } }
+
     /* --- What it saved --- */
     .pitch-a .saved { margin-top: 2rem; border: 2px solid var(--be-ink); box-shadow: var(--shadow-window); background: var(--be-surface-raised); padding: 1rem; }
     .pitch-a .saved-title {
@@ -326,6 +342,33 @@
             <figcaption class="shot-cap">Agent-drawn pixel art</figcaption>
           </figure>
         </header>
+
+        <section class="pitch-section rel" aria-labelledby="rel-dl">
+            <h2 id="rel-dl" class="pitch-h2">Download v0.3.0</h2>
+            <div class="rel-grid">
+                <div class="rel-box">
+                    <h3 class="rel-h3">Windows installer</h3>
+                    <p><a href="https://github.com/Pizzarar/VibeSquad/releases/download/v0.3.0/VibeSquad-setup.exe" rel="noopener noreferrer">VibeSquad-setup.exe</a> (34,491,013 bytes, about 32.9 MiB)</p>
+                    <p>SHA-256:</p>
+                    <code class="rel-hash">13431677c9de7bea5c796e7699a20c70579effd646fb7bea00e1b4eb3b247861</code>
+                    <p>To check the download in PowerShell: <code class="rel-cmd">Get-FileHash .\VibeSquad-setup.exe <span class="rel-nb">-Algorithm</span> SHA256</code></p>
+                    <p>The installer has no Authenticode signature yet. Updates are signed with minisign. <a href="https://github.com/Pizzarar/VibeSquad/releases/tag/v0.3.0" target="_blank" rel="noopener noreferrer">Release page</a></p>
+                </div>
+                <div class="rel-box">
+                    <h3 class="rel-h3">What's new in 0.3.0</h3>
+                    <ul class="rel-list">
+                        <li>Breaking: agents now identify themselves with a per-agent token that the runner injects. Scripts that call <code>vs</code> or the VS API with an agent id but without the token get a 403.</li>
+                        <li>Cookie-authenticated writes need a same-origin proof, and phone pairing uses a two-step confirm.</li>
+                        <li>Phone Cockpit has a settings overlay and a one-tap Claude and Gemini provider switcher. The end-to-end encrypted relay is wired in but off by default.</li>
+                        <li>Boring Mode (Normal / Psycho): an app-wide shell, card-grid dashboards, a compact header and a first-launch layout picker.</li>
+                        <li>Restarts no longer cut or wedge running agents, and the new <code>vs watch</code> command sends one ping per set of items.</li>
+                        <li>Windows only. The Android app is not part of this release.</li>
+                    </ul>
+                    <p class="rel-credit">Implemented Boring Mode B1-B4 — Thanks to Antigravity by Google DeepMind and Claude Code by Anthropic</p>
+                    <p class="rel-credit">Implemented outbound E2EE relay hardening — Thanks to @noble/curves by Paul Miller (paulmillr)</p>
+                </div>
+            </div>
+        </section>
 
         <section class="pitch-section" aria-labelledby="pitch-how">
             <h2 id="pitch-how" class="pitch-h2">How it works</h2>
