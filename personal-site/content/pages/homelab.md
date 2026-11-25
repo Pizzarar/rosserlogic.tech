@@ -3,6 +3,9 @@ title: "Homelab"
 image: /static/sprites/og-homelab.png
 description: "A small self-hosted lab that builds, tests and serves my projects: five instances, a private mesh network, and CI on every push."
 extra:
+  theme: day
+  zone: pro
+  nav_parent: "/work"
   body_style: crt
 ---
 
@@ -137,4 +140,4 @@ extra:
   <li><strong>Remote access from anywhere without exposing ports.</strong> The instances talk over a private mesh network, with nothing listening publicly.</li>
 </ul>
 
-<div class="hero-actions"><a href="/projects" class="btn btn-secondary">PROJECTS</a><a href="/studio" class="btn btn-secondary">IDLE MINDS</a></div>
+<div class="hero-actions"><a href="/work" class="btn btn-secondary">WORK</a><a href="/vibesquad" class="btn btn-secondary">VIBESQUAD</a></div>

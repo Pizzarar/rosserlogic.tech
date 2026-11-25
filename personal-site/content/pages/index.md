@@ -1,7 +1,10 @@
 ---
 title: "Aubrey Rosser"
-description: "Aubrey Rosser is an End User Support Specialist, Tier II in the Columbus, OH area. IT operations, ServiceNow workflow & CMDB design, and Idle Minds game studio."
+description: "Aubrey Rosser is an End User Support Specialist, Tier II in the Columbus, OH area. IT operations, ServiceNow workflow & CMDB design, and the Idle Minds game studio."
 image: /static/sprites/og-home.png
+extra:
+  theme: day
+  zone: pro
 ---
 
 <section class="window scanlines" aria-labelledby="system-title">
@@ -17,9 +20,8 @@ image: /static/sprites/og-home.png
       <p class="lead">I keep messy IT operations running clean: 7+ years of turning tangled ticket queues, multi-team incidents, and scattered ServiceNow data into documented, repeatable systems. Off the clock, I build games and developer tooling under the Idle Minds banner.</p>
       <div class="hero-actions">
         <a href="/resume" class="btn btn-primary">&gt; VIEW RÉSUMÉ</a>
-        <a href="/projects" class="btn btn-secondary">PROJECTS</a>
-        <a href="/vibesquad" class="btn btn-secondary">VIBESQUAD</a>
-        <a href="/studio" class="btn btn-secondary">IDLE MINDS</a>
+        <a href="/work" class="btn btn-secondary">WORK</a>
+        <a href="/personal" class="btn btn-secondary">AFTER HOURS</a>
       </div>
     </div>
     <div class="hero-col hero-art">
@@ -31,26 +33,24 @@ image: /static/sprites/og-home.png
 <div class="ticker ticker-marquee" aria-hidden="true"><div class="ticker-track"><span class="ticker-run">IT EXPERIENCE 7+ YRS | ENDPOINT REFRESH ~1,850 UNITS <span class="up">▲92% IN ORIGINAL TIMELINE</span> | CMDB NORMALIZATION 800+ MODELS | </span><span class="ticker-run">IT EXPERIENCE 7+ YRS | ENDPOINT REFRESH ~1,850 UNITS <span class="up">▲92% IN ORIGINAL TIMELINE</span> | CMDB NORMALIZATION 800+ MODELS | </span></div></div>
 
 <section class="window" aria-labelledby="projects-title">
-  <div class="window-bar"><span id="projects-title">PROJECTS.DIR</span><span class="controls" aria-hidden="true"></span></div>
+  <div class="window-bar"><span id="projects-title">WORK.DIR</span><span class="controls" aria-hidden="true"></span></div>
   <div class="window-body">
     <div class="card-grid">
+      <a class="card" href="/work#it-operations"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-server.png' width="32" height="32" alt="" aria-hidden="true">ENTERPRISE IT</span><h3>Enterprise IT / ServiceNow</h3><p>Workflow design, CMDB cleanup (800+ models), management dashboards, and PowerShell recovery tooling.</p></a>
+      <a class="card" href="/projects/serbisenow"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-terminal.png' width="32" height="32" alt="" aria-hidden="true">SERVICENOW SDK</span><h3>SerbiseNow</h3><p>A general ServiceNow AI enhancement-triage flow built with the ServiceNow SDK.</p></a>
       <a class="card" href="/vibesquad"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-terminal.png' width="32" height="32" alt="" aria-hidden="true">DESKTOP APP</span><h3>VibeSquad</h3><p>Run coding agents as Squads: you talk ideas through with a brainstorm buddy, and a lead splits the plan up and sends each piece to the cheapest model that can handle it.</p></a>
-      <a class="card" href="/escape-from-idle"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-controller.png' width="32" height="32" alt="" aria-hidden="true">IN DEVELOPMENT</span><h3>Escape From Idle</h3><p>A post-apocalyptic idle game with Tarkov-style extraction raids and a Melvor-style ladder from manual play to automation.</p></a>
-      <a class="card" href="/projects/pssst"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-phone.png' width="32" height="32" alt="" aria-hidden="true">ANDROID + RUNELITE</span><h3>Pssst: OSRS Companion</h3><p>Farming patches, birdhouses, and Grand Exchange offers, surfaced on your phone over your own home LAN, with no open ports and no third-party server in the middle.</p></a>
-      <a class="card" href="/projects/sportsballbattles"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-controller.png' width="32" height="32" alt="" aria-hidden="true">GODOT</span><h3>SportsBallBattles</h3><p>An arcade football auto-battler: draft and upgrade a roster, then watch 3D active-ragdoll chaos play out on Game Day.</p></a>
       <a class="card" href="/homelab"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-server.png' width="32" height="32" alt="" aria-hidden="true">SELF-HOSTED</span><h3>Homelab</h3><p>A small self-hosted lab: five instances on a private mesh network that build, test, and serve my projects.</p></a>
-      <a class="card" href="/projects#it-operations"><span class="card-label"><img class="pixelated" src='/static/sprites/icon-server.png' width="32" height="32" alt="" aria-hidden="true">ENTERPRISE IT</span><h3>ServiceNow Workflows, CMDB &amp; WinRE Tooling</h3><p>Workflow design, CMDB cleanup (800+ models), management dashboards, and PowerShell recovery tooling.</p></a>
     </div>
   </div>
 </section>
 
-<section class="window" aria-labelledby="studio-title">
-  <div class="window-bar"><span id="studio-title">IDLE_MINDS.EXE</span><span class="controls" aria-hidden="true"></span></div>
+<section class="window ah-portal" data-theme="night" aria-labelledby="ah-portal-title">
+  <div class="window-bar"><span id="ah-portal-title">AFTER_HOURS.EXE</span><span class="controls" aria-hidden="true"></span></div>
   <div class="window-body">
-    <p><strong>Idle Minds</strong> is my game studio: systemic simulations, deterministic mechanics, and player-respecting pricing (no ads, IAP, or gacha).</p>
-    <p>Games in development: <a href="/escape-from-idle">Escape From Idle</a> and <a href="/projects/sportsballbattles">SportsBallBattles</a>.</p>
+    <p class="ah-portal-kicker">[ AFTER HOURS ]</p>
+    <p><strong>The mall stays open after the day job.</strong> Idle Minds game studio, Escape From Idle, RedFrontier, SportsBallBattles, and Pssst live on the personal side.</p>
     <div class="hero-actions">
-      <a href="/studio" class="btn btn-secondary">IDLE MINDS</a>
+      <a href="/personal" class="btn btn-primary">&gt; ENTER AFTER HOURS</a>
     </div>
   </div>
 </section>

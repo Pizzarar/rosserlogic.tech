@@ -2,13 +2,9 @@
   url: /
 - title: Résumé
   url: /resume
-- title: Projects
-  url: /projects
-- title: VibeSquad
-  url: /vibesquad
-- title: Homelab
-  url: /homelab
-- title: Idle Minds
-  url: /studio
+- title: Work
+  url: /work
+- title: Personal
+  url: /personal
 - title: Contact
   url: /contact

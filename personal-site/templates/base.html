@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.language | default(value='en') }}" data-theme="{{ page.extra.theme | default(value='night') }}">
+<html lang="{{ site.language | default(value='en') }}" data-theme="{{ page.extra.theme | default(value='night') }}" data-zone="{{ page.extra.zone | default(value='personal') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,9 +165,9 @@
         .content [data-theme="day"] :focus-visible { outline-color: var(--be-dusk-violet); }
         .card-grid + p { margin-top: 1rem; }
         .content blockquote { margin: 1rem 0; padding: .5rem 1rem; border-left: 4px solid var(--be-dusk-violet); color: var(--be-ink-muted); }
-        .content code { font-family: var(--font-pixel); font-size: .875em; background: var(--be-crt); color: var(--be-phosphor); padding: .1rem .35rem; }
+        .content code { font-family: var(--font-pixel); font-size: .875em; background: var(--be-crt); color: var(--be-phosphor); padding: .1rem .35rem; overflow-wrap: anywhere; }
         .content pre { background: var(--be-crt); color: var(--be-phosphor); border: 2px solid var(--be-ink); padding: 1rem; overflow-x: auto; margin: 1rem 0; }
-        .content pre code { background: none; padding: 0; font-size: .9em; }
+        .content pre code { background: none; padding: 0; font-size: .9em; overflow-wrap: normal; }
         .content table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
         .content th, .content td { border: 2px solid var(--be-ink); padding: .5rem .75rem; text-align: left; }
         .content th { background: var(--be-surface-raised); font-family: var(--font-pixel); font-weight: 400; letter-spacing: .06em; }
@@ -408,6 +408,29 @@
             .reading .content h2, .reading .content h3, .reading .content h4 { break-after: avoid; page-break-after: avoid; }
             .site-footer { display: none !important; }
         }
+        /* Gate 26-1: zone styling. Pro = calm (no footer stickers). Personal = After Hours (Hypnospace sticker chips + desktop icons). Tokens only. */
+        [data-zone="pro"] .footer-stickers { display: none; }
+        [data-zone="pro"] .card .card-label { color: var(--be-dusk-violet); }
+        .ah-stickers { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin: 1rem 0; }
+        .ah-sticker { display: inline-block; font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .08em; padding: .25rem .625rem; border: 2px solid var(--be-ink); color: var(--be-on-accent); box-shadow: 2px 2px 0 var(--be-shadow-color); transform: rotate(-1.5deg); }
+        .ah-sticker:nth-child(2) { transform: rotate(1deg); }
+        .ah-sticker:nth-child(3) { transform: rotate(-.5deg); }
+        .ah-pink { background: var(--be-sunset-pink); }
+        .ah-teal { background: var(--be-cel-teal); }
+        .ah-orange { background: var(--be-sunset-orange); }
+        .ah-icons { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1rem 0; }
+        @media (min-width: 640px) { .ah-icons { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 640px) { .ah-icons > .ah-icon:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .5rem); } }
+        .ah-icon { display: grid; grid-template-columns: 32px 1fr; column-gap: .75rem; row-gap: .25rem; align-items: start; padding: .875rem; border: 2px dashed var(--be-cel-teal); background: var(--be-surface); text-decoration: none; color: var(--be-ink); }
+        .ah-icon img { grid-row: 1 / span 2; }
+        .ah-icon:hover { border-style: solid; border-color: var(--be-sunset-pink); }
+        .ah-icon-name { font-family: var(--font-pixel); font-size: .8rem; letter-spacing: .06em; color: var(--be-phosphor); overflow-wrap: anywhere; }
+        .ah-icon-note { font-size: .9rem; line-height: 1.45; color: var(--be-ink-muted); }
+        .ah-note { margin-top: 1.5rem; padding: .5rem .75rem; border: 2px solid var(--be-sunset-orange); font-family: var(--font-pixel); font-size: .8rem; letter-spacing: .04em; line-height: 1.5; }
+        .ah-portal { border-color: var(--be-sunset-pink); }
+        .ah-portal .window-body { background: var(--bayer), var(--be-surface); color: var(--be-ink); }
+        .ah-portal-kicker { font-family: var(--font-pixel); font-size: .8rem; letter-spacing: .1em; color: var(--be-phosphor); margin: 0 0 .5rem; }
+        .ah-portal a:not(.btn) { color: var(--be-cel-teal); }
     </style>
     {% block extra_css %}{% endblock %}
     {% if math_enabled %}
@@ -427,18 +450,18 @@
     {% block header %}
         <div class="nav-inner">
             <a class="nav-brand" href="{{ lang_prefix }}/"><img class="pixelated" src='/static/sprites/favicon-16.png' width="16" height="16" alt="">{{ site.title }}</a>
-            {% set _studio_mode = page.extra.studio_mode | default(value=false) %}
-            {% if _studio_mode %}{% set _nav = data.nav_studio %}{% else %}{% set _nav = data.nav %}{% endif %}
+            {% set _nav = data.nav %}
+            {% set _parent = page.extra.nav_parent | default(value="") %}
             {% if _nav %}
             <nav class="nav-links" aria-label="Main navigation">
                 {% set _here = page.url | default(value='/') %}
-                {% for item in _nav %}{% if item.external %}<a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>{% else %}<a href="{{ lang_prefix }}{{ item.url }}"{% if _here == item.url %} class="active"{% endif %}>{{ item.title }}</a>{% endif %}{% endfor %}
+                {% for item in _nav %}{% if item.external %}<a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>{% else %}<a href="{{ lang_prefix }}{{ item.url }}"{% if _here == item.url or _parent == item.url %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a>{% endif %}{% endfor %}
             </nav>
             {% endif %}
             <form class="search-form" role="search" aria-label="{{ t.search_label }}" onsubmit="return false">
                 <input type="search" id="search-input" placeholder="{{ t.search_placeholder }}" autocomplete="off" aria-label="{{ t.search_label }}">
             </form>
-            <span class="nav-status" aria-hidden="true">[ OK ]</span>
+            <span class="nav-status" aria-hidden="true">{% if page.extra.zone | default(value="personal") == "pro" %}[ OK ]{% else %}[ AFTER HOURS ]{% endif %}</span>
         </div>
         <div id="search-results" aria-live="polite"></div>
     {% endblock %}
@@ -452,7 +475,7 @@
     </main>
     <footer class="site-footer">
         {% block footer %}
-        <div class="ticker" aria-hidden="true">[ OK ] SYSTEM READY</div>
+        <div class="ticker" aria-hidden="true">{% if page.extra.zone | default(value="personal") == "pro" %}[ OK ] SYSTEM READY{% else %}[ AFTER HOURS ] MALL OPEN{% endif %}</div>
         <div class="footer-stickers" aria-hidden="true">
             <img class="pixelated" src='/static/sprites/sticker-vibe-os.png' width="120" height="56" alt="">
             <img class="pixelated" src='/static/sprites/sticker-idle-minds.png' width="120" height="56" alt="">
