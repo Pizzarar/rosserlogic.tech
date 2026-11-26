@@ -29,6 +29,13 @@ Enhancement requests arrive as free text. Someone has to read each one, decide h
 
 ## The flow
 
+<figure class="flow">
+<svg class="flow-svg" viewBox="0 0 360 427" role="img" aria-labelledby="sn-t" xmlns="http://www.w3.org/2000/svg"><title id="sn-t">SerbiseNow enhancement triage flow in five steps: intake, AI triage with evidence guardrails, blind-review ACL gate, lock business rule, human reviewer decision</title><defs><marker id="sn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="fl-ah" d="M0 0 L10 5 L0 10 z"/></marker></defs><g class="fl-n teal"><rect class="fl-box teal" x="15" y="8" width="330" height="46"/><text class="fl-t" x="180" y="27" text-anchor="middle">1. Intake</text><text class="fl-s" x="180" y="45" text-anchor="middle">request saved as enh_request row</text></g><line class="fl-ln" x1="180.0" y1="54" x2="180.0" y2="76" marker-end="url(#sn)"/><g class="fl-n violet"><rect class="fl-box violet" x="15" y="78" width="330" height="80"/><text class="fl-t" x="180" y="97" text-anchor="middle">2. AI triage + guardrails</text><text class="fl-s" x="180" y="115" text-anchor="middle">ai_triage: prescan, redact,</text><text class="fl-s" x="180" y="132" text-anchor="middle">3 samples, validate, rubric.</text><text class="fl-s" x="180" y="149" text-anchor="middle">Pasted secret: lane C, no model call</text></g><line class="fl-ln" x1="180.0" y1="158" x2="180.0" y2="180" marker-end="url(#sn)"/><g class="fl-n plain"><rect class="fl-box plain" x="15" y="182" width="330" height="63"/><text class="fl-t" x="180" y="201" text-anchor="middle">3. Blind-review ACL gate</text><text class="fl-s" x="180" y="219" text-anchor="middle">20 field-level read ACLs hide the AI</text><text class="fl-s" x="180" y="236" text-anchor="middle">suggestion; admin override is off</text></g><line class="fl-ln" x1="180.0" y1="245" x2="180.0" y2="267" marker-end="url(#sn)"/><g class="fl-n plain"><rect class="fl-box plain" x="15" y="269" width="330" height="63"/><text class="fl-t" x="180" y="288" text-anchor="middle">4. Lock business rule</text><text class="fl-s" x="180" y="306" text-anchor="middle">only the Review fields can change;</text><text class="fl-s" x="180" y="323" text-anchor="middle">runs for admins too, logs no values</text></g><line class="fl-ln" x1="180.0" y1="332" x2="180.0" y2="354" marker-end="url(#sn)"/><g class="fl-n pink"><rect class="fl-box pink" x="15" y="356" width="330" height="63"/><text class="fl-t" x="180" y="375" text-anchor="middle">5. Human reviewer decision UI</text><text class="fl-s" x="180" y="393" text-anchor="middle">confirm or override with a reason</text><text class="fl-s" x="180" y="410" text-anchor="middle">from a fixed list. Lane A, B or C</text></g></svg>
+<figcaption>The pipeline end to end. Names are the real table and record names; the model only extracts features.</figcaption>
+</figure>
+
+In words:
+
 1. **Intake.** A request is saved as an `enh_request` record.
 2. **AI triage.** A daily scheduled job runs each new request through: prescan, redact, prompt, three model samples, validate, rubric. The model only extracts features; deterministic rules and a human make the decision.
 3. **Blind human review.** A reviewer records their own lane and priority *before* seeing the AI suggestion. A configurable share of rows (default 20%) is blind; in the simulation's first phase every row is.
@@ -56,7 +63,26 @@ The default LLM client is a deterministic mock. The real endpoint is a placehold
 - **Python eval harness (`triage_eval`):** 234 passing tests. The harness runs prescan, redact, triage ×3, validate, rubric, then reports agreement, a confusion matrix, calibration buckets, injection and secrets suites, false-positive rates and an ablation. The data is synthetic and the mock LLM is the default client. The harness's own caveat applies: *numbers prove the harness, not the model.*
 - **ServiceNow ATF:** 16 tests are defined in Fluent (5 for the core pipeline, 11 end to end). They have **not** been run, because there is no instance wired up to run them against.
 
-Test counts were run on 2026-11-25.
+Counts below were re-run offline on 2026-11-26, from a clean checkout of the committed code. ATF is not part of this run.
+
+<div class="window window-crt readout">
+<div class="window-bar"><span>OFFLINE TEST RUN · 2026-11-26</span><span class="controls" aria-hidden="true"></span></div>
+<div class="window-body"><pre><code>$ node --test "test/*.test.js"
+# tests 532   # suites 17   # pass 532   # fail 0
+$ python -m pytest triage_eval/tests -q
+234 passed
+$ python -m triage_eval.contract ‑‑check
+prompt_version=0.1  schema_version=1.0
+schema.json matches Appendix B
+$ python -m triage_eval run --gold &lt;synthetic gold&gt;
+records: 100 (test 55)   [mock LLM, synthetic data, offline]
+secrets suite: 16/16 caught before any LLM call
+injection suite: 10/10
+schema validity 156/156 · evidence grounding 645/645
+critical misroutes 4/55 and AI-gold kappa 0.451 miss the Phase-0 bars (mock model)
+note: synthetic gold; numbers prove the harness, not the model</code></pre></div>
+</div>
+
 
 ## Status
 

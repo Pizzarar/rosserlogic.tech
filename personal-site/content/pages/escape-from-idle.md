@@ -34,20 +34,38 @@ Currently in development at Idle Minds, built in Godot. Target platforms, releas
 
 ## Main Game Screens
 
-<div class="pgal" data-pgal role="region" aria-roledescription="gallery" aria-label="Escape From Idle screenshots">
+Captures from the in-engine snapshot tour of the current build. Experimental UI, work in progress; every number is a test value. Use "Open full size" to see a capture at full resolution.
+
+<div class="pgal" data-pgal data-pgal-full role="region" aria-roledescription="gallery" aria-label="Escape From Idle screenshots">
 <div class="pgal-dev" data-title="Escape From Idle"><div class="pgal-screen">
 <ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
 <li><figure>
-  <img src="/static/previews/efi/efi-raids.png" data-asset="efi-raids" data-final="static/previews/efi/efi-raids.png" width="1920" height="1080" loading="lazy" alt="Escape From Idle extraction raids screen: experimental UI build, work in progress">
-  <figcaption>Extraction raids screen: experimental UI build, work in progress</figcaption>
+  <img src="/static/previews/efi/g27-hideout-map.png" data-asset="efi-g27-hideout-map" data-final="static/previews/efi/g27-hideout-map.png" width="1600" height="900" loading="lazy" alt="Escape From Idle hideout map: isometric rooms (Stash, Generator, Workshop, Ops Room) lit up with levels, other rooms marked Not built, and a right panel reading Pick a room with a closest-to-done list.">
+  <figcaption>Hideout map: built rooms lit up with levels, unbuilt rooms marked "Not built".</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/efi/g27-hideout-room-panel.png" data-asset="efi-g27-hideout-room-panel" data-final="static/previews/efi/g27-hideout-room-panel.png" width="1600" height="900" loading="lazy" alt="Escape From Idle hideout with the Trading Post selected: a popup reads Not enough materials to upgrade, and the right panel lists Cloth 0/13 and Oak Log 0/13 with next-level bonuses and milestones.">
+  <figcaption>Hideout room panel: Trading Post selected, upgrade blocked by missing materials.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/efi/g27-raid-map-walk.png" data-asset="efi-g27-raid-map-walk" data-final="static/previews/efi/g27-raid-map-walk.png" width="1600" height="900" loading="lazy" alt="Escape From Idle raid on the tactical map at Harbor District: isometric docks with a warehouse, boat and containers, IN and EXIT markers, a squad marker walking, threat tier 1, 14:58 left and an Extract button.">
+  <figcaption>Raid map, Harbor District: the squad walks between the IN and EXIT markers.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/efi/g27-deep-raid.png" data-asset="efi-g27-deep-raid" data-final="static/previews/efi/g27-deep-raid.png" width="1600" height="900" loading="lazy" alt="Escape From Idle raid in Sublevel 3: a Heavy Trooper contact (HP 320/320) on an isometric map, Bleeding and Fracture statuses shown, threat tier 2.">
+  <figcaption>Deep raid, Sublevel 3: a Heavy Trooper contact, status effects, threat tier 2.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/efi/g27-raid-result.png" data-asset="efi-g27-raid-result" data-final="static/previews/efi/g27-raid-result.png" width="1600" height="900" loading="lazy" alt="Escape From Idle raids screen with an Extracted result dialog listing loot kept, containers searched, hidden caches, traps and ambushes, beside a Harbor District map.">
+  <figcaption>Raid result: the Extracted summary dialog. Numbers are test values.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/efi/g27-raid-presets.png" data-asset="efi-g27-raid-presets" data-final="static/previews/efi/g27-raid-presets.png" width="1600" height="900" loading="lazy" alt="Escape From Idle raids screen: last-raid summary, a Harbor District card marked risk LOW, a loadout with a saved kit preset named Vault run, and the live map beside it.">
+  <figcaption>Raids screen: Harbor District card, a saved kit preset and the live map.</figcaption>
 </figure></li>
 <li><figure>
   <img src="/static/previews/efi/efi-crafting.png" data-asset="efi-crafting" data-final="static/previews/efi/efi-crafting.png" width="1920" height="1080" loading="lazy" alt="Escape From Idle crafting screen: experimental UI build, work in progress">
-  <figcaption>Crafting screen: experimental UI build, work in progress</figcaption>
-</figure></li>
-<li><figure>
-  <img src="/static/previews/efi/efi-hideout-upgrades.png" data-asset="efi-hideout-upgrades" data-final="static/previews/efi/efi-hideout-upgrades.png" width="1920" height="1080" loading="lazy" alt="Escape From Idle hideout upgrades screen: experimental UI build, work in progress">
-  <figcaption>Hideout upgrades screen: experimental UI build, work in progress</figcaption>
+  <figcaption>Crafting screen (earlier capture).</figcaption>
 </figure></li>
 </ul>
 </div></div>

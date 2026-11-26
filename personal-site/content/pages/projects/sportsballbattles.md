@@ -10,7 +10,10 @@ extra:
   nav_parent: "/personal"
   body_style: crt
   banner: sportsballbattles
+  custom_h1: true
 ---
+
+<h1 class="page-title">Sports<wbr>Ball<wbr>Battles</h1>
 
 <div class="tag-row">
 <span class="tag">Godot 4.7.2</span>
@@ -41,7 +44,7 @@ The project is self-described as "complete except art and audio". Unless a capti
 
 Every capture below is labeled **work in progress, placeholder art**.
 
-<div class="pgal" data-pgal role="region" aria-roledescription="gallery" aria-label="SportsBallBattles screenshots">
+<div class="pgal" data-pgal data-pgal-full role="region" aria-roledescription="gallery" aria-label="SportsBallBattles screenshots">
 <div class="pgal-dev" data-title="SportsBallBattles"><div class="pgal-screen">
 <ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
 <li><figure>
@@ -55,10 +58,6 @@ Every capture below is labeled **work in progress, placeholder art**.
 <li><figure>
   <img src='/static/previews/sportsballbattles/hub-offense.png' data-asset="proj-sportsballbattles-hub-offense" data-final="static/previews/sportsballbattles/hub-offense.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles hub offense roster view: work in progress, placeholder art">
   <figcaption>Hub offense roster view: work in progress, placeholder art</figcaption>
-</figure></li>
-<li><figure>
-  <img src='/static/previews/sportsballbattles/shop-upgrades.png' data-asset="proj-sportsballbattles-shop-upgrades" data-final="static/previews/sportsballbattles/shop-upgrades.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles shop upgrades view: work in progress, placeholder art">
-  <figcaption>Shop upgrades view: work in progress, placeholder art</figcaption>
 </figure></li>
 <li><figure>
   <img src='/static/previews/sportsballbattles/hall-of-fame.png' data-asset="proj-sportsballbattles-hall-of-fame" data-final="static/previews/sportsballbattles/hall-of-fame.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles hall of fame view: work in progress, placeholder art">
@@ -75,6 +74,48 @@ Every capture below is labeled **work in progress, placeholder art**.
   </picture>
   <figcaption>work in progress, placeholder art. Looping capture of one Game Day play: a pass completion, then the tackle.</figcaption>
 </figure>
+
+### Phone screens
+
+The phone-portrait UI: hub, game plan and film study. Work in progress, placeholder art.
+
+<div class="pgal pgal--port" data-pgal data-pgal-full role="region" aria-roledescription="gallery" aria-label="SportsBallBattles phone screens">
+<div class="pgal-dev" data-title="Phone UI"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
+  <img src="/static/previews/sportsballbattles/g27-shop-upgraded.png" data-asset="sbb-g27-shop-upgraded" data-final="static/previews/sportsballbattles/g27-shop-upgraded.png" width="720" height="1280" loading="lazy" alt="SportsBallBattles hub in phone portrait, Week 5 Rec League: a Shop upgraded popup over starter and bench player cards.">
+  <figcaption>Hub, Week 5 Rec League: the "Shop upgraded!" popup over starter and bench cards.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/sportsballbattles/g27-game-plan.png" data-asset="sbb-g27-game-plan" data-final="static/previews/sportsballbattles/g27-game-plan.png" width="720" height="1280" loading="lazy" alt="SportsBallBattles Game Day screen, Week 1 Sandlot: a Game Plan dialog with Run Heavy, Balanced (selected) and Air It Out options and a fourth-down toggle.">
+  <figcaption>Game Day: the Game Plan dialog (Run Heavy, Balanced, Air It Out).</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/sportsballbattles/g27-film-study.png" data-asset="sbb-g27-film-study" data-final="static/previews/sportsballbattles/g27-film-study.png" width="720" height="1280" loading="lazy" alt="SportsBallBattles Game Day screen with a Film Study dialog on the opponent: coach archetype, pass and blitz rates, average ratings, a watch-out player and active plays.">
+  <figcaption>Game Day: the Film Study dialog on the opponent.</figcaption>
+</figure></li>
+</ul>
+</div></div>
+</div>
+
+### Frame sequences
+
+Each image below is a sheet of 12 frames laid out in a grid, taken from one play. They are frame sequences, not single screenshots.
+
+<div class="pgal" data-pgal data-pgal-full role="region" aria-roledescription="gallery" aria-label="SportsBallBattles frame sequences">
+<div class="pgal-dev" data-title="Frame sequences"><div class="pgal-screen">
+<ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
+<li><figure>
+  <img src="/static/previews/sportsballbattles/g27-film-pass-sequence.png" data-asset="sbb-g27-film-pass-sequence" data-final="static/previews/sportsballbattles/g27-film-pass-sequence.png" width="1600" height="941" loading="lazy" alt="Frame sequence of 12 frames in a 3 by 4 grid showing a passing play in the 3D Game Day view, Ground and Pound against Air Raid.">
+  <figcaption>Frame sequence (12 frames, not a single screenshot): a passing play in the 3D Game Day view.</figcaption>
+</figure></li>
+<li><figure>
+  <img src="/static/previews/sportsballbattles/g27-touchdown-celebration.png" data-asset="sbb-g27-touchdown-celebration" data-final="static/previews/sportsballbattles/g27-touchdown-celebration.png" width="1600" height="941" loading="lazy" alt="Frame sequence of 12 frames showing a touchdown celebration with confetti and a Touchdown Ground and Pound banner.">
+  <figcaption>Frame sequence (12 frames, not a single screenshot): a touchdown celebration with confetti.</figcaption>
+</figure></li>
+</ul>
+</div></div>
+</div>
 
 
 ## Recent Work

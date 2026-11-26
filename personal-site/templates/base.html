@@ -174,6 +174,35 @@
         .content hr { border: 0; border-top: 2px solid var(--be-ink); margin: 2rem 0; }
         .content img { max-width: 100%; height: auto; display: block; border: 2px solid var(--be-ink); }
         .content figure { margin: 1rem 0; }
+        /* Gate 27: P0 inline SVG flow diagrams, proof readouts, card thumbnails (tokens only, no new hex) */
+        .content figure.flow { margin: 1.5rem auto; max-width: 560px; }
+        .flow-svg { display: block; width: 100%; height: auto; max-width: 100%; }
+        .content figure.flow figcaption { text-align: center; }
+        .fl-box { fill: var(--be-surface); stroke: var(--be-ink); stroke-width: 2; shape-rendering: crispEdges; }
+        .fl-box.teal { fill: var(--be-cel-teal); } .fl-box.violet { fill: var(--be-dusk-violet); } .fl-box.pink { fill: var(--be-sunset-pink); } .fl-box.crt { fill: var(--be-crt); }
+        .fl-t, .fl-s { fill: var(--be-ink); letter-spacing: 0; text-transform: none; }
+        .fl-t { font-family: var(--font-sans); font-weight: 700; font-size: 16px; } .fl-s { font-family: var(--font-sans); font-size: 13px; }
+        @media (max-width: 480px) { .fl-s { font-size: 14px; } }
+        .fl-n.teal text, .fl-n.pink text { fill: var(--be-on-accent); }
+        .fl-n.violet text { fill: var(--be-on-violet); }
+        .fl-n.crt text { fill: var(--be-phosphor); }
+        .fl-ln { stroke: var(--be-ink); stroke-width: 2; fill: none; } .fl-dash { stroke-dasharray: 5 4; } .fl-ah { fill: var(--be-ink); }
+        .card-thumb, .card-thumb-svg { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; margin: 0 0 .75rem; border: 2px solid var(--be-ink); background: var(--be-crt); object-fit: cover; }
+        .card-thumb-svg .fl-t { font-size: 56px; } .card-thumb-svg .fl-s { font-size: 28px; } .card-thumb-svg .fl-ln { stroke-width: 6; stroke: var(--be-phosphor); } .card-thumb-svg .fl-ah { fill: var(--be-phosphor); }
+        .content .readout { margin: 1.25rem 0; }
+        .content .readout .window-body { padding: .75rem 1rem; }
+        .content .readout pre code { font-family: inherit; text-transform: none; font-size: inherit; }
+        .content .readout pre { margin: 0; padding: 0; border: 0; background: none; color: var(--be-phosphor); white-space: pre-wrap; overflow-wrap: break-word; font-family: var(--font-sans); text-transform: none; font-size: .78rem; line-height: 1.5; }
+        /* Gate 27: /personal preview cards (moved from an inline <style> in personal.md) */
+        .ah-cards .ah-card { display: flex; flex-direction: column; gap: .625rem; }
+        .ah-cards .ah-thumb { display: block; aspect-ratio: 16 / 10; overflow: hidden; border: 2px solid var(--be-ink); background: var(--be-surface); }
+        .ah-cards .ah-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+        .ah-cards .ah-thumb--banner { background: var(--be-crt); }
+        .ah-cards .ah-thumb.ah-thumb--banner img { object-fit: contain; object-position: center; }
+        .ah-cards .ah-card-head { display: flex; align-items: center; gap: .625rem; }
+        .ah-cards .ah-card-head img { flex: none; }
+        .ah-cards .ah-card:hover .ah-thumb { border-color: var(--be-sunset-pink); }
+        .ah-cards .ah-card:focus-visible { outline: 2px solid var(--be-cel-teal); outline-offset: 2px; }
         .pixel-diagram { display: block; }
         .pixel-diagram img { display: block; margin: 0 auto; max-width: 100%; height: auto; image-rendering: pixelated; }
         .content figcaption { font-family: var(--font-pixel); font-size: .75rem; letter-spacing: .06em; color: var(--be-ink-muted); margin-top: .5rem; }

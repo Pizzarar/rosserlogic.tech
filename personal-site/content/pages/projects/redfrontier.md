@@ -1,7 +1,7 @@
 ---
 title: "RedFrontier: Frontier Homestead"
 image: /static/sprites/og-redfrontier.png
-description: "RedFrontier is a public Lua RedM server project: a small-group PvE extraction sandbox with homesteads, A-Life outlaw camps, a tailor catalog and a 4806-check test suite. In development."
+description: "RedFrontier is a public Lua RedM server project: a small-group PvE extraction sandbox with homesteads, A-Life outlaw camps, a tailor catalog and a 2869-test suite. In development."
 extra:
   theme: night
   zone: personal
@@ -27,7 +27,14 @@ extra:
 
 The *repo* is public. The *server design* is a private small-group one. This is not a public server you can join.
 
-It sits on RSGCore, ox_lib and oxmysql, with Lua 5.4 on client and server, a vanilla JS/HTML/CSS NUI, OneSync, and a server-authoritative model for inventory, money, loot, heat and insurance. There are 23 custom `fh_` resources and 12 vendored third-party resources with pinned versions.
+It sits on RSGCore, ox_lib and oxmysql, with Lua 5.4 on client and server, a vanilla JS/HTML/CSS NUI, OneSync, and a server-authoritative model for inventory, money, loot, heat and insurance. There are 24 custom `fh_` resources and 12 vendored third-party resources with pinned versions.
+
+## Architecture
+
+<figure class="flow">
+<svg class="flow-svg" viewBox="0 0 360 488" role="img" aria-labelledby="rf-t" xmlns="http://www.w3.org/2000/svg"><title id="rf-t">RedFrontier architecture: selected fh_ resource dependencies from fxmanifest files, sitting on RSGCore, ox_lib, oxmysql and MariaDB</title><defs><marker id="rf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="fl-ah" d="M0 0 L10 5 L0 10 z"/></marker></defs><g class="fl-n plain"><rect class="fl-box plain" x="20" y="8" width="320" height="46"/><text class="fl-t" x="180" y="27" text-anchor="middle">fh_core: shared hub</text><text class="fl-s" x="180" y="45" text-anchor="middle">every fh_* below declares it</text></g><g class="fl-n pink"><rect class="fl-box pink" x="20" y="84" width="150" height="38"/><text class="fl-t" x="95" y="108" text-anchor="middle">fh_alife</text></g><g class="fl-n teal"><rect class="fl-box teal" x="190" y="84" width="150" height="38"/><text class="fl-t" x="265" y="108" text-anchor="middle">fh_zones</text></g><g class="fl-n teal"><rect class="fl-box teal" x="20" y="148" width="150" height="38"/><text class="fl-t" x="95" y="172" text-anchor="middle">fh_trade</text></g><g class="fl-n teal"><rect class="fl-box teal" x="190" y="148" width="150" height="38"/><text class="fl-t" x="265" y="172" text-anchor="middle">fh_progression</text></g><g class="fl-n pink"><rect class="fl-box pink" x="20" y="212" width="150" height="38"/><text class="fl-t" x="95" y="236" text-anchor="middle">fh_homestead</text></g><g class="fl-n pink"><rect class="fl-box pink" x="190" y="212" width="150" height="38"/><text class="fl-t" x="265" y="236" text-anchor="middle">fh_tailor</text></g><g class="fl-n pink"><rect class="fl-box pink" x="20" y="276" width="150" height="38"/><text class="fl-t" x="95" y="300" text-anchor="middle">fh_inventory</text></g><g class="fl-n pink"><rect class="fl-box pink" x="190" y="276" width="150" height="38"/><text class="fl-t" x="265" y="300" text-anchor="middle">fh_economy</text></g><line class="fl-ln" x1="170" y1="103" x2="188" y2="103" marker-end="url(#rf)"/><line class="fl-ln" x1="95" y1="122" x2="95" y2="146" marker-end="url(#rf)"/><line class="fl-ln" x1="265" y1="212" x2="265" y2="188" marker-end="url(#rf)"/><line class="fl-ln" x1="265" y1="250" x2="265" y2="274" marker-end="url(#rf)"/><line class="fl-ln" x1="130" y1="250" x2="215" y2="274" marker-end="url(#rf)"/><g class="fl-n crt"><rect class="fl-box crt" x="20" y="366" width="150" height="50"/><text class="fl-t" x="95" y="385" text-anchor="middle">RSGCore</text><text class="fl-s" x="95" y="403" text-anchor="middle">rsg-core, rsg-*</text></g><g class="fl-n crt"><rect class="fl-box crt" x="190" y="366" width="150" height="50"/><text class="fl-t" x="265" y="385" text-anchor="middle">ox_lib/oxmysql</text><text class="fl-s" x="265" y="403" text-anchor="middle">database layer</text></g><line class="fl-ln fl-dash" x1="60" y1="314" x2="60" y2="364" marker-end="url(#rf)"/><text class="fl-s" x="68" y="347">provides rsg-inventory</text><line class="fl-ln" x1="265" y1="314" x2="265" y2="364" marker-end="url(#rf)"/><g class="fl-n crt"><rect class="fl-box crt" x="190" y="442" width="150" height="38"/><text class="fl-t" x="265" y="466" text-anchor="middle">MariaDB</text></g><line class="fl-ln" x1="265" y1="416" x2="265" y2="440" marker-end="url(#rf)"/></svg>
+<figcaption>Selected dependencies, taken from each resource's fxmanifest. Solid arrows: depends on. Dashed: fh_inventory provides rsg-inventory. Every fh_ resource shown also declares fh_core.</figcaption>
+</figure>
 
 ## Systems
 
@@ -44,7 +51,24 @@ In development. Many systems are built and covered by specs but **not yet checke
 
 ## Tests
 
-133 pure-Lua spec files, run with the project's own runner (embedded Lua 5.4 through Python `lupa`) or with `busted`. At commit `9c461b4`, the runner reports **4806 checks, 0 failures across 133 specs**. These are unit specs. They do not replace in-game testing.
+153 pure-Lua spec files, run with the project's own runner (embedded Lua 5.4 through Python `lupa`). At commit `2beeb5d` on 2026-11-26 the runner reports **2869 tests across 153 specs, 0 failures**. These are unit specs. They do not replace in-game testing.
+
+<div class="window window-crt readout">
+<div class="window-bar"><span>run-specs.py · commit 2beeb5d · 2026-11-26</span><span class="controls" aria-hidden="true"></span></div>
+<div class="window-body"><pre><code>$ python tools/run-specs.py
+ok   spec/access_rules_spec.lua: 19 tests, 0 failures
+ok   spec/alife_rules_spec.lua: 32 tests, 0 failures
+ok   spec/alife_server_spec.lua: 38 tests, 0 failures
+ok   spec/build_flow_spec.lua: 62 tests, 0 failures
+...
+TOTAL 153 specs, 2869 tests, 0 failures, 0 load errors
+load-manifests: 36 resources, 601 files loaded, 2 system resources skipped
+load-manifests: 4 findings (4 known, 0 unknown)
+Ran 7 tests in 0.009s
+OK</code></pre></div>
+</div>
+
+The 4 known findings are vendored resources that use Cfx-specific Lua syntax plain Lua cannot parse.
 
 ## Community Accolades / Credits
 
