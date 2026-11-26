@@ -5,6 +5,7 @@ description: "Escape From Idle is a post-apocalyptic modern-shooter idle game wi
 extra:
   theme: night
   zone: personal
+  wing: efi
   nav_parent: "/personal"
   body_style: crt
   banner: escape-from-idle

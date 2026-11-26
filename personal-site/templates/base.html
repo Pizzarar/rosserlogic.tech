@@ -405,15 +405,12 @@
         .pc98-wings { display: none; }
         @media (min-width: 1280px) {
             .pc98-wings { display: block; position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-            /* Each wing is a full-height column filled with the art's top-row color (Night #140c26, Day #f7f0ff); the img is pinned to its bottom so taller viewports show no seam. */
-            .pc98-wings .wing { position: absolute; top: 0; bottom: 0; width: 704px; background-color: #140c26; }
-            .pc98-wings .wing-day { background-color: #f7f0ff; }
-            .pc98-wings .wing img { position: absolute; bottom: 0; left: 0; display: block; width: 704px; height: 900px; max-width: none; image-rendering: pixelated; }
+            /* Gate 28: one 384x900 pair per page (slug = extra.wing, else extra.zone). Wing sits flush against the 72rem content column; the outer edge clips at the viewport (1280: 64px visible, 1440: 144px, 1920: 384px). Fill = the art's top-row colour (Night #140c26, Day #f7f0ff) so taller viewports show no seam. */
+            .pc98-wings .wing { position: absolute; top: 0; bottom: 0; width: 384px; background-color: #140c26; }
+            [data-theme="day"] .pc98-wings .wing { background-color: #f7f0ff; }
+            .pc98-wings .wing img { position: absolute; bottom: 0; left: 0; display: block; width: 384px; height: 900px; max-width: none; image-rendering: pixelated; }
             .pc98-wings .wing-left { right: calc(50% + 36rem); }
             .pc98-wings .wing-right { left: calc(50% + 36rem); }
-            .pc98-wings .wing-day { display: none; }
-            [data-theme="day"] .pc98-wings .wing-day { display: block; }
-            [data-theme="day"] .pc98-wings .wing-night { display: none; }
             .site-footer { margin-top: 0; }
             main#main { max-width: 72rem; margin-inline: auto; background: linear-gradient(180deg, var(--be-surface) 0%, var(--be-surface-raised) 55%, var(--be-panel-hi) 100%); border-inline: 2px solid var(--be-ink); box-shadow: inset 1px 0 0 var(--bevel-hi), inset -1px 0 0 var(--bevel-lo), 0 0 0 2px var(--be-shadow-color); }
         }
@@ -469,11 +466,10 @@
 </head>
 <body{% if page.extra.body_style %} class="reading"{% endif %}>
     <a href="#main" class="skip-link">{{ t.skip_to_content }}</a>
-    <div class="pc98-wings" aria-hidden="true">
-        <div class="wing wing-left wing-night"><img class="pixelated" src='/static/sprites/wing-left.png' width="704" height="900" alt=""></div>
-        <div class="wing wing-left wing-day"><img class="pixelated" src='/static/sprites/wing-left-day.png' width="704" height="900" alt=""></div>
-        <div class="wing wing-right wing-night"><img class="pixelated" src='/static/sprites/wing-right.png' width="704" height="900" alt=""></div>
-        <div class="wing wing-right wing-day"><img class="pixelated" src='/static/sprites/wing-right-day.png' width="704" height="900" alt=""></div>
+    {% set wing_slug = page.extra.wing | default(value=page.extra.zone | default(value="personal")) %}
+    <div class="pc98-wings" aria-hidden="true" data-wing="{{ wing_slug }}">
+        <div class="wing wing-left"><img class="pixelated" src='{{ site.base_url }}/static/sprites/wings/{{ wing_slug }}-left.png' width="384" height="900" alt=""></div>
+        <div class="wing wing-right"><img class="pixelated" src='{{ site.base_url }}/static/sprites/wings/{{ wing_slug }}-right.png' width="384" height="900" alt=""></div>
     </div>
     <header class="site-header">
     {% block header %}

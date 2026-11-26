@@ -5,6 +5,7 @@ description: "RedFrontier is a public Lua RedM server project: a small-group PvE
 extra:
   theme: night
   zone: personal
+  wing: redfrontier
   nav_parent: "/personal"
   body_style: crt
   banner: redfrontier

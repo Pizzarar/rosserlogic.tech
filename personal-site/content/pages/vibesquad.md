@@ -8,5 +8,6 @@ extra:
   custom_h1: true
   theme: day
   zone: pro
+  wing: vibesquad
   nav_parent: "/work"
 ---

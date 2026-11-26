@@ -7,6 +7,7 @@ aliases:
 extra:
   theme: night
   zone: personal
+  wing: sbb
   nav_parent: "/personal"
   body_style: crt
   banner: sportsballbattles

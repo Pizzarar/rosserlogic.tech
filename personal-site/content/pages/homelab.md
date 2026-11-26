@@ -5,6 +5,7 @@ description: "A small self-hosted lab that builds, tests and serves my projects:
 extra:
   theme: day
   zone: pro
+  wing: homelab
   nav_parent: "/work"
   body_style: crt
 ---
