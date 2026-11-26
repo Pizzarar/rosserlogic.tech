@@ -48,7 +48,7 @@ Every capture below is labeled **work in progress, placeholder art**.
 <div class="pgal-dev" data-title="SportsBallBattles"><div class="pgal-screen">
 <ul class="pgal-track" tabindex="0" aria-label="Screenshots: use the arrow keys or the buttons to change">
 <li><figure>
-  <img src='/static/previews/sportsballbattles/night-kickoff.png' data-asset="proj-sportsballbattles-night-kickoff" data-final="static/previews/sportsballbattles/night-kickoff.png" width="1200" height="750" loading="lazy" alt="SportsBallBattles night stadium kickoff view: work in progress, placeholder art">
+  <img src='/static/previews/sportsballbattles/night-kickoff-field.png' data-asset="proj-sportsballbattles-night-kickoff-field" data-final="static/previews/sportsballbattles/night-kickoff-field.png" width="838" height="556" loading="lazy" alt="SportsBallBattles night stadium kickoff view: work in progress, placeholder art">
   <figcaption>Night stadium kickoff view: work in progress, placeholder art</figcaption>
 </figure></li>
 <li><figure>
